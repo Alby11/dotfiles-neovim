@@ -45,7 +45,7 @@ Init({
       return result, win, buf
     end,
   },
-  log = { level = "trace" }, -- The default print log level. One of: "trace", "debug", "info", "warn", "error",
+  log = { level = "warn" }, -- The default print log level. One of: "trace", "debug", "info", "warn", "error",
 })
 
 ---- Automatically set up your configuration after cloning packer.nvim
