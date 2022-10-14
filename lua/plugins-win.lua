@@ -36,15 +36,6 @@ return Packer.startup(function(use)
     },
   })
 
-  -- Folding
-  use({
-    "kevinhwang91/nvim-ufo",
-    requires = {
-      "kevinhwang91/promise-async",
-    },
-    config = get_setup("ufo"),
-  })
-
   -- Commenting
   use({
     "numToStr/Comment.nvim",
@@ -95,16 +86,6 @@ return Packer.startup(function(use)
       "nvim-telescope/telescope-fzf-native.nvim",
       run = "make",
     },
-  })
-
-  -- clipboard to sqlite
-  use({
-    "AckslD/nvim-neoclip.lua",
-    requires = {
-      "kkharji/sqlite.lua",
-      config = get_setup("sqlite"),
-    },
-    config = get_setup("neoclip"),
   })
 
   -- Git stuff
