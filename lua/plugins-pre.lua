@@ -1,3 +1,5 @@
+local packer_bootstrap = false
+
 -- Ensure packer is installed
 local ensure_packer = function()
   local install_path = Stdpath("data") .. "/site/pack/packer/start/packer.nvim"
@@ -23,7 +25,7 @@ if CheckPlugin("packer") then
   Util = require("packer.util")
   Init = Packer.init
 else
-  local packer_bootstrap = ensure_packer()
+  packer_bootstrap = ensure_packer()
 end
 
 Init({
