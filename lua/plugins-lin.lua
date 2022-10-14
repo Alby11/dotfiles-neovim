@@ -3,24 +3,24 @@ return Packer.startup(function(use)
 
   use({
     "lewis6991/impatient.nvim",
-    config = get_setup("impatient"),
+    config = GetSetup("impatient"),
   })
 
   use({
     "elijahmanor/export-to-vscode.nvim",
-    config = get_setup("export-to-vscode"),
+    config = GetSetup("export-to-vscode"),
   })
 
   -- Buffer management
   use({
     "romgrk/barbar.nvim",
     requires = "kyazdani42/nvim-web-devicons",
-    config = get_setup("bufferline"),
+    config = GetSetup("bufferline"),
   })
   -- say sayonara to buffers
   use({
     "mhinz/vim-sayonara",
-    config = get_setup("sayonara"),
+    config = GetSetup("sayonara"),
   })
 
   -- Movement
@@ -28,27 +28,18 @@ return Packer.startup(function(use)
     {
       "phaazon/hop.nvim",
       branch = "v2", -- optional but strongly recommended
-      config = get_setup("hop"),
+      config = GetSetup("hop"),
     },
     {
       "ethanholz/nvim-lastplace",
-      config = get_setup("nvim-lastplace"),
+      config = GetSetup("nvim-lastplace"),
     },
-  })
-
-  -- Folding
-  use({
-    "kevinhwang91/nvim-ufo",
-    requires = {
-      "kevinhwang91/promise-async",
-    },
-    config = get_setup("ufo"),
   })
 
   -- Commenting
   use({
     "numToStr/Comment.nvim",
-    config = get_setup("Comment"),
+    config = GetSetup("Comment"),
   })
 
   -- Wrapping/delimiters
@@ -61,10 +52,17 @@ return Packer.startup(function(use)
     "wellle/targets.vim",
   })
 
+  -- Folding
+  use({
+    "kevinhwang91/nvim-ufo",
+    requires = "kevinhwang91/promise-async",
+    config = GetSetup("ufo"),
+  })
+
   -- Indentation tracking
   use({
     "lukas-reineke/indent-blankline.nvim",
-    config = get_setup("indent_blankline"),
+    config = GetSetup("indent_blankline"),
   })
 
   -- Telescope
@@ -76,11 +74,11 @@ return Packer.startup(function(use)
         "nvim-lua/plenary.nvim",
         {
           "ahmedkhalf/project.nvim",
-          config = get_setup("project_nvim"),
+          config = GetSetup("project_nvim"),
         },
         { "junegunn/fzf", dir = "~/.fzf", run = "./install.ps1" },
       },
-      config = get_setup("telescope"),
+      config = GetSetup("telescope"),
     },
     "crispgm/telescope-heading.nvim",
     "cljoly/telescope-repo.nvim",
@@ -102,9 +100,9 @@ return Packer.startup(function(use)
     "AckslD/nvim-neoclip.lua",
     requires = {
       "kkharji/sqlite.lua",
-      config = get_setup("sqlite"),
+      config = GetSetup("sqlite"),
     },
-    config = get_setup("neoclip"),
+    config = GetSetup("neoclip"),
   })
 
   -- Git stuff
@@ -112,15 +110,15 @@ return Packer.startup(function(use)
     {
       "lewis6991/gitsigns.nvim",
       requires = "nvim-lua/plenary.nvim",
-      config = get_setup("gitsigns"),
+      config = GetSetup("gitsigns"),
     },
     {
       "TimUntersberger/neogit",
       requires = {
         "sindrets/diffview.nvim",
-        config = get_setup("diffview"),
+        config = GetSetup("diffview"),
       },
-      config = get_setup("neogit"),
+      config = GetSetup("neogit"),
     },
     {
       "akinsho/git-conflict.nvim",
@@ -136,7 +134,7 @@ return Packer.startup(function(use)
     {
       "nvim-treesitter/nvim-treesitter",
       run = ":TSUpdate",
-      config = get_setup("nvim-treesitter"),
+      config = GetSetup("nvim-treesitter"),
     },
     "nvim-treesitter/nvim-treesitter-textobjects",
     "nvim-treesitter/nvim-treesitter-context",
@@ -154,7 +152,7 @@ return Packer.startup(function(use)
       "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
     },
-    config = get_setup("neo-tree"),
+    config = GetSetup("neo-tree"),
   })
 
   -- LSP Support
@@ -196,13 +194,13 @@ return Packer.startup(function(use)
   -- null_ls
   use({
     "jose-elias-alvarez/null-ls.nvim",
-    config = get_setup("null-ls"),
+    config = GetSetup("null-ls"),
   })
 
   -- Quickfix
   use({
     "folke/trouble.nvim",
-    config = get_setup("trouble"),
+    config = GetSetup("trouble"),
   })
 
   -- Debugger
@@ -212,10 +210,10 @@ return Packer.startup(function(use)
       "Pocco81/dap-buddy.nvim",
       {
         "rcarriga/nvim-dap-ui",
-        config = get_setup("dapui"),
+        config = GetSetup("dapui"),
       },
     },
-    config = get_setup("dap"),
+    config = GetSetup("dap"),
   })
 
   -- misc
@@ -230,12 +228,12 @@ return Packer.startup(function(use)
     -- highlight range written in cmeline
     {
       "winston0410/range-highlight.nvim",
-      config = get_setup("range-highlight"),
+      config = GetSetup("range-highlight"),
     },
     -- Highlight chunk of code
     {
       "folke/twilight.nvim",
-      config = get_setup("twilight"),
+      config = GetSetup("twilight"),
     },
     -- Highlight colors
     {
@@ -253,15 +251,15 @@ return Packer.startup(function(use)
         "kyazdani42/nvim-web-devicons",
         "yamatsum/nvim-nonicons",
       },
-      config = get_setup("catppuccin"),
+      config = GetSetup("catppuccin"),
     },
     {
       "nvim-lualine/lualine.nvim",
-      config = get_setup("lualine"),
+      config = GetSetup("lualine"),
     },
     {
       "b0o/incline.nvim",
-      config = get_setup("incline"),
+      config = GetSetup("incline"),
     },
     "stevearc/dressing.nvim",
     "rcarriga/nvim-notify",
@@ -279,7 +277,7 @@ return Packer.startup(function(use)
   use({
     "akinsho/toggleterm.nvim",
     tag = "v2.*",
-    config = get_setup("toggleterm"),
+    config = GetSetup("toggleterm"),
   })
 
   -- nvim cheatsheet
@@ -292,7 +290,7 @@ return Packer.startup(function(use)
   -- keymap hints
   use({
     "folke/which-key.nvim",
-    config = get_setup("which-key"),
+    config = GetSetup("which-key"),
   })
 
   -- Firenvim

@@ -84,11 +84,7 @@ Autocmd("BufWritePost", {
   end,
 })
 
-get_setup = function(name)
-  return string.format("require('plugins._%s')", name)
-end
-
-Get_setup = function(name)
+GetSetup = function(name)
   return string.format("require('plugins._%s')", name)
 end
 
