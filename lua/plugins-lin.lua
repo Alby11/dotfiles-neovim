@@ -155,6 +155,7 @@ return Packer.startup(function(use)
     config = GetSetup("neo-tree"),
   })
 
+  -- golang dev
   use({
     "fatih/vim-go",
     run = ":GoInstallBinaries",
