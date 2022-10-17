@@ -155,6 +155,11 @@ return Packer.startup(function(use)
     config = GetSetup("neo-tree"),
   })
 
+  use({
+    "fatih/vim-go",
+    run = ":GoInstallBinaries",
+  })
+
   -- LSP Support
   use({
     "VonHeikemen/lsp-zero.nvim",
