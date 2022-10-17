@@ -114,8 +114,11 @@ Opt.background = "dark"
 --   ]])
 
 if is_win then
-  Opt.shell = "pwsh"
+  Opt.shell = "pwsh -NoLogo"
+  Opt.shellpipe = "|/"
+  Opt.shellxquote = ""
   Opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
+  Opt.shellredir = "| Out-File -Encoding UTF8"
 end
 
 -- GUI Opt.ons
