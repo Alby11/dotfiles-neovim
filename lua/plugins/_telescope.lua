@@ -47,7 +47,7 @@ telescope.setup({
 })
 
 -- you need to call load_extension, somewhere after setup function:
-telescope.load_extension("fzf")
+-- telescope.load_extension("fzf")
 
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
@@ -75,42 +75,42 @@ map("n", "<leader>tl", "<cmd>lua require('telescope.builtin').live_grep()<cr>", 
 
 telescope.load_extension("file_browser")
 map("n", "<leader>tF", ":Telescope file_browser<cr>", opts)
-telescope.load_extension("repo")
-vim.keymap.set({ "n" }, "<leader>tp", ":Telescope repo list<cr>", { noremap = true, silent = true })
-vim.keymap.set({ "n" }, "<leader>t.p", ":Telescope repo cached_list<cr>", { noremap = true, silent = true })
+-- telescope.load_extension("repo")
+-- vim.keymap.set({ "n" }, "<leader>tp", ":Telescope repo list<cr>", { noremap = true, silent = true })
+-- vim.keymap.set({ "n" }, "<leader>t.p", ":Telescope repo cached_list<cr>", { noremap = true, silent = true })
 
-local z_utils = require("telescope._extensions.zoxide.utils")
-require("telescope._extensions.zoxide.config").setup({
-  prompt_title = "[ Zoxide List ]",
-  -- Zoxide list command with score
-  list_command = "zoxide query -ls",
-  mappings = {
-    default = {
-      action = function(selection)
-        vim.cmd("cd " .. selection.path)
-      end,
-      after_action = function(selection)
-        print("Directory changed to " .. selection.path)
-      end,
-    },
-    ["<C-s>"] = { action = z_utils.create_basic_command("split") },
-    ["<C-v>"] = { action = z_utils.create_basic_command("vsplit") },
-    ["<C-e>"] = { action = z_utils.create_basic_command("edit") },
-    ["<C-b>"] = {
-      keepinsert = true,
-      action = function(selection)
-        builtin.file_browser({ cwd = selection.path })
-      end,
-    },
-    ["<C-f>"] = {
-      keepinsert = true,
-      action = function(selection)
-        builtin.find_files({ cwd = selection.path })
-      end,
-    },
-  },
-})
-vim.keymap.set({ "n" }, "<leader>tz", ":Telescope zoxide list<cr>", { noremap = true, silent = true })
+-- local z_utils = require("telescope._extensions.zoxide.utils")
+-- require("telescope._extensions.zoxide.config").setup({
+--   prompt_title = "[ Zoxide List ]",
+--   -- Zoxide list command with score
+--   list_command = "zoxide query -ls",
+--   mappings = {
+--     default = {
+--       action = function(selection)
+--         vim.cmd("cd " .. selection.path)
+--       end,
+--       after_action = function(selection)
+--         print("Directory changed to " .. selection.path)
+--       end,
+--     },
+--     ["<C-s>"] = { action = z_utils.create_basic_command("split") },
+--     ["<C-v>"] = { action = z_utils.create_basic_command("vsplit") },
+--     ["<C-e>"] = { action = z_utils.create_basic_command("edit") },
+--     ["<C-b>"] = {
+--       keepinsert = true,
+--       action = function(selection)
+--         builtin.file_browser({ cwd = selection.path })
+--       end,
+--     },
+--     ["<C-f>"] = {
+--       keepinsert = true,
+--       action = function(selection)
+--         builtin.find_files({ cwd = selection.path })
+--       end,
+--     },
+--   },
+-- })
+-- vim.keymap.set({ "n" }, "<leader>tz", ":Telescope zoxide list<cr>", { noremap = true, silent = true })
 
 -- ripgrep
 vim.o.grepprg = "rg --smart-case --ignore --follow --hidden"

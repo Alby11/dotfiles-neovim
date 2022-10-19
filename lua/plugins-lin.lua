@@ -65,6 +65,9 @@ return Packer.startup(function(use)
     config = GetSetup("indent_blankline"),
   })
 
+  -- fzf
+  use({ "junegunn/fzf", dir = "~/.fzf", run = "./install.sh" })
+
   -- Telescope
   use({
     {
@@ -76,23 +79,12 @@ return Packer.startup(function(use)
           "ahmedkhalf/project.nvim",
           config = GetSetup("project_nvim"),
         },
-        { "junegunn/fzf", dir = "~/.fzf", run = "./install.ps1" },
       },
       config = GetSetup("telescope"),
     },
-    "crispgm/telescope-heading.nvim",
-    "cljoly/telescope-repo.nvim",
-    "jvgrootveld/telescope-zoxide",
+    -- "cljoly/telescope-repo.nvim",
+    -- "jvgrootveld/telescope-zoxide",
     "nvim-telescope/telescope-file-browser.nvim",
-    "nvim-telescope/telescope-ui-select.nvim",
-    {
-      "nvim-telescope/telescope-frecency.nvim",
-      requires = "kkharji/sqlite.lua",
-    },
-    {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      run = "make",
-    },
   })
 
   -- clipboard to sqlite
@@ -161,6 +153,10 @@ return Packer.startup(function(use)
     run = ":GoInstallBinaries",
   })
 
+  use({
+    "kosayoda/nvim-lightbulb",
+  })
+
   -- LSP Support
   use({
     "VonHeikemen/lsp-zero.nvim",
@@ -227,9 +223,6 @@ return Packer.startup(function(use)
     "lambdalisue/suda.vim",
   })
   use({
-    "kosayoda/nvim-lightbulb",
-  })
-  use({
     "winston0410/cmd-parser.nvim",
     -- highlight range written in cmeline
     {
@@ -246,6 +239,14 @@ return Packer.startup(function(use)
       "norcalli/nvim-colorizer.lua",
       -- config = require("colorizer").setup(),
     },
+  })
+
+  -- markdown preview
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function()
+      vim.fn["mkdp#util#install"]()
+    end,
   })
 
   -- Pretty UI
