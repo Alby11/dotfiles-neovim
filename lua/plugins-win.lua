@@ -52,7 +52,7 @@ return Packer.startup(function(use)
     "wellle/targets.vim",
   })
 
-  -- folding
+  -- Folding
   use({
     "kevinhwang91/nvim-ufo",
     requires = "kevinhwang91/promise-async",
@@ -63,6 +63,23 @@ return Packer.startup(function(use)
   use({
     "lukas-reineke/indent-blankline.nvim",
     config = GetSetup("indent_blankline"),
+  })
+
+  -- fzf
+  use({ "junegunn/fzf", dir = "~/.fzf", run = ".\install.ps1" })
+
+  -- Treesitter
+  use({
+    {
+      "nvim-treesitter/nvim-treesitter",
+      run = ":TSUpdate",
+      config = GetSetup("nvim-treesitter"),
+    },
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    "nvim-treesitter/nvim-treesitter-context",
+    "nvim-treesitter/nvim-treesitter-refactor",
+    "nvim-treesitter/Highlight.lua",
+    "RRethy/nvim-treesitter-endwise",
   })
 
   -- Telescope
@@ -76,24 +93,23 @@ return Packer.startup(function(use)
           "ahmedkhalf/project.nvim",
           config = GetSetup("project_nvim"),
         },
-        { "junegunn/fzf", dir = "~/.fzf", run = "./install.ps1" },
       },
       config = GetSetup("telescope"),
     },
-    "crispgm/telescope-heading.nvim",
     "cljoly/telescope-repo.nvim",
     "jvgrootveld/telescope-zoxide",
     "nvim-telescope/telescope-file-browser.nvim",
-    "nvim-telescope/telescope-ui-select.nvim",
-    {
-      "nvim-telescope/telescope-frecency.nvim",
-      requires = "kkharji/sqlite.lua",
-    },
-    {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      run = "make",
-    },
   })
+
+  -- clipboard to sqlite
+  -- use({
+  --   "AckslD/nvim-neoclip.lua",
+  --   requires = {
+  --     "kkharji/sqlite.lua",
+  --     config = GetSetup("sqlite"),
+  --   },
+  --   config = GetSetup("neoclip"),
+  -- })
 
   -- Git stuff
   use({
@@ -119,20 +135,6 @@ return Packer.startup(function(use)
     },
   })
 
-  -- Treesitter
-  use({
-    {
-      "nvim-treesitter/nvim-treesitter",
-      run = ":TSUpdate",
-      config = GetSetup("nvim-treesitter"),
-    },
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    "nvim-treesitter/nvim-treesitter-context",
-    "nvim-treesitter/nvim-treesitter-refactor",
-    -- "nvim-treesitter/Highlight.lua",
-    "RRethy/nvim-treesitter-endwise",
-  })
-
   -- Path navigation
   use({
     "nvim-neo-tree/neo-tree.nvim",
@@ -145,9 +147,14 @@ return Packer.startup(function(use)
     config = GetSetup("neo-tree"),
   })
 
+  -- golang dev
   use({
     "fatih/vim-go",
     run = ":GoInstallBinaries",
+  })
+
+  use({
+    "kosayoda/nvim-lightbulb",
   })
 
   -- LSP Support
@@ -210,20 +217,35 @@ return Packer.startup(function(use)
     config = GetSetup("dap"),
   })
 
-  -- Highlight colors
-  use({
-    "norcalli/nvim-colorizer.lua",
-    -- config = require("colorizer").setup(),
-  })
-
   -- misc
   use({
-    "kosayoda/nvim-lightbulb",
+    "lambdalisue/suda.vim",
+  })
+  use({
+    "winston0410/cmd-parser.nvim",
+    -- highlight range written in cmeline
+    {
+      "winston0410/range-highlight.nvim",
+      config = GetSetup("range-highlight"),
+    },
+    -- Highlight chunk of code
+    {
+      "folke/twilight.nvim",
+      config = GetSetup("twilight"),
+    },
+    -- Highlight colors
+    {
+      "norcalli/nvim-colorizer.lua",
+      -- config = require("colorizer").setup(),
+    },
   })
 
+  -- markdown preview
   use({
-    "folke/twilight.nvim",
-    config = GetSetup("twilight"),
+    "iamcco/markdown-preview.nvim",
+    run = function()
+      vim.fn["mkdp#util#install"]()
+    end,
   })
 
   -- Pretty UI

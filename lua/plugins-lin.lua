@@ -68,6 +68,20 @@ return Packer.startup(function(use)
   -- fzf
   use({ "junegunn/fzf", dir = "~/.fzf", run = "./install.sh" })
 
+  -- Treesitter
+  use({
+    {
+      "nvim-treesitter/nvim-treesitter",
+      run = ":TSUpdate",
+      config = GetSetup("nvim-treesitter"),
+    },
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    "nvim-treesitter/nvim-treesitter-context",
+    "nvim-treesitter/nvim-treesitter-refactor",
+    "nvim-treesitter/Highlight.lua",
+    "RRethy/nvim-treesitter-endwise",
+  })
+
   -- Telescope
   use({
     {
@@ -82,8 +96,8 @@ return Packer.startup(function(use)
       },
       config = GetSetup("telescope"),
     },
-    -- "cljoly/telescope-repo.nvim",
-    -- "jvgrootveld/telescope-zoxide",
+    "cljoly/telescope-repo.nvim",
+    "jvgrootveld/telescope-zoxide",
     "nvim-telescope/telescope-file-browser.nvim",
   })
 
@@ -119,20 +133,6 @@ return Packer.startup(function(use)
         require("git-conflict").setup()
       end,
     },
-  })
-
-  -- Treesitter
-  use({
-    {
-      "nvim-treesitter/nvim-treesitter",
-      run = ":TSUpdate",
-      config = GetSetup("nvim-treesitter"),
-    },
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    "nvim-treesitter/nvim-treesitter-context",
-    "nvim-treesitter/nvim-treesitter-refactor",
-    -- "nvim-treesitter/Highlight.lua",
-    "RRethy/nvim-treesitter-endwise",
   })
 
   -- Path navigation
