@@ -66,7 +66,7 @@ return Packer.startup(function(use)
   })
 
   -- fzf
-  use({ "junegunn/fzf", dir = "~/.fzf", run = ".\install.ps1" })
+  use({ "junegunn/fzf", dir = "~/.fzf", run = "./install.ps1" })
 
   -- Treesitter
   use({
@@ -97,7 +97,7 @@ return Packer.startup(function(use)
       config = GetSetup("telescope"),
     },
     "cljoly/telescope-repo.nvim",
-    "jvgrootveld/telescope-zoxide",
+    -- "jvgrootveld/telescope-zoxide",
     "nvim-telescope/telescope-file-browser.nvim",
   })
 
@@ -218,9 +218,6 @@ return Packer.startup(function(use)
   })
 
   -- misc
-  use({
-    "lambdalisue/suda.vim",
-  })
   use({
     "winston0410/cmd-parser.nvim",
     -- highlight range written in cmeline
