@@ -179,8 +179,6 @@ return Packer.startup(function(use)
       "lukas-reineke/cmp-under-comparator",
       "petertriho/cmp-git",
       "saadparwaiz1/cmp_luasnip",
-      "tzachar/cmp-fuzzy-buffer",
-      "tzachar/fuzzy.nvim",
       "tamago324/cmp-zsh",
       -- Snippets
       "L3MON4D3/LuaSnip",

@@ -60,8 +60,8 @@ Opt.relativenumber = true -- Make relative line numbers default
 Opt.scrolloff = 7 -- Vertical Scroll Offset
 -- Opt.shada = [['20,<50,s10,h,/100]]
 -- Opt.shortmess:append({ W = true, a = true })
-Opt.showmatch = true
 Opt.shortmess = "c"
+Opt.showmatch = true
 Opt.showmode = false -- Don't Show MODES
 Opt.showtabline = 2 -- Always Show Tabline
 Opt.sidescrolloff = 8 -- Horizontal Scroll Offset
@@ -86,7 +86,7 @@ Opt.timeoutlen = 250 -- Time for mapped sequence to complete (in ms)
 Opt.title = true -- Display File Info on Title
 Opt.undodir = Stdpath("cache") .. "/undo"
 Opt.undofile = true -- Save undo history
-Opt.whichwrap:append("<,>,h,l")
+-- Opt.whichwrap:append("<,>,h,l")
 Opt.wildignore = { "*.o", "*~", "*.pyc" }
 Opt.wildmode = "longest,full"
 Opt.spelllang = { "en", "it", "fr" } -- enable spell check (may need to download language package)
