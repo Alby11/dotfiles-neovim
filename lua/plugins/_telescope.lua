@@ -8,17 +8,7 @@ telescope.setup({
     dynamic_preview_title = true,
     file_previewer = require("telescope.previewers").vim_buffer_cat.new,
     grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-    default_mappings = {
-      ["i"] = {
-        -- your custom insert mode Mappings
-        -- ["<C-h>"] = "which_key",
-      },
-      ["n"] = {
-        -- your custom normal mode Mappings
-        -- ["<leader>tf"] = telescope.builtin.find_files,
-      },
-    },
-    qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+    qlist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },
@@ -70,9 +60,9 @@ map("n", "<leader>tl", "<cmd>lua require('telescope.builtin').live_grep()<cr>", 
 
 telescope.load_extension("file_browser")
 map("n", "<leader>tF", ":Telescope file_browser<cr>", opts)
--- telescope.load_extension("repo")
--- vim.keymap.set({ "n" }, "<leader>tp", ":Telescope repo list<cr>", { noremap = true, silent = true })
--- vim.keymap.set({ "n" }, "<leader>t.p", ":Telescope repo cached_list<cr>", { noremap = true, silent = true })
+telescope.load_extension("repo")
+vim.keymap.set({ "n" }, "<leader>tp", ":Telescope repo list<cr>", { noremap = true, silent = true })
+vim.keymap.set({ "n" }, "<leader>t.p", ":Telescope repo cached_list<cr>", { noremap = true, silent = true })
 
 -- local z_utils = require("telescope._extensions.zoxide.utils")
 -- require("telescope._extensions.zoxide.config").setup({

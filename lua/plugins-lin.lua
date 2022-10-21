@@ -65,9 +65,6 @@ return Packer.startup(function(use)
     config = GetSetup("indent_blankline"),
   })
 
-  -- fzf
-  -- use({ "junegunn/fzf", dir = "~/.fzf", run = "fzf#install()" })
-
   -- Treesitter
   use({
     {
@@ -104,14 +101,14 @@ return Packer.startup(function(use)
   })
 
   -- clipboard to sqlite
-  -- use({
-  --   "AckslD/nvim-neoclip.lua",
-  --   requires = {
-  --     "kkharji/sqlite.lua",
-  --     config = GetSetup("sqlite"),
-  --   },
-  --   config = GetSetup("neoclip"),
-  -- })
+  use({
+     "AckslD/nvim-neoclip.lua",
+     requires = {
+       "kkharji/sqlite.lua",
+       config = GetSetup("sqlite"),
+     },
+     config = GetSetup("neoclip"),
+   })
 
   -- Git stuff
   use({
@@ -218,9 +215,9 @@ return Packer.startup(function(use)
   })
 
   -- misc
-  -- use({
-  --   "lambdalisue/suda.vim",
-  -- })
+   use({
+     "lambdalisue/suda.vim",
+   })
   use({
     "winston0410/cmd-parser.nvim",
     -- highlight range written in cmeline
