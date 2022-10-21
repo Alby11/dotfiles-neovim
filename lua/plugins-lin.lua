@@ -66,7 +66,7 @@ return Packer.startup(function(use)
   })
 
   -- fzf
-  use({ "junegunn/fzf", dir = "~/.fzf", run = "./install.sh" })
+  -- use({ "junegunn/fzf", dir = "~/.fzf", run = "fzf#install()" })
 
   -- Treesitter
   use({
@@ -84,32 +84,34 @@ return Packer.startup(function(use)
 
   -- Telescope
   use({
-    {
-      "nvim-telescope/telescope.nvim",
-      requires = {
-        "BurntSushi/ripgrep",
-        "nvim-lua/plenary.nvim",
-        {
-          "ahmedkhalf/project.nvim",
-          config = GetSetup("project_nvim"),
-        },
+    "nvim-telescope/telescope.nvim",
+    requires = {
+      "BurntSushi/ripgrep",
+      "nvim-lua/plenary.nvim",
+      "cljoly/telescope-repo.nvim",
+      "jvgrootveld/telescope-zoxide",
+      "nvim-telescope/telescope-file-browser.nvim",
+      {
+        "ahmedkhalf/project.nvim",
+        config = GetSetup("project_nvim"),
       },
-      config = GetSetup("telescope"),
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        run = "make",
+      },
     },
-    "cljoly/telescope-repo.nvim",
-    "jvgrootveld/telescope-zoxide",
-    "nvim-telescope/telescope-file-browser.nvim",
+    config = GetSetup("telescope"),
   })
 
   -- clipboard to sqlite
-  use({
-    "AckslD/nvim-neoclip.lua",
-    requires = {
-      "kkharji/sqlite.lua",
-      config = GetSetup("sqlite"),
-    },
-    config = GetSetup("neoclip"),
-  })
+  -- use({
+  --   "AckslD/nvim-neoclip.lua",
+  --   requires = {
+  --     "kkharji/sqlite.lua",
+  --     config = GetSetup("sqlite"),
+  --   },
+  --   config = GetSetup("neoclip"),
+  -- })
 
   -- Git stuff
   use({
@@ -179,7 +181,6 @@ return Packer.startup(function(use)
       "lukas-reineke/cmp-under-comparator",
       "petertriho/cmp-git",
       "saadparwaiz1/cmp_luasnip",
-      "tamago324/cmp-zsh",
       -- Snippets
       "L3MON4D3/LuaSnip",
       "rafamadriz/friendly-snippets",
@@ -217,9 +218,9 @@ return Packer.startup(function(use)
   })
 
   -- misc
-  use({
-    "lambdalisue/suda.vim",
-  })
+  -- use({
+  --   "lambdalisue/suda.vim",
+  -- })
   use({
     "winston0410/cmd-parser.nvim",
     -- highlight range written in cmeline
@@ -237,14 +238,6 @@ return Packer.startup(function(use)
       "norcalli/nvim-colorizer.lua",
       -- config = require("colorizer").setup(),
     },
-  })
-
-  -- markdown preview
-  use({
-    "iamcco/markdown-preview.nvim",
-    run = function()
-      vim.fn["mkdp#util#install"]()
-    end,
   })
 
   -- Pretty UI

@@ -11,7 +11,7 @@ telescope.setup({
     default_mappings = {
       ["i"] = {
         -- your custom insert mode Mappings
-        ["<C-h>"] = "which_key",
+        -- ["<C-h>"] = "which_key",
       },
       ["n"] = {
         -- your custom normal mode Mappings
@@ -33,11 +33,6 @@ telescope.setup({
     find_hidden = {
       hidden_files = true, -- default: false
     },
-    tmuxinator = {
-      select_action = "switch", -- | 'stop' | 'kill'
-      stop_action = "stop", -- | 'kill'
-      disable_icons = false,
-    },
   },
   pickers = {
     find_files = {
@@ -47,7 +42,7 @@ telescope.setup({
 })
 
 -- you need to call load_extension, somewhere after setup function:
--- telescope.load_extension("fzf")
+telescope.load_extension("fzf")
 
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
