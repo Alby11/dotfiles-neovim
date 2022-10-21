@@ -1,20 +1,26 @@
-require("neoclip").setup({
+local plugin_name = "neoclip"
+
+if not CheckPlugin(plugin_name) then
+  return
+end
+
+require(plugin_name).setup({
   history = 1000,
   -- enable_persistent_history = false,
   enable_persistent_history = true,
   length_limit = 1048576,
   -- continuous_sync = false,
   continuous_sync = true,
-  -- db_path = vim.fn.stdpath("config") .. "/databases/neoclip.sqlite3",
-  db_path = Config_dir .. "/databases/neoclip.sqlite3",
+  -- db_path = Config_dir .. "/databases/neoclip.sqlite3",
+  db_path = string.format("%s/databases/neoclip.sqlite3", Config_dir),
   filter = nil,
   preview = true,
   default_register = '"',
   default_register_macros = "q",
   enable_macro_history = true,
-  content_spec_column = false,
+  content_spec_column = true,
   on_paste = {
-    set_reg = false,
+    set_reg = true,
   },
   on_replay = {
     set_reg = false,
@@ -43,7 +49,7 @@ require("neoclip").setup({
   },
 })
 
-if not is_vscode == 0 then
-  require("telescope").load_extension("neoclip")
+if not Is_vscode then
+  require("telescope").load_extension(plugin_name)
   vim.keymap.set("n", "<leader>tn", ":Telescope neoclip<cr>", { noremap = true, silent = true })
 end

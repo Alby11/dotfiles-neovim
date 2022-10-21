@@ -1,6 +1,5 @@
 local plugin_name = "catppuccin"
 
--- local status, packer = pcall(require, plugin_name)
 if not CheckPlugin(plugin_name) then
   return
 end
@@ -18,7 +17,7 @@ require(plugin_name).setup({
   compile = {
     -- enabled = false,
     enabled = false,
-    path = Stdpath("cache") .. "/catppuccin",
+    path = string.format("%s/%s", Stdpath("cache"), plugin_name),
   },
   styles = {
     comments = { "italic" },
