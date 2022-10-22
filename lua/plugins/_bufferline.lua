@@ -1,28 +1,28 @@
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
+local plugin_name = "bufferline"
+if not CheckPlugin(plugin_name) then return end
 
 -- Move to previous/next
-map("n", "<A-,>", "<Cmd>BufferPrevious<CR>", opts)
-map("n", "<A-.>", "<Cmd>BufferNext<CR>", opts)
+Map("n", "<A-,>", "<Cmd>BufferPrevious<CR>", Opts)
+Map("n", "<A-.>", "<Cmd>BufferNext<CR>", Opts)
 -- Re-order to previous/next
-map("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", opts)
-map("n", "<A->>", "<Cmd>BufferMoveNext<CR>", opts)
+Map("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", Opts)
+Map("n", "<A->>", "<Cmd>BufferMoveNext<CR>", Opts)
 -- Goto buffer in position...
-map("n", "<A-1>", "<Cmd>BufferGoto 1<CR>", opts)
-map("n", "<A-2>", "<Cmd>BufferGoto 2<CR>", opts)
-map("n", "<A-3>", "<Cmd>BufferGoto 3<CR>", opts)
-map("n", "<A-4>", "<Cmd>BufferGoto 4<CR>", opts)
-map("n", "<A-5>", "<Cmd>BufferGoto 5<CR>", opts)
-map("n", "<A-6>", "<Cmd>BufferGoto 6<CR>", opts)
-map("n", "<A-7>", "<Cmd>BufferGoto 7<CR>", opts)
-map("n", "<A-8>", "<Cmd>BufferGoto 8<CR>", opts)
-map("n", "<A-9>", "<Cmd>BufferGoto 9<CR>", opts)
-map("n", "<A-0>", "<Cmd>BufferLast<CR>", opts)
+Map("n", "<A-1>", "<Cmd>BufferGoto 1<CR>", Opts)
+Map("n", "<A-2>", "<Cmd>BufferGoto 2<CR>", Opts)
+Map("n", "<A-3>", "<Cmd>BufferGoto 3<CR>", Opts)
+Map("n", "<A-4>", "<Cmd>BufferGoto 4<CR>", Opts)
+Map("n", "<A-5>", "<Cmd>BufferGoto 5<CR>", Opts)
+Map("n", "<A-6>", "<Cmd>BufferGoto 6<CR>", Opts)
+Map("n", "<A-7>", "<Cmd>BufferGoto 7<CR>", Opts)
+Map("n", "<A-8>", "<Cmd>BufferGoto 8<CR>", Opts)
+Map("n", "<A-9>", "<Cmd>BufferGoto 9<CR>", Opts)
+Map("n", "<A-0>", "<Cmd>BufferLast<CR>", Opts)
 -- Pin/unpin buffer
-map("n", "<A-p>", "<Cmd>BufferPin<CR>", opts)
+Map("n", "<A-p>", "<Cmd>BufferPin<CR>", Opts)
 -- Close buffer
--- map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
-map("n", "<A-c>", "<Cmd>Bdelete<CR>", opts)
+-- Map('n', '<A-c>', '<Cmd>BufferClose<CR>', Opts)
+Map("n", "<A-c>", "<Cmd>Bdelete<CR>", Opts)
 
 -- Wipeout buffer
 --                 :BufferWipeout
@@ -33,20 +33,20 @@ map("n", "<A-c>", "<Cmd>Bdelete<CR>", opts)
 --                 :BufferCloseBuffersLeft
 --                 :BufferCloseBuffersRight
 -- Magic buffer-picking mode
-map("n", "<C-p>", "<Cmd>BufferPick<CR>", opts)
+Map("n", "<C-p>", "<Cmd>BufferPick<CR>", Opts)
 -- Sort automatically by...
-map("n", "<Leader>bb", "<Cmd>BufferOrderByBufferNumber<CR>", opts)
-map("n", "<Leader>bd", "<Cmd>BufferOrderByDirectory<CR>", opts)
-map("n", "<Leader>bl", "<Cmd>BufferOrderByLanguage<CR>", opts)
-map("n", "<Leader>bn", "<Cmd>BufferOrderByWindowNumber<CR>", opts)
--- map("n", "<Leader>bw", "<Cmd>BufferWipeout<CR>", opts)
+Map("n", "<Leader>bb", "<Cmd>BufferOrderByBufferNumber<CR>", Opts)
+Map("n", "<Leader>bd", "<Cmd>BufferOrderByDirectory<CR>", Opts)
+Map("n", "<Leader>bl", "<Cmd>BufferOrderByLanguage<CR>", Opts)
+Map("n", "<Leader>bn", "<Cmd>BufferOrderByWindowNumber<CR>", Opts)
+-- Map("n", "<Leader>bw", "<Cmd>BufferWipeout<CR>", Opts)
 
 -- Other:
 -- :BarbarEnable - enables barbar (enabled by default)
 -- :BarbarDisable - very bad command, should never be used
 
 -- Set barbar's options
-require("bufferline").setup({
+require(plugin_name).setup({
   -- Enable/disable animations
   animation = true,
 

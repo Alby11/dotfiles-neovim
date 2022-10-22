@@ -1,4 +1,8 @@
-local telescope = require("telescope")
+local plugin_name = "telescope"
+
+if not CheckPlugin(plugin_name) then return end
+
+local telescope = require(plugin_name)
 
 telescope.setup({
   defaults = {
@@ -34,39 +38,44 @@ telescope.setup({
 -- you need to call load_extension, somewhere after setup function:
 telescope.load_extension("fzf")
 
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
 
-map("n", "<leader>tf", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
-map("n", "<leader>to", ":Telescope oldfiles<cr>", opts)
-map("n", "<leader>tb", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
-map("n", "<leader>tB", "<cmd>lua require('telescope.builtin').builtin()<cr>", opts)
-map("n", "<leader>tt", "<cmd>lua require('telescope.builtin').tags()<cr>", opts)
-map("n", "<leader>tT", "<cmd>lua require('telescope.builtin').treesitter()<cr>", opts)
-map("n", "<leader>tgC", "<cmd>lua require('telescope.builtin').git_commits()<cr>", opts)
-map("n", "<leader>tgc", "<cmd>lua require('telescope.builtin').git_bcommits()<cr>", opts)
-map("n", "<leader>tg", "<cmd>lua require('telescope.builtin').git_status()<cr>", opts)
-map("n", "<leader>tgs", "<cmd>lua require('telescope.builtin').git_stash()<cr>", opts)
-map("n", "<leader>tgb", "<cmd>lua require('telescope.builtin').git_branches()<cr>", opts)
-map("n", "<leader>tC", "<cmd>lua require('telescope.builtin').commands()<cr>", opts)
-map("n", "<leader>tc", "<cmd>lua require('telescope.builtin').command_history()<cr>", opts)
-map("n", "<leader>t/", "<cmd>lua require('telescope.builtin').search_history()<cr>", opts)
-map("n", "<leader>tk", "<cmd>lua require('telescope.builtin').keymaps()<cr>", opts)
-map("n", "<leader>tH", "<cmd>lua require('telescope.builtin').help_tags()<cr>", opts)
-map("n", "<leader>tq", "<cmd>lua require('telescope.builtin').quickfix()<cr>", opts)
-map("n", "<leader>tr", "<cmd>lua require('telescope.builtin').registers()<cr>", opts)
-map("n", "<leader>tm", "<cmd>lua require('telescope.builtin').marks()<cr>", opts)
-map("n", "<leader>tl", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
+Map("n", "<leader>tf", "<cmd>lua require('telescope.builtin').find_files()<cr>", Opts)
+Map("n", "<leader>to", ":Telescope oldfiles<cr>", Opts)
+Map("n", "<leader>tb", "<cmd>lua require('telescope.builtin').buffers()<cr>", Opts)
+Map("n", "<leader>tB", "<cmd>lua require('telescope.builtin').builtin()<cr>", Opts)
+Map("n", "<leader>tt", "<cmd>lua require('telescope.builtin').tags()<cr>", Opts)
+Map("n", "<leader>tT", "<cmd>lua require('telescope.builtin').treesitter()<cr>", Opts)
+Map("n", "<leader>tgC", "<cmd>lua require('telescope.builtin').git_commits()<cr>", Opts)
+Map("n", "<leader>tgc", "<cmd>lua require('telescope.builtin').git_bcommits()<cr>", Opts)
+Map("n", "<leader>tg", "<cmd>lua require('telescope.builtin').git_status()<cr>", Opts)
+Map("n", "<leader>tgs", "<cmd>lua require('telescope.builtin').git_stash()<cr>", Opts)
+Map("n", "<leader>tgb", "<cmd>lua require('telescope.builtin').git_branches()<cr>", Opts)
+Map("n", "<leader>tC", "<cmd>lua require('telescope.builtin').commands()<cr>", Opts)
+Map("n", "<leader>tc", "<cmd>lua require('telescope.builtin').command_history()<cr>", Opts)
+Map("n", "<leader>t/", "<cmd>lua require('telescope.builtin').search_history()<cr>", Opts)
+Map("n", "<leader>tk", "<cmd>lua require('telescope.builtin').keyMaps()<cr>", Opts)
+Map("n", "<leader>tH", "<cmd>lua require('telescope.builtin').help_tags()<cr>", Opts)
+Map("n", "<leader>tq", "<cmd>lua require('telescope.builtin').quickfix()<cr>", Opts)
+Map("n", "<leader>tr", "<cmd>lua require('telescope.builtin').registers()<cr>", Opts)
+Map("n", "<leader>tm", "<cmd>lua require('telescope.builtin').marks()<cr>", Opts)
+Map("n", "<leader>tl", "<cmd>lua require('telescope.builtin').live_grep()<cr>", Opts)
 
 telescope.load_extension("file_browser")
-map("n", "<leader>tF", ":Telescope file_browser<cr>", opts)
+Map("n", "<leader>tF", ":Telescope file_browser<cr>", Opts)
 telescope.load_extension("repo")
-vim.keymap.set({ "n" }, "<leader>tp", ":Telescope repo list<cr>", { noremap = true, silent = true })
-vim.keymap.set({ "n" }, "<leader>t.p", ":Telescope repo cached_list<cr>", { noremap = true, silent = true })
+Map("n", "<leader>tp", ":Telescope repo list<cr>", Opts)
+Map("n", "<leader>t.p", ":Telescope repo cached_list<cr>", Opts)
 
+-- ripgrep
+O.grepprg = "rg --smart-case --ignore --follow --hidden"
+
+-- zoxide
+--
 -- local z_utils = require("telescope._extensions.zoxide.utils")
+--
 -- require("telescope._extensions.zoxide.config").setup({
 --   prompt_title = "[ Zoxide List ]",
+--
 --   -- Zoxide list command with score
 --   list_command = "zoxide query -ls",
 --   mappings = {
@@ -76,7 +85,7 @@ vim.keymap.set({ "n" }, "<leader>t.p", ":Telescope repo cached_list<cr>", { nore
 --       end,
 --       after_action = function(selection)
 --         print("Directory changed to " .. selection.path)
---       end,
+--       end
 --     },
 --     ["<C-s>"] = { action = z_utils.create_basic_command("split") },
 --     ["<C-v>"] = { action = z_utils.create_basic_command("vsplit") },
@@ -85,17 +94,15 @@ vim.keymap.set({ "n" }, "<leader>t.p", ":Telescope repo cached_list<cr>", { nore
 --       keepinsert = true,
 --       action = function(selection)
 --         builtin.file_browser({ cwd = selection.path })
---       end,
+--       end
 --     },
 --     ["<C-f>"] = {
 --       keepinsert = true,
 --       action = function(selection)
 --         builtin.find_files({ cwd = selection.path })
---       end,
---     },
---   },
+--       end
+--     }
+--   }
 -- })
+--
 -- vim.keymap.set({ "n" }, "<leader>tz", ":Telescope zoxide list<cr>", { noremap = true, silent = true })
-
--- ripgrep
-vim.o.grepprg = "rg --smart-case --ignore --follow --hidden"

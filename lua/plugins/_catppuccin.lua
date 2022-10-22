@@ -1,8 +1,6 @@
 local plugin_name = "catppuccin"
 
-if not CheckPlugin(plugin_name) then
-  return
-end
+if not CheckPlugin(plugin_name) then return end
 
 g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
 

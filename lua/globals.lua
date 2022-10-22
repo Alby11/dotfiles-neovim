@@ -37,8 +37,11 @@ G = Vim.g
 Cmd = Vim.cmd
 Api = Vim.api
 Autocmd = Api.nvim_create_autocmd
+Augroup = Api.nvim_create_augroup
+Command = Api.nvim_command
 Execute = Api.nvim_command
 Map = Api.nvim_set_keymap
+Mapv = vim.keymap.set
 Opts = { silent = true, noremap = true }
 Fn = Vim.fn
 Executable = Vim.executable
@@ -47,6 +50,7 @@ Has = function(x)
   return Fn.has(x) == 1
 end
 Notify = Vim.notify
+O = Vim.o
 Opt = Vim.opt
 Stdpath = Fn.stdpath
 Systemlist = Fn.systemlist
@@ -69,3 +73,8 @@ if Is_mac then
 end
 -- set config directory
 Config_dir = Stdpath("config")
+-- avoid warnings
+print = print
+require = require
+string = string
+tostring = tostring

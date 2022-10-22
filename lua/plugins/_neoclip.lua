@@ -12,7 +12,7 @@ require(plugin_name).setup({
   -- continuous_sync = false,
   continuous_sync = true,
   -- db_path = Config_dir .. "/databases/neoclip.sqlite3",
-  db_path = string.format("%s/databases/neoclip.sqlite3", Config_dir),
+  db_path = string.format("%s/databases/%s.sqlite3", Config_dir, plugin_name),
   filter = nil,
   preview = true,
   default_register = '"',
@@ -51,5 +51,5 @@ require(plugin_name).setup({
 
 if not Is_vscode then
   require("telescope").load_extension(plugin_name)
-  vim.keymap.set("n", "<leader>tn", ":Telescope neoclip<cr>", { noremap = true, silent = true })
+  Map("n", "<leader>tn", string.format(":Telescope %s<cr>", plugin_name), Opts)
 end
