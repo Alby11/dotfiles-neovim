@@ -40,8 +40,8 @@ Map("n", "<c-k>", "<c-w>k", Opts)
 Map("n", "<c-l>", "<c-w>l", Opts)
 
 -- Tab movement
-Map("n", "<c-Left>", "<cmd>tabpre<cr>", Opts)
-Map("n", "<c-Right>", "<cmd>tabnext<cr>", Opts)
+-- Map("n", "<c-Left>", "<cmd>tabpre<cr>", Opts)
+-- Map("n", "<c-Right>", "<cmd>tabnext<cr>", Opts)
 
 -- Dot-Repeat in Vim and Neovim
 -- https://www.vikasraj.dev/blog/vim-dot-repeat
