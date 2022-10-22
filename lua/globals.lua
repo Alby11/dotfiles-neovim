@@ -74,6 +74,8 @@ end
 -- set config directory
 Config_dir = Stdpath("config")
 -- avoid warnings
+_G = _G
+pcall = pcall
 print = print
 require = require
 string = string

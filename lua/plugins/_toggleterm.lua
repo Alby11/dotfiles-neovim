@@ -4,7 +4,6 @@ if not CheckPlugin(plugin_name) then return end
 
 require(plugin_name).setup()
 
-_G = _G
 function _G.set_terminal_keymaps()
   Map("t", "<esc>", [[<C-\><C-n>]], Opts)
   Map("t", "jk", [[<C-\><C-n>]], Opts)
@@ -15,7 +14,8 @@ function _G.set_terminal_keymaps()
 end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
-Cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+-- Cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+Cmd("autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()")
 
 
 Map("n", "<Leader>st", "<Cmd>ToggleTerm<CR>", Opts)

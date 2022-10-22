@@ -104,13 +104,14 @@ if is_win then
 elseif is_wsl then
   Opt.shell = "/usr/bin/zsh"
 elseif is_linux then
-  Opt.shell = "/bin/bash"
+  Opt.shell = "/bin/zsh"
 end
 
 -- GUI Opt.ons
-Opt.guifont = "lilex nfm:h9,consolas:h9"
+Opt.guifont = "Lilex nfm:h9,consolas:h9"
 if is_neovide then
   require("plugins._neovide")
 elseif is_fvim then
+  Opt.guifont = "Lilex NFM:h10"
   require("plugins._fvim")
 end
