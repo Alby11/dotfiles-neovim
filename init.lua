@@ -9,4 +9,4 @@ else
   require("autocommands")
   require("commands")
 end
-require("plugins-pre")
+require("plugins-config")

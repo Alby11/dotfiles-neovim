@@ -102,4 +102,4 @@ if is_vscode then
   return
 end
 
-require("plugins-lin")
+require("plugins-use")
