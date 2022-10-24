@@ -1,10 +1,11 @@
 local plugin_name = "catppuccin"
 
-if not CheckPlugin(plugin_name) then return end
-
-g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+if not CheckPlugin(plugin_name) then
+  return
+end
 
 require(plugin_name).setup({
+  flavour = "mocha",
   dim_inactive = {
     enabled = true,
     shade = "dark",
@@ -97,3 +98,16 @@ require(plugin_name).setup({
   color_overrides = {},
   highlight_overrides = {},
 })
+
+if not is_win then
+  require(plugin_name).setup({
+    compile = {
+      -- enabled = false,
+      enabled = true,
+      path = string.format("%s/%s", Stdpath("cache"), plugin_name),
+    },
+  })
+  require(plugin_name).compile()
+end
+
+Command("colorscheme catppuccin")
