@@ -102,13 +102,13 @@ return Packer.startup(function(use)
 
   -- clipboard to sqlite
   use({
-     "AckslD/nvim-neoclip.lua",
-     requires = {
-       "kkharji/sqlite.lua",
-       config = GetSetup("sqlite"),
-     },
-     config = GetSetup("neoclip"),
-   })
+    "AckslD/nvim-neoclip.lua",
+    requires = {
+      "kkharji/sqlite.lua",
+      config = GetSetup("sqlite"),
+    },
+    config = GetSetup("neoclip"),
+  })
 
   -- Git stuff
   use({
@@ -173,11 +173,25 @@ return Packer.startup(function(use)
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
-      "hrsh7th/cmp-nvim-lua",
+      {
+        "hrsh7th/cmp-nvim-lua",
+        config = GetSetup("cmp-nvim-lua"),
+      },
       "hrsh7th/cmp-path",
       "lukas-reineke/cmp-under-comparator",
       "petertriho/cmp-git",
       "saadparwaiz1/cmp_luasnip",
+      {
+        "tamago324/cmp-zsh",
+
+        requires = "Shougo/deol.nvim",
+        config = GetSetup("cmp_zsh"),
+        cond = function()
+          if is_win then
+            return false
+          end
+        end,
+      },
       -- Snippets
       "L3MON4D3/LuaSnip",
       "rafamadriz/friendly-snippets",
@@ -215,9 +229,14 @@ return Packer.startup(function(use)
   })
 
   -- misc
-   use({
-     "lambdalisue/suda.vim",
-   })
+  use({
+    "lambdalisue/suda.vim",
+    cond = function()
+      if is_win then
+        return false
+      end
+    end,
+  })
   use({
     "winston0410/cmd-parser.nvim",
     -- highlight range written in cmeline
