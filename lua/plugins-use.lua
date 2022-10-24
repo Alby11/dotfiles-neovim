@@ -196,11 +196,7 @@ return Packer.startup(function(use)
       "L3MON4D3/LuaSnip",
       "rafamadriz/friendly-snippets",
     },
-    config = function()
-      local lsp = require("lsp-zero")
-      lsp.preset("recommended")
-      lsp.setup()
-    end,
+    config = GetSetup("lsp-zero"),
   })
 
   -- null_ls
