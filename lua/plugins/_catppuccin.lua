@@ -15,7 +15,7 @@ require(plugin_name).setup({
   term_colors = true,
   compile = {
     -- enabled = false,
-    enabled = false,
+    enabled = true,
     path = string.format("%s/%s", Stdpath("cache"), plugin_name),
   },
   styles = {
@@ -98,16 +98,5 @@ require(plugin_name).setup({
   color_overrides = {},
   highlight_overrides = {},
 })
-
-if not is_win then
-  require(plugin_name).setup({
-    compile = {
-      -- enabled = false,
-      enabled = true,
-      path = string.format("%s/%s", Stdpath("cache"), plugin_name),
-    },
-  })
-  require(plugin_name).compile()
-end
 
 Command("colorscheme catppuccin")
