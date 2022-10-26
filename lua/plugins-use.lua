@@ -120,8 +120,11 @@ return Packer.startup(function(use)
     {
       "TimUntersberger/neogit",
       requires = {
-        "sindrets/diffview.nvim",
-        config = GetSetup("diffview"),
+        "nvim-lua/plenary.nvim",
+        {
+          "sindrets/diffview.nvim",
+          config = GetSetup("diffview"),
+        },
       },
       config = GetSetup("neogit"),
     },
@@ -173,10 +176,7 @@ return Packer.startup(function(use)
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
-      {
-        "hrsh7th/cmp-nvim-lua",
-        config = GetSetup("cmp-nvim-lua"),
-      },
+      "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-path",
       "lukas-reineke/cmp-under-comparator",
       "petertriho/cmp-git",
