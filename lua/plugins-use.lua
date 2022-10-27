@@ -202,7 +202,7 @@ return Packer.startup(function(use)
   -- null_ls
   use({
     "jose-elias-alvarez/null-ls.nvim",
-    config = GetSetup("null-ls"),
+    -- config = GetSetup("null-ls"),
   })
 
   -- Quickfix

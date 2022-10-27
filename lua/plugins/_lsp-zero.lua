@@ -4,8 +4,8 @@ if not CheckPlugin(plugin_name) then
   return
 end
 
-local lsp = require(plugin_name)
-lsp.set_preferences({
+Lsp = require(plugin_name)
+Lsp.set_preferences({
   suggest_lsp_servers = true,
   setup_servers_on_start = true,
   set_lsp_keymaps = true,
@@ -20,5 +20,7 @@ lsp.set_preferences({
     info = "",
   },
 })
-lsp.nvim_workspace()
-lsp.setup()
+Lsp.nvim_workspace()
+Lsp.setup()
+
+GetSetup("null-ls")
