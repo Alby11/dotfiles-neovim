@@ -1,6 +1,12 @@
-local neogit = require("neogit")
+local plugin_name = "neogit"
 
-neogit.setup({
+if not CheckPlugin(plugin_name) then
+  return
+end
+
+local plugin = require(plugin_name)
+
+plugin.setup({
   disable_signs = false,
   disable_hint = false,
   disable_context_highlighting = false,
@@ -81,14 +87,12 @@ neogit.setup({
 })
 
 -- listen to the events
--- local group = vim.api.nvim_create_augroup("MyCustomNeogitEvents", { clear = true })
--- vim.api.nvim_create_autocmd("User", {
---   pattern = "NeogitPushComplete",
---   group = group,
---   callback = require("neogit").close,
--- })
+local group = Augroup("MyCustomNeogitEvents", { clear = true })
+Autocmd("User", {
+  pattern = "NeogitPushComplete",
+  group = group,
+  -- callback = require("neogit").close,
+  callback = plugin.close,
+})
 
-local map = vim.api.nvim_set_keymap
-local opts = { silent = true, noremap = true }
-
-map("n", "gs", "<cmd>Neogit<cr>", opts)
+Map("n", "gs", "<cmd>Neogit<cr>", Opts)
