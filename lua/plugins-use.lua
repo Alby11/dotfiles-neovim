@@ -160,12 +160,15 @@ return Packer.startup(function(use)
   })
 
   -- LSP Support
+  -- lsp-zero, nvim-lspconfig, mason, null-ls, nvim-cmp, LuaSnip
   use({
     "VonHeikemen/lsp-zero.nvim",
     requires = {
       "neovim/nvim-lspconfig",
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
+      "jose-elias-alvarez/null-ls.nvim",
+      "jayp0521/mason-null-ls.nvim",
       "onsails/lspkind.nvim",
       "ray-x/lsp_signature.nvim",
       -- Autocompletion
@@ -197,11 +200,6 @@ return Packer.startup(function(use)
       "rafamadriz/friendly-snippets",
     },
     config = GetSetup("lsp-zero"),
-  })
-
-  -- null_ls
-  use({
-    "jose-elias-alvarez/null-ls.nvim",
   })
 
   -- Quickfix
