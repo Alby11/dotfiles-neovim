@@ -22,5 +22,3 @@ Lsp.set_preferences({
 })
 Lsp.nvim_workspace()
 Lsp.setup()
-
-GetSetup("null-ls")

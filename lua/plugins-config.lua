@@ -92,11 +92,6 @@ end
 
 Packer.reset()
 
--- if is_win then
---   require("plugins-win")
---   return
--- end
-
 if is_vscode then
   require("plugins-vscode")
   return

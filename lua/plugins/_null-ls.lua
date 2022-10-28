@@ -4,10 +4,10 @@ if not CheckPlugin(plugin_name) then
   return
 end
 
-local null_ls = require(plugin_name)
 Lsp = require("lsp-zero")
+local null_ls = require(plugin_name)
 null_opts = Lsp.build_options(plugin_name, {})
-GetSetup("mason-null-ls")
+null_ls.setup()
 
 -- null_ls.setup({
 --   on_attach = function(client, bufnr)

@@ -160,7 +160,20 @@ return Packer.startup(function(use)
   })
 
   -- LSP Support
-  -- lsp-zero, nvim-lspconfig, mason, null-ls, nvim-cmp, LuaSnip
+  -- mason-null-ls
+  use({
+    "williamboman/mason.nvim",
+    "jose-elias-alvarez/null-ls.nvim",
+    {
+    "jayp0521/mason-null-ls.nvim",
+    config = function ()
+      require("mason").setup()
+      GetSetup("null-ls")
+      GetSetup("mason-null-ls")
+    end
+    },
+  })
+  -- lsp-zero, nvim-cmp, LuaSnip
   use({
     "VonHeikemen/lsp-zero.nvim",
     requires = {
