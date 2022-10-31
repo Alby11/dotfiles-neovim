@@ -160,43 +160,51 @@ return Packer.startup(function(use)
   })
 
   -- LSP Support
-  -- mason-null-ls
-  use({
-    "williamboman/mason.nvim",
-    "jose-elias-alvarez/null-ls.nvim",
-    {
-    "jayp0521/mason-null-ls.nvim",
-    config = function ()
-      require("mason").setup()
-      GetSetup("null-ls")
-      GetSetup("mason-null-ls")
-    end
-    },
-  })
   -- lsp-zero, nvim-cmp, LuaSnip
   use({
     "VonHeikemen/lsp-zero.nvim",
     requires = {
       "neovim/nvim-lspconfig",
-      "williamboman/mason.nvim",
+      {
+        "williamboman/mason.nvim",
+        as = "mason",
+        before = {
+          "null-ls",
+          "mason-null-ls",
+        }
+      },
       "williamboman/mason-lspconfig.nvim",
-      "jose-elias-alvarez/null-ls.nvim",
-      "jayp0521/mason-null-ls.nvim",
+      -- Autocompletion
+      "hrsh7th/nvim-cmp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lua",
+      -- Snippets
+      "L3MON4D3/LuaSnip",
+      "rafamadriz/friendly-snippets",
+    },
+    as = "lsp-zero",
+    config = GetSetup("lsp-zero"),
+  })
+  -- other, lsp related, plugins
+  use({
       "onsails/lspkind.nvim",
       "ray-x/lsp_signature.nvim",
       -- Autocompletion
-      "hrsh7th/nvim-cmp",
       "David-Kunz/cmp-npm",
       "Dosx001/cmp-commit",
-      "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-path",
+      {
+        "jose-elias-alvarez/null-ls.nvim",
+        as = "null-ls",
+        after = "mason",
+        before = "mason-null-ls",
+      },
       "lukas-reineke/cmp-under-comparator",
       "petertriho/cmp-git",
-      "saadparwaiz1/cmp_luasnip",
       {
         "tamago324/cmp-zsh",
 
@@ -208,11 +216,19 @@ return Packer.startup(function(use)
           end
         end,
       },
-      -- Snippets
-      "L3MON4D3/LuaSnip",
-      "rafamadriz/friendly-snippets",
+  })
+  -- mason-null-ls
+  use({
+    "jayp0521/mason-null-ls.nvim",
+    after =
+    {
+      "null-ls",
     },
-    config = GetSetup("lsp-zero"),
+    config = function ()
+      require("mason").setup()
+      GetSetup("null-ls")
+      GetSetup("mason-null-ls")
+    end
   })
 
   -- Quickfix
