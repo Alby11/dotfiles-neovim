@@ -313,11 +313,4 @@ return Packer.startup(function(use)
     config = GetSetup("which-key"),
   })
 
-  -- Firenvim
-  use({
-    "glacambre/firenvim",
-    run = function()
-      fn["firenvim#install"](0)
-    end,
-  })
 end)
