@@ -57,6 +57,7 @@ return Packer.startup(function(use)
     "kevinhwang91/nvim-ufo",
     requires = "kevinhwang91/promise-async",
     config = GetSetup("ufo"),
+    cond = false
   })
 
   -- Indentation tracking
@@ -106,8 +107,10 @@ return Packer.startup(function(use)
     requires = {
       "kkharji/sqlite.lua",
       config = GetSetup("sqlite"),
+      cond = function () return Is_linux end,
     },
     config = GetSetup("neoclip"),
+    cond = function () return Is_linux end,
   })
 
   -- Git stuff
@@ -186,6 +189,10 @@ return Packer.startup(function(use)
       "rafamadriz/friendly-snippets",
     },
     as = "lsp-zero",
+    before = {
+      "null-ls",
+      "mason-null-ls",
+    },
     config = GetSetup("lsp-zero"),
   })
   -- other, lsp related, plugins
@@ -197,12 +204,6 @@ return Packer.startup(function(use)
       "Dosx001/cmp-commit",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
-      {
-        "jose-elias-alvarez/null-ls.nvim",
-        as = "null-ls",
-        after = "mason",
-        before = "mason-null-ls",
-      },
       "lukas-reineke/cmp-under-comparator",
       "petertriho/cmp-git",
       {
@@ -210,22 +211,25 @@ return Packer.startup(function(use)
 
         requires = "Shougo/deol.nvim",
         config = GetSetup("cmp_zsh"),
-        cond = function()
-          if is_win then
-            return false
-          end
-        end,
+        cond = function () return not Is_win end,
       },
+  })
+  -- null-ls
+  use({
+    "jose-elias-alvarez/null-ls.nvim",
+    as = "null-ls",
+    after = "lsp-zero",
+    before = "mason-null-ls",
   })
   -- mason-null-ls
   use({
     "jayp0521/mason-null-ls.nvim",
-    after =
-    {
-      "null-ls",
-    },
+    after = "null-ls",
+    as = "mason-null-ls",
     config = function ()
       require("mason").setup()
+      require("null-ls").setup()
+      require("mason-null-ls").setup()
       GetSetup("null-ls")
       GetSetup("mason-null-ls")
     end
@@ -253,11 +257,7 @@ return Packer.startup(function(use)
   -- misc
   use({
     "lambdalisue/suda.vim",
-    cond = function()
-      if is_win then
-        return false
-      end
-    end,
+    cond = function () return not Is_win end,
   })
   use({
     "winston0410/cmd-parser.nvim",
@@ -274,7 +274,7 @@ return Packer.startup(function(use)
     -- Highlight colors
     {
       "norcalli/nvim-colorizer.lua",
-      -- config = require("colorizer").setup(),
+      config = GetSetup("colorizer"),
     },
   })
 

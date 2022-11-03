@@ -1,5 +1,5 @@
 local pluginID = "leap"
-if not checkPlugin(pluginID) then return end
+if not CheckPlugin(pluginID) then return end
 
 require('leap').setup {
   max_aot_targets = nil,
