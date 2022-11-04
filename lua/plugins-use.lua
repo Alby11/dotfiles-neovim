@@ -104,16 +104,18 @@ return Packer.startup(function(use)
     config = GetSetup("telescope"),
   })
 
+
+
   -- clipboard to sqlite
   use({
     "AckslD/nvim-neoclip.lua",
     requires = {
       "kkharji/sqlite.lua",
       config = GetSetup("sqlite"),
-      cond = function () return Is_linux end,
+      cond = IsPluginLoaded("neoclip"),
     },
     config = GetSetup("neoclip"),
-    cond = function () return Is_linux end,
+    cond = function () return not Is_win end,
   })
 
   -- Git stuff

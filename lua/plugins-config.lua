@@ -1,4 +1,5 @@
 local packer_bootstrap = false
+LoadedPlugins = {}
 
 -- Ensure packer is installed
 local ensure_packer = function()
@@ -86,8 +87,13 @@ Autocmd("BufWritePost", {
   end,
 })
 
-GetSetup = function(name)
-  return string.format("require('plugins._%s')", name)
+GetSetup = function(pluginName)
+  table.insert(LoadedPlugins, pluginName)
+  return string.format("require('plugins._%s')", pluginName)
+end
+
+IsPluginLoaded = function (pluginName)
+  return LoadedPlugins[pluginName]
 end
 
 Packer.reset()
