@@ -8,9 +8,9 @@ vim.cmd[[
   FVimCursorSmoothBlink v:true
 
   " Background composition
-  FVimBackgroundComposition 'acrylic'
-  FVimBackgroundOpacity 0.85
-  FVimBackgroundAltOpacity 0.75
+  " FVimBackgroundComposition 'acrylic'
+  " FVimBackgroundOpacity 0.85
+  " FVimBackgroundAltOpacity 0.75
   " FVimBackgroundImage 'C:/foobar.png'
   " FVimBackgroundImageVAlign 'center'
   " FVimBackgroundImageHAlign 'center'
@@ -18,23 +18,23 @@ vim.cmd[[
   " FVimBackgroundImageOpacity 0.85
 
   " Title bar tweaks
-  FVimCustomTitleBar v:false
+  " FVimCustomTitleBar v:false
 
   " Debug UI overlay
   " FVimDrawFPS v:true
 
   " Font tweaks
-  FVimFontAntialias v:true
-  FVimFontAutohint v:true
-  FVimFontHintLevel 'full'
-  FVimFontLigature v:true
-  FVimFontLineHeight '+1.0'
-  FVimFontSubpixel v:true
-  FVimFontNoBuiltinSymbols v:false
+  " FVimFontAntialias v:true
+  " FVimFontAutohint v:true
+  " FVimFontHintLevel 'full'
+  " FVimFontLigature v:true
+  " FVimFontLineHeight '+1.0'
+  " FVimFontSubpixel v:true
+  " FVimFontNoBuiltinSymbols v:false
 
   " Try to snap the fonts to the pixels reduces blur
   " in some situations (eg 100% DPI).
-  FVimFontAutoSnap v:true
+  " FVimFontAutoSnap v:true
 
   " Font weight tuning possible valuaes are 100..900
   FVimFontNormalWeight 100
@@ -44,7 +44,7 @@ vim.cmd[[
   " FVimFontDrawBounds v:true
 
   " UI options (all default to false)
-  FVimUIPopupMenu v:true
+  " FVimUIPopupMenu v:true
   " FVimUIWildMenu v:false
 
   " Keyboard mapping options

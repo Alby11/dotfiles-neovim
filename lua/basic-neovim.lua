@@ -115,5 +115,5 @@ if is_neovide then
   require("plugins._neovide")
 elseif is_fvim then
   Opt.guifont = "Lilex NFM:h10"
-  require("plugins._fvim")
+  -- require("plugins._fvim")
 end
