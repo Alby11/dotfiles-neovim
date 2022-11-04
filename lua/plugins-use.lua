@@ -57,7 +57,7 @@ return Packer.startup(function(use)
     "kevinhwang91/nvim-ufo",
     requires = "kevinhwang91/promise-async",
     config = GetSetup("ufo"),
-    cond = false
+    cond = true
   })
 
   -- Indentation tracking
@@ -76,7 +76,10 @@ return Packer.startup(function(use)
     "nvim-treesitter/nvim-treesitter-textobjects",
     "nvim-treesitter/nvim-treesitter-context",
     "nvim-treesitter/nvim-treesitter-refactor",
-    "nvim-treesitter/Highlight.lua",
+    {
+      "nvim-treesitter/Highlight.lua",
+      cond = function () return not Is_win end,
+    },
     "RRethy/nvim-treesitter-endwise",
   })
 
