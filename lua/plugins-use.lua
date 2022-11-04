@@ -57,7 +57,6 @@ return Packer.startup(function(use)
     "kevinhwang91/nvim-ufo",
     requires = "kevinhwang91/promise-async",
     config = GetSetup("ufo"),
-    cond = true
   })
 
   -- Indentation tracking
