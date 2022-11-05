@@ -1,22 +1,21 @@
 local neogen = require 'neogen'
-local map = vim.api.nvim_set_keymap
 
 neogen.setup { enabled = true, jump_map = '<tab>' }
-map('n', '<localleader>d', '', {
+Map('n', '<localleader>d', '', {
   callback = function()
     require('neogen').generate()
   end,
-  noremap = true,
+  Opts,
 })
-map('n', '<localleader>df', '', {
+Map('n', '<localleader>df', '', {
   callback = function()
     require('neogen').generate { type = 'func' }
   end,
-  noremap = true,
+  Opts,
 })
-map('n', '<localleader>dc', '', {
+Map('n', '<localleader>dc', '', {
   callback = function()
     require('neogen').generate { type = 'class' }
   end,
-  noremap = true,
+  Opts,
 })

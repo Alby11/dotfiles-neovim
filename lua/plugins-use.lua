@@ -284,6 +284,11 @@ return Packer.startup(function(use)
 
   -- Pretty UI
   use({
+        "kyazdani42/nvim-web-devicons",
+        "yamatsum/nvim-nonicons",
+      })
+  -- Themes
+  use({
     {
       "catppuccin/nvim",
       as = "catppuccin",
@@ -292,11 +297,19 @@ return Packer.startup(function(use)
         "yamatsum/nvim-nonicons",
       },
       config = GetSetup("catppuccin"),
+      cond = false,
     },
+    {
+      "dracula/vim",
+      config = GetSetup("dracula"),
+      cond = true,
+    },
+    -- status line
     {
       "nvim-lualine/lualine.nvim",
       config = GetSetup("lualine"),
     },
+    -- other ui plugins
     {
       "b0o/incline.nvim",
       config = GetSetup("incline"),
