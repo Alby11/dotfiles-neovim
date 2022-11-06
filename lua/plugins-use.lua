@@ -286,7 +286,7 @@ return Packer.startup(function(use)
   use({
         "kyazdani42/nvim-web-devicons",
         "yamatsum/nvim-nonicons",
-      })
+  })
   -- Themes
   use({
     {
