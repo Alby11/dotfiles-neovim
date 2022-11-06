@@ -167,7 +167,7 @@ return Packer.startup(function(use)
   })
 
   -- LSP Support
-  -- lsp-zero, nvim-cmp, LuaSnip
+  -- lsp-zero, nvim-cmp, LuaSnipplu
   use({
     "VonHeikemen/lsp-zero.nvim",
     requires = {
@@ -301,7 +301,6 @@ return Packer.startup(function(use)
     },
     {
       "dracula/vim",
-      config = GetSetup("dracula"),
       cond = true,
     },
     -- status line

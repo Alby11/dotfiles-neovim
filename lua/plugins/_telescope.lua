@@ -6,7 +6,7 @@ local telescope = require(plugin_name)
 
 telescope.setup({
   defaults = {
-    theme = Theme,
+    theme = Colorscheme,
     file_sorter = require("telescope.sorters").get_fzy_sorter,
     color_devicons = true,
     dynamic_preview_title = true,

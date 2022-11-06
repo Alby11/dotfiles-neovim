@@ -10,3 +10,4 @@ else
   require("commands")
 end
 require("plugins-config")
+require("colorscheme")
