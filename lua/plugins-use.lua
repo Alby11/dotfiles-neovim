@@ -302,6 +302,7 @@ return Packer.startup(function(use)
     {
       "dracula/vim",
       cond = true,
+      config = GetSetup("dracula"),
     },
     -- status line
     {
