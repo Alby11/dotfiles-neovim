@@ -56,12 +56,6 @@ if packer_bootstrap then
   Packer.install()
 end
 
-cmd([[colorscheme slate]])
-
-if CheckPlugin("catppuccin") then
-  cmd([[colorscheme catppuccin]])
-end
-
 if CheckPlugin("notify") then
   Notify = require("notify")
   Notify.setup({

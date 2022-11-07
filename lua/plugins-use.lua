@@ -296,8 +296,8 @@ return Packer.startup(function(use)
         "kyazdani42/nvim-web-devicons",
         "yamatsum/nvim-nonicons",
       },
-      config = GetSetup("catppuccin"),
       cond = false,
+      config = GetSetup("catppuccin"),
     },
     {
       "dracula/vim",

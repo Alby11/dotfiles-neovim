@@ -1,1 +1,1 @@
-O.colorscheme = Colorscheme
+Cmd(string.format("colorscheme %s", Colorscheme))
