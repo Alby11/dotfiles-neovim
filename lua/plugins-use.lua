@@ -114,7 +114,7 @@ return Packer.startup(function(use)
       cond = IsPluginLoaded("neoclip"),
     },
     config = GetSetup("neoclip"),
-    cond = function () return not Is_win end,
+    cond = false,
   })
 
   -- Git stuff
