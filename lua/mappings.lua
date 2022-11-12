@@ -25,9 +25,13 @@ Map("n", "<leader>x", "<cmd>x!<cr>", Opts)
 Map("i", "<c-s>", "<esc><cmd>w<cr>a", Opts)
 Map("n", "<leader>w", "<cmd>w<cr>", Opts)
 Map("n", "<leader>W", "<cmd>w!<cr>", Opts)
+Map("n", "<leader>W", "<cmd>SudaWrite<cr>", Opts)
 
--- Esc in the terminal
-Map("t", "jj", [[<C-\><C-n>]], Opts)
+-- Esc
+Map("i", "kj", [[<Esc>]], Opts)
+Map("v", "kj", [[<Esc>]], Opts)
+Map("c", "kj", [[<C-C>]], Opts)
+Map("t", "kj", [[<C-\><C-n>]], Opts)
 
 -- Yank to clipboard
 Map("n", "y+", "<cmd>set opfunc=util#clipboard_yank<cr>g@", Opts)
