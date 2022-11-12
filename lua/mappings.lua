@@ -25,7 +25,7 @@ Map("n", "<leader>x", "<cmd>x!<cr>", Opts)
 Map("i", "<c-s>", "<esc><cmd>w<cr>a", Opts)
 Map("n", "<leader>w", "<cmd>w<cr>", Opts)
 Map("n", "<leader>W", "<cmd>w!<cr>", Opts)
-Map("n", "<leader>W", "<cmd>SudaWrite<cr>", Opts)
+Map("n", "<leader>sw", "<cmd>SudaWrite<cr>", Opts)
 
 -- Esc
 Map("i", "kj", [[<Esc>]], Opts)
