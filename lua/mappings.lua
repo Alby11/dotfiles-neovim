@@ -27,6 +27,9 @@ Map("n", "<leader>w", "<cmd>w<cr>", Opts)
 Map("n", "<leader>W", "<cmd>w!<cr>", Opts)
 Map("n", "<leader>sw", "<cmd>SudaWrite<cr>", Opts)
 
+-- Read buffer
+Map("n", "<leader>sr", "<cmd>SudaRead<cr>", Opts)
+
 -- Esc
 Map("i", "kj", [[<Esc>]], Opts)
 Map("v", "kj", [[<Esc>]], Opts)
