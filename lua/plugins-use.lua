@@ -220,8 +220,8 @@ return Packer.startup(function(use)
       require("mason").setup()
       require("null-ls").setup()
       require("mason-null-ls").setup()
-      GetSetup("null-ls")
-      GetSetup("mason-null-ls")
+      -- GetSetup("null-ls")
+      -- GetSetup("mason-null-ls")
     end
   })
 
