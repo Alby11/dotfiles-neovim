@@ -1,5 +1,9 @@
 return Packer.startup(function(use)
+
   use({ "wbthomason/packer.nvim" })
+
+  -- lua functions that many plugins use
+  use( { "nvim-lua/plenary.nvim" } )
 
   use({
     "lewis6991/impatient.nvim",
@@ -42,10 +46,9 @@ return Packer.startup(function(use)
     config = GetSetup("Comment"),
   })
 
-  -- Wrapping/delimiters
-  use({
-    "tpope/vim-surround",
-  })
+  -- essential plugins
+  use("tpope/vim-surround") -- add, delete, change surroundings (it's awesome)
+  use("inkarkat/vim-ReplaceWithRegister") -- replace with register contents using motion (gr + motion)
 
   -- Text objects
   use({
@@ -65,22 +68,6 @@ return Packer.startup(function(use)
     config = GetSetup("indent_blankline"),
   })
 
-  -- Treesitter
-  use({
-    {
-      "nvim-treesitter/nvim-treesitter",
-      run = ":TSUpdate",
-      config = GetSetup("nvim-treesitter"),
-    },
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    "nvim-treesitter/nvim-treesitter-context",
-    "nvim-treesitter/nvim-treesitter-refactor",
-    {
-      "nvim-treesitter/Highlight.lua",
-      cond = function () return not Is_win end,
-    },
-    "RRethy/nvim-treesitter-endwise",
-  })
 
   -- Telescope
   use({
@@ -103,33 +90,6 @@ return Packer.startup(function(use)
     config = GetSetup("telescope"),
   })
 
-  -- Git stuff
-  use({
-    {
-      "lewis6991/gitsigns.nvim",
-      requires = "nvim-lua/plenary.nvim",
-      config = GetSetup("gitsigns"),
-    },
-    {
-      "TimUntersberger/neogit",
-      requires = {
-        "nvim-lua/plenary.nvim",
-        {
-          "sindrets/diffview.nvim",
-          config = GetSetup("diffview"),
-        },
-      },
-      config = GetSetup("neogit"),
-    },
-    {
-      "akinsho/git-conflict.nvim",
-      tag = "*",
-      config = function()
-        require("git-conflict").setup()
-      end,
-    },
-  })
-
   -- Path navigation
   use({
     "nvim-neo-tree/neo-tree.nvim",
@@ -142,106 +102,81 @@ return Packer.startup(function(use)
     config = GetSetup("neo-tree"),
   })
 
-  -- golang dev
-  use({
-    "fatih/vim-go",
-    run = ":GoInstallBinaries",
-  })
 
   use({
     "kosayoda/nvim-lightbulb",
   })
 
-  -- LSP Support
-  -- lsp-zero, nvim-cmp, LuaSnipplu
+-- autocompletion
   use({
-    "VonHeikemen/lsp-zero.nvim",
-    requires = {
-      "neovim/nvim-lspconfig",
-      {
-        "williamboman/mason.nvim",
-        as = "mason",
-        before = {
-          "null-ls",
-          "mason-null-ls",
-        }
-      },
-      "williamboman/mason-lspconfig.nvim",
-      -- Autocompletion
-      "hrsh7th/nvim-cmp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lua",
-      -- Snippets
-      "L3MON4D3/LuaSnip",
-      "rafamadriz/friendly-snippets",
-    },
-    as = "lsp-zero",
-    before = {
-      "null-ls",
-      "mason-null-ls",
-    },
-    config = GetSetup("lsp-zero"),
-  })
-  -- other, lsp related, plugins
-  use({
-      "onsails/lspkind.nvim",
-      "ray-x/lsp_signature.nvim",
-      -- Autocompletion
-      "David-Kunz/cmp-npm",
-      "Dosx001/cmp-commit",
-      "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-nvim-lsp-document-symbol",
-      "lukas-reineke/cmp-under-comparator",
-      "petertriho/cmp-git",
-      {
-        "tamago324/cmp-zsh",
+    "hrsh7th/nvim-cmp",
+    config = GetSetup("cmp"),
+  }) -- completion plugin
+  use("hrsh7th/cmp-buffer") -- source for text in buffer
+  use("hrsh7th/cmp-path") -- source for file system paths
 
-        requires = "Shougo/deol.nvim",
-        config = GetSetup("cmp_zsh"),
-        cond = function () return not Is_win end,
-      },
-  })
-  -- null-ls
+  -- snippets
+  use("L3MON4D3/LuaSnip") -- snippet engine
+  use("saadparwaiz1/cmp_luasnip") -- for autocompletion
+  use("rafamadriz/friendly-snippets") -- useful snippets
+
+  -- managing & installing lsp servers, linters & formatters
+  use("williamboman/mason.nvim") -- in charge of managing lsp servers, linters & formatters
+  use("williamboman/mason-lspconfig.nvim") -- bridges gap b/w mason & lspconfig
+
+  -- configuring lsp servers
+  use("neovim/nvim-lspconfig") -- easily configure language servers
+  use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
+  use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
+  use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
+  -- golang dev
   use({
-    "jose-elias-alvarez/null-ls.nvim",
-    as = "null-ls",
-    after = "lsp-zero",
-    before = "mason-null-ls",
+    "fatih/vim-go",
+    run = ":GoInstallBinaries",
   })
-  -- mason-null-ls
+  use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
+
+  -- formatting & linting
+  use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
+  use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
+
+  -- treesitter configuration
   use({
-    "jayp0521/mason-null-ls.nvim",
-    after = "null-ls",
-    as = "mason-null-ls",
-    config = function ()
-      require("mason").setup()
-      require("null-ls").setup()
-      require("mason-null-ls").setup()
-      GetSetup("null-ls")
-      GetSetup("mason-null-ls")
-    end
+    "nvim-treesitter/nvim-treesitter",
+    run = function()
+      local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+      ts_update()
+    end,
+  })
+
+  -- auto closing
+  use({
+    "windwp/nvim-autopairs",
+    config = GetSetup("nvim-autopairs"),
+  }) -- autoclose parens, brackets, quotes, etc... 
+
+  use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
+
+  -- git integration
+  use({
+    {
+      "lewis6991/gitsigns.nvim",
+      requires = "nvim-lua/plenary.nvim",
+      config = GetSetup("gitsigns"),
+    },
+    {
+      "akinsho/git-conflict.nvim",
+      tag = "*",
+      config = function()
+        require("git-conflict").setup()
+      end,
+    },
   })
 
   -- Quickfix
   use({
     "folke/trouble.nvim",
     config = GetSetup("trouble"),
-  })
-
-  -- Debugger
-  use({
-    "mfussenegger/nvim-dap",
-    requires = {
-      "Pocco81/dap-buddy.nvim",
-      {
-        "rcarriga/nvim-dap-ui",
-        config = GetSetup("dapui"),
-      },
-    },
-    config = GetSetup("dap"),
   })
 
   -- misc
@@ -331,5 +266,9 @@ return Packer.startup(function(use)
     "folke/which-key.nvim",
     config = GetSetup("which-key"),
   })
+
+  if packer_bootstrap then
+    require("packer").sync()
+  end
 
 end)

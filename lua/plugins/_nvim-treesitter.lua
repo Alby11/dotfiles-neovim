@@ -1,120 +1,45 @@
-require("nvim-treesitter.configs").setup({
-  rainbow = {
-    enable = true,
-    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = nil, -- Do not enable for files with more than n lines, int
-  },
-  autotag = {
-    enable = true,
-    filetypes = {
-      "html",
-      "javascript",
-      "json",
-      "markdown",
-      "typescript",
-      "yaml",
-    },
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "<CR>",
-      scope_incremental = "<CR>",
-      node_incremental = "<CR>",
-      node_decremental = "<TAB>",
-    },
-  },
-  select = {
-    enable = true,
+local plugin_name = "nvim-treesitter"
 
-    -- Automatically jump forward to textobj, similar to targets.vim
-    lookahead = true,
+if not CheckPlugin(plugin_name) then
+  return
+end
+plugin_name = "nvim-treesitter.configs"
+local treesitter = require(plugin_name)
 
-    keymaps = {
-      -- You can use the capture groups defined in textobjects.scm
-      ["af"] = "@function.outer",
-      ["if"] = "@function.inner",
-      ["ac"] = "@class.outer",
-      ["ic"] = "@class.inner",
-    },
-    -- You can choose the select mode (default is charwise 'v')
-    selection_modes = {
-      ["@parameter.outer"] = "v", -- charwise
-      ["@function.outer"] = "V", -- linewise
-      ["@class.outer"] = "<c-v>", -- blockwise
-    },
-  },
-  swap = {
+-- configure treesitter
+treesitter.setup({
+  -- enable syntax highlighting
+  highlight = {
     enable = true,
-    swap_next = {
-      ["<leader>a"] = "@parameter.inner",
-    },
-    swap_previous = {
-      ["<leader>A"] = "@parameter.inner",
-    },
   },
-  move = {
-    enable = true,
-    set_jumps = true, -- whether to set jumps in the jumplist
-    goto_next_start = {
-      ["]m"] = "@function.outer",
-      ["]]"] = "@class.outer",
-    },
-    goto_next_end = {
-      ["]M"] = "@function.outer",
-      ["]["] = "@class.outer",
-    },
-    goto_previous_start = {
-      ["[m"] = "@function.outer",
-      ["[["] = "@class.outer",
-    },
-    goto_previous_end = {
-      ["[M"] = "@function.outer",
-      ["[]"] = "@class.outer",
-    },
-  },
-  lsp_interop = {
-    enable = true,
-    border = "none",
-    peek_definition_code = {
-      ["<leader>df"] = "@function.outer",
-      ["<leader>dF"] = "@class.outer",
-    },
-  },
-})
--- Setup treesitter
-local ts = require("nvim-treesitter.configs")
-ts.setup({
+  -- enable indentation
+  indent = { enable = true },
+  -- enable autotagging (w/ nvim-ts-autotag plugin)
+  autotag = { enable = true },
+  -- ensure these language parsers are installed
   ensure_installed = {
     "bash",
-    "c",
-    "cmake",
-    "cpp",
     "css",
     "dockerfile",
+    "gitignore",
     "go",
+    "graphql",
     "html",
     "java",
     "javascript",
     "json",
-    "json5",
     "lua",
-    "make",
-    "php",
+    "markdown",
     "python",
-    "regex",
-    "ruby",
-    "rust",
-    "scss",
-    "sql",
-    "toml",
+    "svelte",
+    "tsx",
     "typescript",
     "vim",
     "yaml",
   },
-  highlight = { enable = true },
+  -- auto install above language parsers
+  auto_install = true,
 })
-
 require("treesitter-context").setup({
   enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
   max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.

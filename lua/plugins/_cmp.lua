@@ -1,84 +1,53 @@
-local cmp = require("cmp")
-local lspkind = require("lspkind")
+-- import nvim-cmp plugin safely
+local cmp_status, cmp = pcall(require, "cmp")
+if not cmp_status then
+  return
+end
+
+-- import luasnip plugin safely
+local luasnip_status, luasnip = pcall(require, "luasnip")
+if not luasnip_status then
+  return
+end
+
+-- import lspkind plugin safely
+local lspkind_status, lspkind = pcall(require, "lspkind")
+if not lspkind_status then
+  return
+end
+
+-- load vs-code like snippets from plugins (e.g. friendly-snippets)
+require("luasnip/loaders/from_vscode").lazy_load()
+
+vim.opt.completeopt = "menu,menuone,noselect"
 
 cmp.setup({
   snippet = {
     expand = function(args)
-      -- For `vsnip` user.
-      vim.fn["vsnip#anonymous"](args.body)
+      luasnip.lsp_expand(args.body)
     end,
   },
-  mapping = {
-    ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-    ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
-    ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
-    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-    ["<C-e>"] = cmp.mapping({
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
-    }),
-    ["<CR>"] = cmp.mapping(
-      cmp.mapping.confirm({
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = true,
-      }),
-      { "i", "c" }
-    ),
-  },
-  completion = {
-    completeopt = "menu,menuone,noinsert",
-    keyword_length = 2,
-  },
-  sources = {
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-    {
-      name = "buffer",
-      option = {
-        get_bufnrs = function()
-          local bufs = {}
-          for _, win in ipairs(vim.api.nvim_list_wins()) do
-            bufs[vim.api.nvim_win_get_buf(win)] = true
-          end
-          return vim.tbl_keys(bufs)
-        end,
-      },
-    },
-    { name = "look", keyword_length = 3, option = { convert_case = true, loud = true } },
-    { name = "nvim_lua" },
-    { name = "calc" },
-    { name = "path" },
-  },
+  mapping = cmp.mapping.preset.insert({
+    ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+    ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
+    ["<C-e>"] = cmp.mapping.abort(), -- close completion window
+    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+  }),
+  -- sources for autocompletion
+  sources = cmp.config.sources({
+    { name = "nvim_lsp" }, -- lsp
+    { name = "luasnip" }, -- snippets
+    { name = "buffer" }, -- text within current buffer
+    { name = "path" }, -- file system paths
+  }),
+  -- configure lspkind for vs-code like icons
   formatting = {
     format = lspkind.cmp_format({
-      with_text = true,
       maxwidth = 50,
-      menu = {
-        buffer = "",
-        nvim_lsp = "",
-        spell = "",
-        look = "",
-      },
+      ellipsis_char = "...",
     }),
   },
-  experimental = {
-    ghost_text = true,
-    native_menu = false,
-  },
-})
-
--- cmp.setup.cmdline("/", {
---   mapping = cmp.mapping.preset.cmdline(),
---   sources = {
---     { name = "buffer" },
---   },
--- })
-
-cmp.setup.cmdline(":", {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = "path" },
-  }),
 })
