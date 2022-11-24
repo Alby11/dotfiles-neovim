@@ -15,11 +15,12 @@ Mapv("n", "<Leader>SS", function()
 end, Opts)
 
 -- Quit, close buffers, etc.
-Map("n", "<leader>q", "<cmd>q<cr>", Opts)
-Map("n", "<leader>qa", "<cmd>qa<cr>", Opts)
-Map("n", "<leader>Q", "<cmd>q!<cr>", Opts)
-Map("n", "<leader>QA", "<cmd>qa!<cr>", Opts)
-Map("n", "<leader>x", "<cmd>x!<cr>", Opts)
+Map("n", "<leader>qq", "<cmd>q<cr>", Opts) -- quit
+Map("n", "<leader>qa", "<cmd>qa<cr>", Opts) -- quit all
+Map("n", "<leader>QQ", "<cmd>q!<cr>", Opts) -- force quit like ZQ
+Map("n", "<leader>QA", "<cmd>qa!<cr>", Opts) -- force quit all
+-- 	Like ":wq" and ZZ shortcut, but write only when changes have been made.
+Map("n", "<leader>xx", "<cmd>x!<cr>", Opts)
 
 -- Save buffer
 Map("i", "<c-s>", "<esc><cmd>w<cr>a", Opts)
@@ -46,8 +47,8 @@ Map("n", "<c-j>", "<c-w>j", Opts)
 Map("n", "<c-k>", "<c-w>k", Opts)
 Map("n", "<c-l>", "<c-w>l", Opts)
 
- 	-- restart lsp server (not on youtube nvim video)
-	Map("n", "<leader>lspr", ":LspRestart<CR>", Opts) -- mapping to restart lsp if necessary
+-- restart lsp server (not on youtube nvim video)
+Map("n", "<leader>lspr", ":LspRestart<CR>", Opts) -- mapping to restart lsp if necessary
 
 -- Tab movement
 -- Map("n", "<c-Left>", "<cmd>tabpre<cr>", Opts)

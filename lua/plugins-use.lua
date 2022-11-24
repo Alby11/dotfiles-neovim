@@ -1,9 +1,9 @@
 return Packer.startup(function(use)
 
-  use({"wbthomason/packer.nvim"})
+  use({ "wbthomason/packer.nvim" })
 
   -- lua functions that many plugins use
-  use({"nvim-lua/plenary.nvim"})
+  use({ "nvim-lua/plenary.nvim" })
 
   use({
     "lewis6991/impatient.nvim",
@@ -31,13 +31,13 @@ return Packer.startup(function(use)
 
   -- Movement
   use({
-      "phaazon/hop.nvim",
-      branch = "v2", -- optional but strongly recommended
-      config = GetSetup("hop"),
+    "phaazon/hop.nvim",
+    branch = "v2", -- optional but strongly recommended
+    config = GetSetup("hop"),
   })
   use({
-      "ethanholz/nvim-lastplace",
-      config = GetSetup("nvim-lastplace"),
+    "ethanholz/nvim-lastplace",
+    config = GetSetup("nvim-lastplace"),
   })
 
   -- Commenting
@@ -107,14 +107,19 @@ return Packer.startup(function(use)
     "kosayoda/nvim-lightbulb",
   })
 
--- autocompletion
+  -- autocompletion
   use({
     "hrsh7th/nvim-cmp",
     config = GetSetup("cmp"),
   }) -- completion plugin
   use("hrsh7th/cmp-buffer") -- source for text in buffer
   use("hrsh7th/cmp-path") -- source for file system paths
-
+  use({
+    "tamago324/cmp-zsh",
+    requires = "Shougo/deol.nvim",
+    config = GetSetup("cmp_zsh"),
+    cond = function() return not Is_win end,
+  })
   -- snippets
   use("L3MON4D3/LuaSnip") -- snippet engine
   use("saadparwaiz1/cmp_luasnip") -- for autocompletion
@@ -134,7 +139,7 @@ return Packer.startup(function(use)
     config = GetSetup("cmp"),
   }) -- for autocompletion
   use({
-    "glepnir/lspsaga.nvim", 
+    "glepnir/lspsaga.nvim",
     branch = "main",
     config = GetSetup("lspsaga"),
   }) -- enhanced lsp uis
@@ -166,21 +171,21 @@ return Packer.startup(function(use)
   use({
     "windwp/nvim-autopairs",
     config = GetSetup("nvim-autopairs"),
-  }) -- autoclose parens, brackets, quotes, etc... 
+  }) -- autoclose parens, brackets, quotes, etc...
   use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
 
   -- git integration
   use({
-      "lewis6991/gitsigns.nvim",
-      requires = "nvim-lua/plenary.nvim",
-      config = GetSetup("gitsigns"),
+    "lewis6991/gitsigns.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = GetSetup("gitsigns"),
   })
   use({
-      "akinsho/git-conflict.nvim",
-      tag = "*",
-      config = function()
-        require("git-conflict").setup()
-      end,
+    "akinsho/git-conflict.nvim",
+    tag = "*",
+    config = function()
+      require("git-conflict").setup()
+    end,
   })
 
   -- Quickfix
@@ -192,9 +197,9 @@ return Packer.startup(function(use)
   -- misc
   use({
     "lambdalisue/suda.vim",
-    cond = function () return not Is_win end,
+    cond = function() return not Is_win end,
   })
-  use({ "winston0410/cmd-parser.nvim"})
+  use({ "winston0410/cmd-parser.nvim" })
   -- highlight range written in cmeline
   use({
     "winston0410/range-highlight.nvim",
@@ -206,15 +211,15 @@ return Packer.startup(function(use)
     config = GetSetup("twilight"),
   })
   -- Highlight colors
- use({
+  use({
     "norcalli/nvim-colorizer.lua",
     config = GetSetup("colorizer"),
   })
 
   -- Pretty UI
   use({
-        "kyazdani42/nvim-web-devicons",
-        "yamatsum/nvim-nonicons",
+    "kyazdani42/nvim-web-devicons",
+    "yamatsum/nvim-nonicons",
   })
   -- Themes
   use({
