@@ -46,6 +46,9 @@ Map("n", "<c-j>", "<c-w>j", Opts)
 Map("n", "<c-k>", "<c-w>k", Opts)
 Map("n", "<c-l>", "<c-w>l", Opts)
 
+ 	-- restart lsp server (not on youtube nvim video)
+	Map("n", "<leader>lspr", ":LspRestart<CR>", Opts) -- mapping to restart lsp if necessary
+
 -- Tab movement
 -- Map("n", "<c-Left>", "<cmd>tabpre<cr>", Opts)
 -- Map("n", "<c-Right>", "<cmd>tabnext<cr>", Opts)

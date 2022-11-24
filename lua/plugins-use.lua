@@ -1,9 +1,9 @@
 return Packer.startup(function(use)
 
-  use({ "wbthomason/packer.nvim" })
+  use({"wbthomason/packer.nvim"})
 
   -- lua functions that many plugins use
-  use( { "nvim-lua/plenary.nvim" } )
+  use({"nvim-lua/plenary.nvim"})
 
   use({
     "lewis6991/impatient.nvim",
@@ -27,17 +27,17 @@ return Packer.startup(function(use)
     config = GetSetup("sayonara"),
   })
 
+  use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
+
   -- Movement
   use({
-    {
       "phaazon/hop.nvim",
       branch = "v2", -- optional but strongly recommended
       config = GetSetup("hop"),
-    },
-    {
+  })
+  use({
       "ethanholz/nvim-lastplace",
       config = GetSetup("nvim-lastplace"),
-    },
   })
 
   -- Commenting
@@ -125,9 +125,19 @@ return Packer.startup(function(use)
   use("williamboman/mason-lspconfig.nvim") -- bridges gap b/w mason & lspconfig
 
   -- configuring lsp servers
-  use("neovim/nvim-lspconfig") -- easily configure language servers
-  use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
-  use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
+  use({
+    "neovim/nvim-lspconfig",
+    config = GetSetup("lspconfig"),
+  }) -- easily configure language servers
+  use({
+    "hrsh7th/cmp-nvim-lsp",
+    config = GetSetup("cmp"),
+  }) -- for autocompletion
+  use({
+    "glepnir/lspsaga.nvim", 
+    branch = "main",
+    config = GetSetup("lspsaga"),
+  }) -- enhanced lsp uis
   use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
   -- golang dev
   use({
@@ -138,7 +148,10 @@ return Packer.startup(function(use)
 
   -- formatting & linting
   use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
-  use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
+  use({
+    "jayp0521/mason-null-ls.nvim",
+    config = GetSetup("mason")
+  }) -- bridges gap b/w mason & null-ls
 
   -- treesitter configuration
   use({
@@ -154,23 +167,20 @@ return Packer.startup(function(use)
     "windwp/nvim-autopairs",
     config = GetSetup("nvim-autopairs"),
   }) -- autoclose parens, brackets, quotes, etc... 
-
   use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
 
   -- git integration
   use({
-    {
       "lewis6991/gitsigns.nvim",
       requires = "nvim-lua/plenary.nvim",
       config = GetSetup("gitsigns"),
-    },
-    {
+  })
+  use({
       "akinsho/git-conflict.nvim",
       tag = "*",
       config = function()
         require("git-conflict").setup()
       end,
-    },
   })
 
   -- Quickfix
@@ -184,23 +194,21 @@ return Packer.startup(function(use)
     "lambdalisue/suda.vim",
     cond = function () return not Is_win end,
   })
+  use({ "winston0410/cmd-parser.nvim"})
+  -- highlight range written in cmeline
   use({
-    "winston0410/cmd-parser.nvim",
-    -- highlight range written in cmeline
-    {
-      "winston0410/range-highlight.nvim",
-      config = GetSetup("range-highlight"),
-    },
-    -- Highlight chunk of code
-    {
-      "folke/twilight.nvim",
-      config = GetSetup("twilight"),
-    },
-    -- Highlight colors
-    {
-      "norcalli/nvim-colorizer.lua",
-      config = GetSetup("colorizer"),
-    },
+    "winston0410/range-highlight.nvim",
+    config = GetSetup("range-highlight"),
+  })
+  -- Highlight chunk of code
+  use({
+    "folke/twilight.nvim",
+    config = GetSetup("twilight"),
+  })
+  -- Highlight colors
+ use({
+    "norcalli/nvim-colorizer.lua",
+    config = GetSetup("colorizer"),
   })
 
   -- Pretty UI
@@ -267,7 +275,7 @@ return Packer.startup(function(use)
     config = GetSetup("which-key"),
   })
 
-  if packer_bootstrap then
+  if Packer_bootstrap then
     require("packer").sync()
   end
 

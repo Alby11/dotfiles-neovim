@@ -1,4 +1,4 @@
-local packer_bootstrap = false
+local Packer_bootstrap = false
 LoadedPlugins = {}
 
 -- Ensure packer is installed
@@ -26,7 +26,7 @@ if CheckPlugin("packer") then
   Util = require("packer.util")
   Init = Packer.init
 else
-  packer_bootstrap = ensure_packer()
+  Packer_bootstrap = ensure_packer()
 end
 
 Init({
@@ -52,7 +52,7 @@ Init({
 })
 
 ---- Automatically set up your configuration after cloning packer.nvim
-if packer_bootstrap then
+if Packer_bootstrap then
   Packer.install()
 end
 

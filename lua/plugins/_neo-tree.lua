@@ -2,8 +2,7 @@ vim.g.neo_tree_remove_legacy_commands = true
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
-map("n", "<Leader>N", "<Cmd>Neotree toggle reveal_force_cwd<CR>", opts)
-map("n", "<Leader>n", "<Cmd>Neotree reveal<CR>", opts)
+map("n", "<Leader>n", "<Cmd>Neotree toggle reveal_force_cwd<CR>", opts)
 
 -- barbar.nvim integration
 vim.api.nvim_create_autocmd("BufWinEnter", {
