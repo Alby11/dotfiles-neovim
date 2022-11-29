@@ -1,61 +1,22 @@
 return Packer.startup(function(use)
-  use({ "wbthomason/packer.nvim" })
+	use("wbthomason/packer.nvim")
 
-  use({
-    "lewis6991/impatient.nvim",
-    config = GetSetup("impatient"),
-  })
+	use("lewis6991/impatient.nvim")
 
-  use({
-    "elijahmanor/export-to-vscode.nvim",
-    config = GetSetup("export-to-vscode"),
-  })
+	use("elijahmanor/export-to-vscode.nvim")
 
-  -- Movement
-  use({
-    {
-      "phaazon/hop.nvim",
-      branch = "v2", -- optional but strongly recommended
-      config = GetSetup("hop"),
-    },
-    {
-      "ethanholz/nvim-lastplace",
-      config = GetSetup("nvim-lastplace"),
-    },
-  })
+	-- Movement
+	use({
+		"phaazon/hop.nvim",
+		branch = "v2", -- optional but strongly recommended
+	})
 
-  -- Folding
-  use({
-    "kevinhwang91/nvim-ufo",
-    requires = {
-      "kevinhwang91/promise-async",
-    },
-    config = GetSetup("ufo"),
-  })
+	-- Commenting
+	use("numToStr/Comment.nvim")
 
-  -- Commenting
-  use({
-    "numToStr/Comment.nvim",
-    config = GetSetup("Comment"),
-  })
+	-- Wrapping/delimiters
+	use("tpope/vim-surround")
 
-  -- Wrapping/delimiters
-  use({
-    "tpope/vim-surround",
-  })
-
-  -- Text objects
-  use({
-    "wellle/targets.vim",
-  })
-
-  -- clipboard to sqlite
-  use({
-    "AckslD/nvim-neoclip.lua",
-    requires = {
-      "kkharji/sqlite.lua",
-      config = GetSetup("sqlite"),
-    },
-    config = GetSetup("neoclip"),
-  })
+	-- Text objects
+	use("wellle/targets.vim")
 end)

@@ -1,1 +1,1 @@
-Cmd([[colorscheme dracula]])
+Cmd("colorscheme dracula")
