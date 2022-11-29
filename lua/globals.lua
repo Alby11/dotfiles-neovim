@@ -9,17 +9,17 @@ fn = vim.fn
 executable = vim.executable
 exists = fn.exists
 has = function(x)
-  return fn.has(x) == 1
+	return fn.has(x) == 1
 end
 stdpath = fn.stdpath
 systemlist = fn.systemlist
 executable = function(x)
-  return executable(x) == 1
+	return executable(x) == 1
 end
 opts = { silent = true, noremap = true }
 is_wsl = (function()
-  output = systemlist("uname -r")
-  return not not string.find(output[1] or "", "WSL")
+	output = systemlist("uname -r")
+	return not not string.find(output[1] or "", "WSL")
 end)()
 is_mac = has("macunix")
 is_win = has("win32")
@@ -29,7 +29,7 @@ is_neovide = exists("g:neovide") == 1
 is_fvim = exists("g:fvim_loaded") == 1
 max_jobs = nil
 if is_mac then
-  max_jobs = 32
+	max_jobs = 32
 end
 --
 Vim = vim
@@ -47,7 +47,7 @@ Fn = Vim.fn
 Executable = Vim.executable
 Exists = Fn.exists
 Has = function(x)
-  return Fn.has(x) == 1
+	return Fn.has(x) == 1
 end
 Notify = Vim.notify
 O = Vim.o
@@ -55,11 +55,11 @@ Opt = Vim.opt
 Stdpath = Fn.stdpath
 Systemlist = Fn.systemlist
 Executable = function(x)
-  return Executable(x) == 1
+	return Executable(x) == 1
 end
 Is_wsl = (function()
-  Output = Systemlist("uname -r")
-  return not not string.find(Output[1] or "", "WSL")
+	Output = Systemlist("uname -r")
+	return not not string.find(Output[1] or "", "WSL")
 end)()
 Is_mac = Has("macunix")
 Is_win = Has("win32")
@@ -69,7 +69,7 @@ Is_neovide = Exists("g:neovide") == 1
 Is_fvim = Exists("g:fvim_loaded") == 1
 Max_jobs = nil
 if Is_mac then
-  Max_jobs = 32
+	Max_jobs = 32
 end
 Colorscheme = "dracula"
 -- set config directory

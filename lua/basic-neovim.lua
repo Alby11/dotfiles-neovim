@@ -9,20 +9,20 @@ G.loaded_ruby_provider = 0
 
 -- Disable some built-in plugins we don't want
 local disabled_built_ins = {
-  "gzip",
-  "man",
-  "matchit",
-  "matchparen",
-  "netrwPlugin",
-  "shada_plugin",
-  "tar",
-  "tarPlugin",
-  "zip",
-  "zipPlugin",
+	"gzip",
+	"man",
+	"matchit",
+	"matchparen",
+	"netrwPlugin",
+	"shada_plugin",
+	"tar",
+	"tarPlugin",
+	"zip",
+	"zipPlugin",
 }
 
 for i = 1, 10 do
-  G["loaded_" .. disabled_built_ins[i]] = 1
+	G["loaded_" .. disabled_built_ins[i]] = 1
 end
 
 -- Settings
@@ -98,22 +98,22 @@ Opt.background = "dark"
 
 -- Set shell
 if is_win then
-  Opt.shell = "pwsh -NoLogo"
-  Opt.shellpipe = "|/"
-  Opt.shellxquote = ""
-  Opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
-  Opt.shellredir = "| Out-File -Encoding UTF8"
+	Opt.shell = "pwsh -NoLogo"
+	Opt.shellpipe = "|/"
+	Opt.shellxquote = ""
+	Opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
+	Opt.shellredir = "| Out-File -Encoding UTF8"
 elseif is_wsl then
-  Opt.shell = "/usr/bin/zsh"
+	Opt.shell = "/usr/bin/zsh"
 elseif is_linux then
-  Opt.shell = "/bin/zsh"
+	Opt.shell = "/bin/zsh"
 end
 
 -- GUI Opt.ons
 Opt.guifont = "Lilex nfm:h9,consolas:h9"
 if is_neovide then
-  require("plugins._neovide")
+	require("plugins._neovide")
 elseif is_fvim then
-  Opt.guifont = "Lilex NFM:h10"
-  -- require("plugins._fvim")
+	Opt.guifont = "Lilex NFM:h10"
+	-- require("plugins._fvim")
 end
