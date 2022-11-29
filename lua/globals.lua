@@ -71,6 +71,7 @@ Max_jobs = nil
 if Is_mac then
 	Max_jobs = 32
 end
+Termguicolors = Has("termguicolors")
 Colorscheme = "dracula"
 -- set config directory
 Config_dir = Stdpath("config")

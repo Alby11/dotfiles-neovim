@@ -1,18 +1,29 @@
 return Packer.startup(function(use)
 	use("wbthomason/packer.nvim")
 
+	use("lewis6991/impatient.nvim")
+
 	-- lua functions that many plugins use
 	use("nvim-lua/plenary.nvim")
 
-	use("lewis6991/impatient.nvim")
+	-- Themes
+	use("kyazdani42/nvim-web-devicons")
+	use("yamatsum/nvim-nonicons")
+	use({
+		"catppuccin/nvim",
+		as = "catppuccin",
+		cond = false,
+	})
+	use({
+		"dracula/vim",
+		as = "dracula",
+		-- cond = true,
+	})
 
 	use("elijahmanor/export-to-vscode.nvim")
 
 	-- Buffer management
-	use({
-		"romgrk/barbar.nvim",
-		requires = "kyazdani42/nvim-web-devicons",
-	})
+	use("romgrk/barbar.nvim")
 	-- say sayonara to buffers
 	use("mhinz/vim-sayonara")
 
@@ -66,8 +77,6 @@ return Packer.startup(function(use)
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v2.x",
 		requires = {
-			"nvim-lua/plenary.nvim",
-			"kyazdani42/nvim-web-devicons",
 			"MunifTanjim/nui.nvim",
 		},
 	})
@@ -131,10 +140,7 @@ return Packer.startup(function(use)
 	}) -- autoclose tags
 
 	-- git integration
-	use({
-		"lewis6991/gitsigns.nvim",
-		requires = "nvim-lua/plenary.nvim",
-	})
+	use("lewis6991/gitsigns.nvim")
 	use({
 		"akinsho/git-conflict.nvim",
 		tag = "*",
@@ -161,24 +167,6 @@ return Packer.startup(function(use)
 	-- Highlight colors
 	use("norcalli/nvim-colorizer.lua")
 
-	-- Pretty UI
-	use("kyazdani42/nvim-web-devicons")
-	use("yamatsum/nvim-nonicons")
-	-- Themes
-	use({
-		"catppuccin/nvim",
-		as = "catppuccin",
-		requires = {
-			"kyazdani42/nvim-web-devicons",
-			"yamatsum/nvim-nonicons",
-		},
-		cond = false,
-	})
-	use({
-		"dracula/vim",
-		as = "dracula",
-		cond = true,
-	})
 	-- status line
 	use("nvim-lualine/lualine.nvim")
 
@@ -210,6 +198,8 @@ return Packer.startup(function(use)
 
 	-- keymap hints
 	use("folke/which-key.nvim")
+
+	-- redirect ex output to buffer
 	use("sbulav/nredir.nvim")
 
 	if Packer_bootstrap then
