@@ -27,6 +27,7 @@ else
 	require("plugins._nvim-autopairs")
 	require("plugins._hop")
 	require("plugins._nvim-treesitter")
+	require("plugins._indent_blankline")
 	require("plugins._gitsigns")
 	require("plugins._nvim-lastplace")
 	require("plugins._bufferline")
@@ -35,6 +36,7 @@ else
 	require("plugins._which-key")
 	require("plugins._colorizer")
 	require("plugins._range-highlight")
+	require("plugins._iron")
 	-- require("plugins._")
 end
 require("plugins._export-to-vscode")

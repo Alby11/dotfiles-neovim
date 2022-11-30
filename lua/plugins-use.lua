@@ -1,14 +1,28 @@
 return Packer.startup(function(use)
+	-- THE plugin manager
 	use("wbthomason/packer.nvim")
 
+	-- speed up neovim startup
 	use("lewis6991/impatient.nvim")
 
 	-- lua functions that many plugins use
 	use("nvim-lua/plenary.nvim")
 
-	-- Themes
+	-- UI plugins
 	use("kyazdani42/nvim-web-devicons")
 	use("yamatsum/nvim-nonicons")
+	use("b0o/incline.nvim")
+	use("stevearc/dressing.nvim")
+	use("rcarriga/nvim-notify")
+	use("vigoux/notifier.nvim")
+	use({
+		"j-hui/fidget.nvim",
+		config = function()
+			require("fidget").setup()
+		end,
+	})
+
+	-- Themes
 	use({
 		"catppuccin/nvim",
 		as = "catppuccin",
@@ -17,7 +31,6 @@ return Packer.startup(function(use)
 	use({
 		"dracula/vim",
 		as = "dracula",
-		-- cond = true,
 	})
 
 	use("elijahmanor/export-to-vscode.nvim")
@@ -81,8 +94,6 @@ return Packer.startup(function(use)
 		},
 	})
 
-	use("kosayoda/nvim-lightbulb")
-
 	-- autocompletion
 	use("hrsh7th/nvim-cmp") -- completion plugin
 	use("hrsh7th/cmp-buffer") -- source for text in buffer
@@ -111,16 +122,21 @@ return Packer.startup(function(use)
 		branch = "main",
 	}) -- enhanced lsp uis
 	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
-	-- golang dev
-	-- use({
-	-- 	"fatih/vim-go",
-	-- 	run = ":GoInstallBinaries",
-	-- })
+
 	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
 
 	-- formatting & linting
 	use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
 	use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
+
+	-- REPL
+	use({ "hkupty/iron.nvim" })
+
+	-- golang dev
+	use({
+		"fatih/vim-go",
+		run = ":GoInstallBinaries",
+	})
 
 	-- treesitter configuration
 	use({
@@ -162,25 +178,11 @@ return Packer.startup(function(use)
 	use("winston0410/cmd-parser.nvim")
 	-- highlight range written in cmeline
 	use("winston0410/range-highlight.nvim")
-	-- Highlight chunk of code
-	use("folke/twilight.nvim")
 	-- Highlight colors
 	use("norcalli/nvim-colorizer.lua")
 
 	-- status line
 	use("nvim-lualine/lualine.nvim")
-
-	-- other ui plugins
-	use("b0o/incline.nvim")
-	use("stevearc/dressing.nvim")
-	use("rcarriga/nvim-notify")
-	use("vigoux/notifier.nvim")
-	use({
-		"j-hui/fidget.nvim",
-		config = function()
-			require("fidget").setup()
-		end,
-	})
 
 	-- toggle terminal
 	use({
