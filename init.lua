@@ -7,7 +7,6 @@ if is_vscode then
 	require("plugins._impatient")
 	require("plugins._Comment")
 	require("plugins._hop")
-	require("plugins._export-to-vscode")
 else
 	require("plugins-use")
 	require("basic-neovim")
@@ -36,6 +35,6 @@ else
 	require("plugins._which-key")
 	require("plugins._colorizer")
 	require("plugins._range-highlight")
-	require("plugins._export-to-vscode")
 	-- require("plugins._")
 end
+require("plugins._export-to-vscode")
