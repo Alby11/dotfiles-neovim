@@ -95,6 +95,7 @@ Opt.spelllang = { "en", "it", "fr" } -- enable spell check (may need to download
 
 Opt.termguicolors = true
 Opt.background = "dark"
+Cmd("colorscheme dracula")
 
 -- Set shell
 if is_win then
@@ -114,6 +115,5 @@ Opt.guifont = "Lilex nfm:h9,consolas:h9"
 if is_neovide then
 	require("plugins._neovide")
 elseif is_fvim then
-	Opt.guifont = "Lilex NFM:h10"
-	-- require("plugins._fvim")
+	Opt.guifont = "CaskaydiaCove Nerd Font Retina:h10"
 end

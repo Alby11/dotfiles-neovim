@@ -13,7 +13,7 @@ else
 	require("commands")
 	require("autocommands")
 	require("mappings")
-	require("colorscheme")
+	-- require("colorscheme")
 	require("plugins._impatient")
 	require("plugins._Comment")
 	require("plugins._neo-tree")
