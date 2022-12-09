@@ -57,8 +57,8 @@ Opt.previewheight = 5
 Opt.pumheight = 10 -- Pop up Menu Height
 Opt.relativenumber = true -- Make relative line numbers default
 Opt.scrolloff = 7 -- Vertical Scroll Offset
--- Opt.shada = [['20,<50,s10,h,/100]]
--- Opt.shortmess:append({ W = true, a = true })
+Opt.shada = [['20,<50,s10,h,/100]]
+Opt.shortmess:append({ W = true, a = true })
 Opt.shortmess = "c"
 Opt.showmatch = true
 Opt.showmode = false -- Don't Show MODES
@@ -92,15 +92,6 @@ Opt.whichwrap:append("<,>,h,l")
 Opt.wildignore = { "*.o", "*~", "*.pyc" }
 Opt.wildmode = "longest,full"
 Opt.spelllang = { "en", "it", "fr" } -- enable spell check (may need to download language package)
-
--- -- this will tell Neovim to enable 24bit true color and theme
--- if Termguicolors then
--- 	Opt.termguicolors = true
--- Opt.background = "dark"
--- Cmd("colorscheme catppuccin")
--- Cmd("colorscheme default")
--- Cmd("colorscheme dracula")
--- end
 
 -- -- Set shell
 if is_win then

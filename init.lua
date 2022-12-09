@@ -10,10 +10,10 @@ if is_vscode then
 else
 	require("plugins-use")
 	require("basic-neovim")
+	require("colorscheme")
 	require("commands")
 	require("autocommands")
 	require("mappings")
-	require("colorscheme")
 	require("plugins._impatient")
 	require("plugins._Comment")
 	require("plugins._neo-tree")
