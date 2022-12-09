@@ -41,7 +41,7 @@ Map("n", "<Leader>bb", "<Cmd>BufferOrderByBufferNumber<CR>", Opts)
 Map("n", "<Leader>bd", "<Cmd>BufferOrderByDirectory<CR>", Opts)
 Map("n", "<Leader>bl", "<Cmd>BufferOrderByLanguage<CR>", Opts)
 Map("n", "<Leader>bn", "<Cmd>BufferOrderByWindowNumber<CR>", Opts)
-Map("n", "<Leader>br", "<Cmd>BufferWipeout<CR>", Opts)
+Map("n", "<Leader>bw", "<Cmd>BufferWipeout<CR>", Opts)
 -- Map("n", "<Leader>bw", "<Cmd>BufferWipeout<CR>", Opts)
 
 -- Other:
