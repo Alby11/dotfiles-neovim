@@ -56,21 +56,21 @@ if Packer_bootstrap then
 	Packer.install()
 end
 
-if CheckPlugin("notify") then
-	Notify = require("notify")
-	Notify.setup({
-		stages = "fade",
-		background_colour = "FloatShadow",
-		timeout = 3000,
-	})
-	-- show a notification when PackerCompile finishes
-	autocmd("User", {
-		pattern = "PackerCompileDone",
-		callback = function()
-			Notify("PackerCompile done", "info")
-		end,
-	})
-end
+-- if CheckPlugin("notify") then
+-- 	Notify = require("notify")
+-- 	Notify.setup({
+-- 		stages = "fade",
+-- 		background_colour = "FloatShadow",
+-- 		timeout = 3000,
+-- 	})
+-- 	-- show a notification when PackerCompile finishes
+-- 	autocmd("User", {
+-- 		pattern = "PackerCompileDone",
+-- 		callback = function()
+-- 			Notify("PackerCompile done", "info")
+-- 		end,
+-- 	})
+-- end
 
 -- PackerCompile on save if your config file is in plugins.lua or catppuccin.lua
 Autocmd("BufWritePost", {

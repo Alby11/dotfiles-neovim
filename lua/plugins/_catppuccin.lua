@@ -98,5 +98,3 @@ require(plugin_name).setup({
   color_overrides = {},
   highlight_overrides = {},
 })
-
-Cmd[[colorscheme catppuccin]]

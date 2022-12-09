@@ -82,22 +82,27 @@ Opt.splitright = true -- Force Split Right
 Opt.swapfile = false -- Don't create Swap Files
 Opt.synmaxcol = 500
 Opt.termencoding = "utf-8"
-Opt.termguicolors = true -- Set Terminal Colors
 Opt.textwidth = 100
 Opt.timeoutlen = 250 -- Time for mapped sequence to complete (in ms)
-Opt.title = true -- Display File Info on Title
+-- Opt.title = true -- Display File Info on Title
+-- Opt.titlestring = true -- Display File Info on Title
 Opt.undodir = Stdpath("cache") .. "/undo"
 Opt.undofile = true -- Save undo history
--- Opt.whichwrap:append("<,>,h,l")
+Opt.whichwrap:append("<,>,h,l")
 Opt.wildignore = { "*.o", "*~", "*.pyc" }
 Opt.wildmode = "longest,full"
 Opt.spelllang = { "en", "it", "fr" } -- enable spell check (may need to download language package)
 
-Opt.termguicolors = true
-Opt.background = "dark"
-Cmd("colorscheme dracula")
+-- -- this will tell Neovim to enable 24bit true color and theme
+-- if Termguicolors then
+-- 	Opt.termguicolors = true
+-- Opt.background = "dark"
+-- Cmd("colorscheme catppuccin")
+-- Cmd("colorscheme default")
+-- Cmd("colorscheme dracula")
+-- end
 
--- Set shell
+-- -- Set shell
 if is_win then
 	Opt.shell = "pwsh -NoLogo"
 	Opt.shellpipe = "|/"
@@ -109,11 +114,6 @@ elseif is_wsl then
 elseif is_linux then
 	Opt.shell = "/bin/zsh"
 end
-
--- GUI Opt.ons
-Opt.guifont = "Lilex nfm:h9,consolas:h9"
-if is_neovide then
-	require("plugins._neovide")
-elseif is_fvim then
-	Opt.guifont = "CaskaydiaCove Nerd Font Retina:h10"
-end
+--
+-- -- GUI Opt.ons
+Opt.guifont = "CaskaydiaCove Nerd Font Retina:h10"

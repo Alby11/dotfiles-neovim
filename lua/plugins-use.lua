@@ -13,21 +13,25 @@ return Packer.startup(function(use)
 	use("yamatsum/nvim-nonicons")
 
 	-- Themes
+	-- use({
+	-- 	"catppuccin/nvim",
+	-- 	as = "catppuccin",
+	-- 	config = GetSetup("catppuccin"),
+	-- 	cond = false,
+	-- })
 	use({
-		-- "catppuccin/nvim",
-		-- as = "catppuccin",
-		"dracula/vim",
-		-- "Mofiqul/dracula.nvim",
+		-- "dracula/vim",
+		"Mofiqul/dracula.nvim",
 		as = "dracula",
-		-- config = GetSetup("dracula"),
+		config = GetSetup("dracula"),
 	})
 
 	-- UI plugins
-	use("nvim-lua/popup.nvim")
-	use("b0o/incline.nvim")
-	use("stevearc/dressing.nvim")
-	use("rcarriga/nvim-notify")
-	use("vigoux/notifier.nvim")
+	-- use("nvim-lua/popup.nvim")
+	-- use("b0o/incline.nvim")
+	-- use("stevearc/dressing.nvim")
+	-- use("rcarriga/nvim-notify")
+	-- use("vigoux/notifier.nvim")
 	use({
 		"j-hui/fidget.nvim",
 		config = function()
@@ -39,7 +43,7 @@ return Packer.startup(function(use)
 	-- Buffer management
 	use("romgrk/barbar.nvim")
 	-- say sayonara to buffers
-	use("mhinz/vim-sayonara")
+	-- use("mhinz/vim-sayonara")
 
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
 
@@ -142,6 +146,7 @@ return Packer.startup(function(use)
 	-- LSPZERO
 	use({
 		"VonHeikemen/lsp-zero.nvim",
+		after = "vim-go",
 		config = function()
 			local lsp = require("lsp-zero")
 			lsp.preset("recommended")
