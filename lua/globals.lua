@@ -75,6 +75,7 @@ Termguicolors = Has("termguicolors")
 Colorscheme = "dracula"
 -- set config directory
 Config_dir = Stdpath("config")
+Plugins_dir = string.format("%s/lua/plugins", Config_dir)
 -- avoid warnings
 _G = _G
 pcall = pcall
@@ -82,3 +83,24 @@ print = print
 require = require
 string = string
 tostring = tostring
+
+function IsDir(name)
+	if type(name) ~= "string" then
+		return false
+	end
+	return os.execute("test -d " .. name)
+end
+
+function IsFile(name)
+	if type(name) ~= "string" then
+		return false
+	end
+	return os.execute("test -f " .. name)
+end
+
+function Exists(name)
+	if type(name) ~= "string" then
+		return false
+	end
+	return os.execute("test -e " .. name)
+end

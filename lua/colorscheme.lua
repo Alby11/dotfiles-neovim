@@ -4,15 +4,16 @@ if Termguicolors then
 	Opt.termguicolors = true
 	Opt.background = "dark"
 end
-
--- Overwrite transparent background for matherial theme
--- Cmd([[hi Normal guibg=NONE ctermbg=NONE]])
-
--- local status, _ = pcall(require, Colorscheme)
 local status, _ = pcall(Cmd, string.format("colorscheme %s", Colorscheme))
 if not status then
 	print(string.format("Colorscheme %s not found! Using desert as a fallback...", Colorscheme)) -- print error if colorscheme not installed
 	Cmd("colorscheme industry")
 	return 1
+end
+-- dunno why but it's the only way to get transparent background
+Autocmd("BufWinEnter", { group = misc_aucmds, command = string.format("colorscheme %s", Colorscheme) })
+local pluginConfigFile = string.format("%s/_%s.lua", Plugins_dir, Colorscheme)
+if not Exists(pluginConfigFile) then
+	return 0
 end
 require(string.format("plugins._%s", Colorscheme))
