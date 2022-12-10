@@ -20,3 +20,5 @@ Cmd([[
   " Set indentation to 4 spaces for py files
   autocmd FileType py setlocal ts=4 sts=4 sw=4 expandtab "
 ]])
+
+Autocmd("BufWinEnter", { group = misc_aucmds, command = "colorscheme dracula" })
