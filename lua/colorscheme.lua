@@ -10,8 +10,11 @@ if not status then
 	Cmd("colorscheme industry")
 	return 1
 end
--- dunno why but it's the only way to get transparent background
-Autocmd("BufWinEnter", { group = misc_aucmds, command = string.format("colorscheme %s", Colorscheme) })
+-- dunno why but it's the only way to get transparent background but I loose
+-- theming in other plugins
+-- Autocmd("BufWinEnter", { group = misc_aucmds, command = 'lua require("plugins._bufferline")' })
+-- Autocmd("BufWinEnter", { group = misc_aucmds, command = 'lua require("plugins._lualine")' })
+-- Autocmd("BufWinEnter", { group = misc_aucmds, command = string.format("colorscheme %s", Colorscheme) })
 local pluginConfigFile = string.format("%s/_%s.lua", Plugins_dir, Colorscheme)
 if not Exists(pluginConfigFile) then
 	return 0
