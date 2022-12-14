@@ -99,6 +99,9 @@ return Packer.startup(function(use)
 		},
 	})
 
+	-- Session management
+	use("jedrzejboczar/possession.nvim")
+
 	-- autocompletion
 	use("hrsh7th/nvim-cmp") -- completion plugin
 	use("hrsh7th/cmp-buffer") -- source for text in buffer
@@ -175,6 +178,7 @@ return Packer.startup(function(use)
 	}) -- autoclose tags
 
 	-- git integration
+	use("tpope/vim-fugitive")
 	use("lewis6991/gitsigns.nvim")
 	use({
 		"akinsho/git-conflict.nvim",
