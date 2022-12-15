@@ -82,7 +82,6 @@ return Packer.startup(function(use)
 			"cljoly/telescope-repo.nvim",
 			"jvgrootveld/telescope-zoxide",
 			"nvim-telescope/telescope-file-browser.nvim",
-			"ahmedkhalf/project.nvim",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				run = "make",
@@ -101,6 +100,9 @@ return Packer.startup(function(use)
 
 	-- Session management
 	use("jedrzejboczar/possession.nvim")
+
+	-- Project browsing
+	use("ahmedkhalf/project.nvim")
 
 	-- autocompletion
 	use("hrsh7th/nvim-cmp") -- completion plugin

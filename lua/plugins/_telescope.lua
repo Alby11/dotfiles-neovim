@@ -3,6 +3,7 @@ local telescope_setup, telescope = pcall(require, "telescope")
 if not telescope_setup then
 	return
 end
+Telescope = telescope
 
 -- import telescope actions safely
 local actions_setup, actions = pcall(require, "telescope.actions")
@@ -129,12 +130,9 @@ O.grepprg = "rg --smart-case --ignore --follow --hidden"
 --
 -- telescope.load_extension("file_browser")
 -- Map("n", "<leader>tF", ":Telescope file_browser<cr>", Opts)
--- telescope.load_extension("repo")
--- Map("n", "<leader>tp", ":Telescope repo list<cr>", Opts)
--- Map("n", "<leader>t.p", ":Telescope repo cached_list<cr>", Opts)
---
--- -- ripgrep
--- O.grepprg = "rg --smart-case --ignore --follow --hidden"
+telescope.load_extension("repo")
+Map("n", "<leader>tp", ":Telescope repo list<cr>", Opts)
+Map("n", "<leader>t.p", ":Telescope repo cached_list<cr>", Opts)
 --
 -- -- zoxide
 -- --
