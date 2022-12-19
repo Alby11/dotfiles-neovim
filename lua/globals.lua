@@ -51,6 +51,7 @@ Has = function(x)
 end
 Notify = Vim.notify
 O = Vim.o
+Shell = O.shell
 Opt = Vim.opt
 Stdpath = Fn.stdpath
 Systemlist = Fn.systemlist
