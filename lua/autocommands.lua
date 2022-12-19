@@ -6,7 +6,6 @@ Autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
-
 Cmd([[
   augroup numbertoggle
     autocmd!
@@ -19,4 +18,6 @@ Cmd([[
 
   " Set indentation to 4 spaces for py files
   autocmd FileType py setlocal ts=4 sts=4 sw=4 expandtab "
+  " check if Ansible playbook and change type accordingly
+  au BufRead *.yaml,*.yml if search('hosts:\|tasks:', 'nw') | set ft=yaml.ansible | endif
 ]])

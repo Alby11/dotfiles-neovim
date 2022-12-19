@@ -142,6 +142,9 @@ return Packer.startup(function(use)
 	-- REPL
 	use({ "hkupty/iron.nvim" })
 
+	-- Ansible
+	use("pearofducks/ansible-vim")
+
 	-- golang dev
 	use({
 		"fatih/vim-go",
