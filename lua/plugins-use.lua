@@ -13,13 +13,11 @@ return Packer.startup(function(use)
 	use("yamatsum/nvim-nonicons")
 
 	-- Themes
-	-- use({
-	-- 	"catppuccin/nvim",
-	-- 	as = "catppuccin",
-	-- 	config = GetSetup("catppuccin"),
-	-- 	cond = false,
-	-- })
 	use({
+		-- 	"catppuccin/nvim",
+		-- 	as = "catppuccin",
+		-- 	config = GetSetup("catppuccin"),
+		-- 	cond = false,
 		"dracula/vim",
 		-- "Mofiqul/dracula.nvim",
 		as = "dracula",
@@ -27,11 +25,6 @@ return Packer.startup(function(use)
 	})
 
 	-- UI plugins
-	-- use("nvim-lua/popup.nvim")
-	-- use("b0o/incline.nvim")
-	-- use("stevearc/dressing.nvim")
-	-- use("rcarriga/nvim-notify")
-	-- use("vigoux/notifier.nvim")
 	use({
 		"j-hui/fidget.nvim",
 		config = function()
@@ -42,7 +35,6 @@ return Packer.startup(function(use)
 
 	-- Buffer management
 	use("romgrk/barbar.nvim")
-	-- say sayonara to buffers
 	-- use("mhinz/vim-sayonara")
 
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
