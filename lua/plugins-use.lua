@@ -20,10 +20,10 @@ return Packer.startup(function(use)
 	-- 	cond = false,
 	-- })
 	use({
-		-- "dracula/vim",
-		"Mofiqul/dracula.nvim",
+		"dracula/vim",
+		-- "Mofiqul/dracula.nvim",
 		as = "dracula",
-		config = GetSetup("dracula"),
+		-- config = GetSetup("dracula"),
 	})
 
 	-- UI plugins
