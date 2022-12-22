@@ -13,6 +13,7 @@ return Packer.startup(function(use)
 	use("yamatsum/nvim-nonicons")
 
 	-- Themes
+	use("xiyaowong/nvim-transparent")
 	use({
 		-- 	"catppuccin/nvim",
 		-- 	as = "catppuccin",
