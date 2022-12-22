@@ -30,6 +30,7 @@ else
 	require("plugins._colorizer")
 	require("plugins._range-highlight")
 	require("plugins._iron")
+	require("plugins._transparent")
 	-- require("plugins._")
 end
 require("plugins._export-to-vscode")
