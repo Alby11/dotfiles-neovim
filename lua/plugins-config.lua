@@ -90,4 +90,7 @@ IsPluginLoaded = function(pluginName)
 	return LoadedPlugins[pluginName]
 end
 
+Map("n", "<leader>pks", "<cmd>PackerSync<cr>", Opts)
+Map("n", "<leader>so", "<cmd>source %<cr>", Opts)
+
 Packer.reset()
