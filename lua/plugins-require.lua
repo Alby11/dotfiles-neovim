@@ -17,6 +17,7 @@ else
 	require("plugins._lspconfig")
 	require("plugins._null-ls")
 	require("plugins._lsp-zero")
+	require("plugins._dapui")
 	require("plugins._nvim-autopairs")
 	require("plugins._hop")
 	require("plugins._nvim-treesitter")

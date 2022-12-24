@@ -19,10 +19,10 @@ return Packer.startup(function(use)
 		-- 	as = "catppuccin",
 		-- 	config = GetSetup("catppuccin"),
 		-- 	cond = false,
-		"dracula/vim",
-		-- "Mofiqul/dracula.nvim",
+		-- "dracula/vim",
+		"Mofiqul/dracula.nvim",
 		as = "dracula",
-		-- config = GetSetup("dracula"),
+		config = GetSetup("dracula"),
 	})
 
 	-- UI plugins
@@ -154,6 +154,13 @@ return Packer.startup(function(use)
 			lsp.setup()
 		end,
 	})
+
+	-- DAP
+	use({
+		"mfussenegger/nvim-dap",
+		"jayp0521/mason-nvim-dap.nvim",
+	})
+	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
 
 	-- treesitter configuration
 	use({
