@@ -74,6 +74,7 @@ return Packer.startup(function(use)
 			"nvim-lua/plenary.nvim",
 			"cljoly/telescope-repo.nvim",
 			"jvgrootveld/telescope-zoxide",
+			"nvim-telescope/telescope-packer.nvim",
 			"nvim-telescope/telescope-file-browser.nvim",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",

@@ -9,6 +9,7 @@ else
 	require("plugins._lualine")
 	require("plugins._telescope")
 	require("plugins._telescope_repo")
+	require("plugins._telescope_packer")
 	require("plugins._possession")
 	require("plugins._project_nvim")
 	require("plugins._cmp")
