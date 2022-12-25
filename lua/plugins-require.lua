@@ -32,6 +32,7 @@ else
 	require("plugins._colorizer")
 	require("plugins._range-highlight")
 	require("plugins._iron")
+	require("colorscheme")
 	require("plugins._transparent")
 	-- require("plugins._")
 end

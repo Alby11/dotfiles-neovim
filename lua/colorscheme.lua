@@ -14,4 +14,4 @@ local pluginConfigFile = string.format("%s/_%s.lua", Plugins_dir, Colorscheme)
 if not Exists(pluginConfigFile) then
 	return 0
 end
--- require(string.format("plugins._%s", Colorscheme))
+require(string.format("plugins._%s", Colorscheme))

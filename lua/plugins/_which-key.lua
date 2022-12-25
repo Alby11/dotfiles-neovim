@@ -42,7 +42,7 @@ require("which-key").setup({
 		position = "bottom", -- bottom, top
 		margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
 		padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-		winblend = 0,
+		winblend = 1,
 	},
 	layout = {
 		height = { min = 4, max = 25 }, -- min and max height of the columns
@@ -59,12 +59,14 @@ require("which-key").setup({
 		-- list of mode / prefixes that should never be hooked by WhichKey
 		-- this is mostly relevant for key maps that start with a native binding
 		-- most people should not need to change this
+		i = { "k", "j" },
+		v = { "k", "j" },
 		i = { "j", "k" },
 		v = { "j", "k" },
 	},
 })
 
--- local wk = require("which-key")
+local wk = require("which-key")
 -- As an example, we will create the following mappings:
 --  * <leader>ff find files
 --  * <leader>fr show recent files
@@ -74,14 +76,18 @@ require("which-key").setup({
 --  * <leader>fe edit file
 -- and hide <leader>1
 
--- wk.register({
--- f = {
---   name = "file", -- optional group name
---   f = { "<cmd>Telescope find_files<cr>", "Find File" }, -- create a binding with label
---   r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File", noremap=false, buffer = 123 }, -- additional options for creating the keymap
---   n = { "New File" }, -- just a label. don't create any mapping
---   e = "Edit File", -- same as above
---   ["1"] = "which_key_ignore",  -- special label to hide it in the popup
---   b = { function() print("bar") end, "Foobar" } -- you can also pass functions!
--- },
--- }, { prefix = "<leader>" })
+wk.register({
+	k = {
+		name = "packer", -- optional group name
+		o = { "<cmd>source %<cr>", "source current file" }, -- create a binding with label
+		s = { "<cmd>PackerSync<cr>", "PackerSync" }, -- additional options for creating the keymap
+		t = { "<cmd>PackerStatus<cr>", "PackerStatus" }, -- additional options for creating the keymap
+		["1"] = "which_key_ignore", -- special label to hide it in the popup
+		-- b = {
+		-- 	function()
+		-- 		print("bar")
+		-- 	end,
+		-- 	"Foobar",
+		-- }, -- you can also pass functions!
+	},
+}, { prefix = "<leader>" })
