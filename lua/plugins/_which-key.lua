@@ -82,6 +82,9 @@ wk.register({
 		o = { "<cmd>source %<cr>", "source current file" }, -- create a binding with label
 		s = { "<cmd>PackerSync<cr>", "PackerSync" }, -- additional options for creating the keymap
 		t = { "<cmd>PackerStatus<cr>", "PackerStatus" }, -- additional options for creating the keymap
+		i = { "<cmd>PackerInstall<cr>", "PackerInstall" }, -- additional options for creating the keymap
+		l = { "<cmd>PackerClean<cr>", "PackerClean" }, -- additional options for creating the keymap
+		c = { "<cmd>PackerCompile<cr>", "PackerCompile" }, -- additional options for creating the keymap
 		["1"] = "which_key_ignore", -- special label to hide it in the popup
 		-- b = {
 		-- 	function()

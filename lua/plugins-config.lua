@@ -48,6 +48,11 @@ Init({
 			return result, win, buf
 		end,
 	},
+	preview_updates = true,
+	profile = {
+		enable = true,
+		threshold = 1, -- the amount in ms that a plugin's load time must be over for it to be included in the profile
+	},
 	log = { level = "warn" }, -- The default print log level. One of: "trace", "debug", "info", "warn", "error",
 })
 
