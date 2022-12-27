@@ -51,8 +51,11 @@ mason_lspconfig.setup({
 mason_null_ls.setup({
 	-- list of formatters & linters for mason to install
 	ensure_installed = {
+		"ansiblels", -- yanl
 		"actionlint", -- yanl
+		"bashls",
 		"djlint",
+		"dockerls",
 		"eslint_d", -- ts/js linter
 		"fixjson",
 		"flake8",
