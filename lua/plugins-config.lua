@@ -13,11 +13,11 @@ local ensure_packer = function()
 end
 
 CheckPlugin = function(pluginID)
-	local status, pluginID = pcall(require, pluginID)
+	local status, plugin = pcall(require, pluginID)
 	if status then
 		return true
 	end
-	print(string.format("%s is not installed", pluginID))
+	print(string.format("%s is not installed", plugin))
 	return false
 end
 

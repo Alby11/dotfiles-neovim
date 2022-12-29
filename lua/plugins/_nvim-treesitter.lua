@@ -11,27 +11,66 @@ treesitter.setup({
 	-- enable syntax highlighting
 	highlight = {
 		enable = true,
+		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+		-- Using this option may slow down your editor, and you may see some duplicate highlights.
+		-- Instead of true it can also be a list of languages
+		additional_vim_regex_highlighting = false,
 	},
 	-- enable indentation
 	indent = { enable = true },
 	-- enable autotagging (w/ nvim-ts-autotag plugin)
 	autotag = { enable = true },
+	-- Incremental selection based on the named nodes from the grammar.
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = "gnn", -- set to `false` to disable one of the mappings
+			node_incremental = "grn",
+			scope_incremental = "grc",
+			node_decremental = "grm",
+		},
+	},
 	-- ensure these language parsers are installed
 	ensure_installed = {
+		"awk",
 		"bash",
+		"c",
+		"c_sharp",
+		"cmake",
 		"css",
+		"devicetree",
+		"diff",
 		"dockerfile",
+		"fish",
+		"git_rebase",
+		"gitattributes",
+		"gitcommit",
 		"gitignore",
 		"go",
+		"gomod",
+		"gowork",
 		"graphql",
+		"help",
 		"html",
+		"http",
 		"java",
 		"javascript",
 		"json",
+		"json5",
+		"jsonc",
 		"lua",
+		"make",
 		"markdown",
+		"perl",
 		"python",
+		"regex",
+		"ruby",
+		"rust",
+		"scss",
+		"sql",
 		"svelte",
+		"toml",
 		"tsx",
 		"typescript",
 		"vim",
@@ -40,6 +79,11 @@ treesitter.setup({
 	-- auto install above language parsers
 	auto_install = true,
 })
+Cmd([[
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set nofoldenable                     " Disable folding at startup.
+]])
 require("treesitter-context").setup({
 	enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
 	max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
