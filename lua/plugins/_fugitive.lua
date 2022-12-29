@@ -1,9 +1,9 @@
 -- import nvim-autopairs safely
-local fugitive_setup, fugitive = pcall(require, "fugitive")
-if not fugitive_setup then
-	return
-end
-
+-- local fugitive_setup, fugitive = pcall(require, "fugitive")
+-- if not fugitive_setup then
+-- 	return
+-- end
+--
 Map("n", "<leader>gst", "<cmd>Git status<cr>", Opts)
 Map("n", "<leader>gau", "<cmd>Git add -u --verbose<cr>", Opts)
 Map("n", "<leader>gw", "<cmd>Gwrite<cr>", Opts)
