@@ -25,6 +25,8 @@ else
 	require("plugins._indent_blankline")
 	require("plugins._gitsigns")
 	require("plugins._fugitive")
+	-- require("plugins._git")
+	require("plugins._diffview")
 	require("plugins._nvim-lastplace")
 	require("plugins._bufferline")
 	require("plugins._toggleterm")

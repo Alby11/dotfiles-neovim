@@ -185,6 +185,7 @@ return Packer.startup(function(use)
 
 	-- git integration
 	use("tpope/vim-fugitive")
+	-- use("dinhhuy258/git.nvim")
 	use("lewis6991/gitsigns.nvim")
 	use({
 		"akinsho/git-conflict.nvim",
@@ -193,6 +194,7 @@ return Packer.startup(function(use)
 			require("git-conflict").setup()
 		end,
 	})
+	use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
 
 	-- Quickfix
 	use("folke/trouble.nvim")
