@@ -1,14 +1,14 @@
 require("globals")
-require("plugins-config")
+require("packer-config")
 if is_vscode then
 	require("basic-vscode")
-	require("plugins-vscode")
+	require("packer-vscode")
 else
 	require("basic-neovim")
-	require("plugins-use")
+	require("packer-use")
 	require("colorscheme")
 end
 require("mappings")
 require("commands")
 require("autocommands")
-require("plugins-require")
+require("packer-require")
