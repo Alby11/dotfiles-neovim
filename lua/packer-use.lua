@@ -15,14 +15,14 @@ return Packer.startup(function(use)
 	-- Themes
 	use("xiyaowong/nvim-transparent")
 	use({
-		-- 	"catppuccin/nvim",
-		-- 	as = "catppuccin",
-		-- 	config = GetSetup("catppuccin"),
+		"catppuccin/nvim",
+		as = "catppuccin",
+		config = GetSetup("catppuccin"),
 		-- 	cond = false,
 		-- "dracula/vim",
-		"Mofiqul/dracula.nvim",
-		as = "dracula",
-		config = GetSetup("dracula"),
+		-- "Mofiqul/dracula.nvim",
+		-- as = "dracula",
+		-- config = GetSetup("dracula"),
 	})
 
 	-- UI plugins

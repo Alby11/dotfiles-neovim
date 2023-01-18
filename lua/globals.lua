@@ -73,7 +73,7 @@ if Is_mac then
 	Max_jobs = 32
 end
 Termguicolors = Has("termguicolors")
-Colorscheme = "dracula"
+Colorscheme = "catppuccin"
 -- set config directory
 Config_dir = Stdpath("config")
 Plugins_dir = string.format("%s/lua/plugins", Config_dir)
