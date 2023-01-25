@@ -124,6 +124,9 @@ return Packer.startup(function(use)
 	use({
 		"glepnir/lspsaga.nvim",
 		branch = "main",
+		config = function()
+			require("lspsaga").setup({})
+		end,
 	}) -- enhanced lsp uis
 	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
 
