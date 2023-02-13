@@ -37,7 +37,7 @@ mason_lspconfig.setup({
 		"html",
 		"marksman",
 		"pyright",
-		"sumneko_lua",
+		"lua_ls",
 		"sqlls",
 		"tailwindcss",
 		"tsserver",
@@ -63,6 +63,7 @@ mason_null_ls.setup({
 		"gofumpt",
 		"hadolint",
 		"hadolint",
+		"lua_ls",
 		"markdownlint",
 		"prettier", -- ts/js formatter
 		"shfmt",
