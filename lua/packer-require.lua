@@ -27,7 +27,7 @@ else
 	require("plugins._gitsigns")
 	require("plugins._fugitive")
 	-- require("plugins._git")
-	require("plugins._diffview")
+	-- require("plugins._diffview")
 	require("plugins._nvim-lastplace")
 	require("plugins._bufferline")
 	require("plugins._toggleterm")
@@ -37,6 +37,5 @@ else
 	require("plugins._iron")
 	require("colorscheme")
 	require("plugins._transparent")
-	-- require("plugins._")
 end
 require("plugins._export-to-vscode")
