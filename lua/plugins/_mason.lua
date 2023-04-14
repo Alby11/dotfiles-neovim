@@ -74,7 +74,7 @@ mason_null_ls.setup({
 	automatic_installation = true,
 	automatic_setup = true,
 })
-mason_null_ls.setup_handlers({})
+-- mason_null_ls.setup_handlers({})
 
 mason_nvim_dap.setup({
 	ensure_installed = {
