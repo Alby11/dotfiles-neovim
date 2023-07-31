@@ -87,8 +87,11 @@ return Packer.startup(function(use)
 	-- Path navigation
 	use({
 		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v2.x",
+		branch = "v3.x",
 		requires = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
 		},
 	})
@@ -139,7 +142,8 @@ return Packer.startup(function(use)
 	use("MunifTanjim/prettier.nvim")
 
 	-- REPL
-	use({ "hkupty/iron.nvim" })
+	-- use({ "hkupty/iron.nvim" })
+	use({ "Vigemus/iron.nvim" })
 
 	-- Ansible
 	use("pearofducks/ansible-vim")
@@ -164,7 +168,7 @@ return Packer.startup(function(use)
 	-- DAP
 	use({
 		"mfussenegger/nvim-dap",
-		"jayp0521/mason-nvim-dap.nvim",
+		"jay-babu/mason-nvim-dap.nvim",
 	})
 	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
 
