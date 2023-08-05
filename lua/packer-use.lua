@@ -126,7 +126,7 @@ return Packer.startup(function(use)
 	use("neovim/nvim-lspconfig") -- easily configure language servers
 	use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
 	use({
-		"glepnir/lspsaga.nvim",
+		"tami5/lspsaga.nvim",
 		branch = "main",
 		config = function()
 			require("lspsaga").setup({})
