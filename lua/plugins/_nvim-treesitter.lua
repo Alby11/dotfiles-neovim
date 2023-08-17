@@ -51,7 +51,7 @@ treesitter.setup({
 		"gomod",
 		"gowork",
 		"graphql",
-		"help",
+		-- "help",
 		"html",
 		"http",
 		"java",
