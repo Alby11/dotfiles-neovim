@@ -37,7 +37,6 @@ return Packer.startup(function(use)
 
 	-- Buffer management
 	use("romgrk/barbar.nvim")
-	-- use("mhinz/vim-sayonara")
 
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
 

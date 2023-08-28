@@ -7,23 +7,23 @@ end
 Map("n", "<A-,>", "<Cmd>BufferPrevious<CR>", Opts)
 Map("n", "<A-.>", "<Cmd>BufferNext<CR>", Opts)
 -- Re-order to previous/next
--- Map("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", Opts)
--- Map("n", "<A->>", "<Cmd>BufferMoveNext<CR>", Opts)
+Map("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", Opts)
+Map("n", "<A->>", "<Cmd>BufferMoveNext<CR>", Opts)
 -- Goto buffer in position...
--- Map("n", "<A-1>", "<Cmd>BufferGoto 1<CR>", Opts)
--- Map("n", "<A-2>", "<Cmd>BufferGoto 2<CR>", Opts)
--- Map("n", "<A-3>", "<Cmd>BufferGoto 3<CR>", Opts)
--- Map("n", "<A-4>", "<Cmd>BufferGoto 4<CR>", Opts)
--- Map("n", "<A-5>", "<Cmd>BufferGoto 5<CR>", Opts)
--- Map("n", "<A-6>", "<Cmd>BufferGoto 6<CR>", Opts)
--- Map("n", "<A-7>", "<Cmd>BufferGoto 7<CR>", Opts)
--- Map("n", "<A-8>", "<Cmd>BufferGoto 8<CR>", Opts)
--- Map("n", "<A-9>", "<Cmd>BufferGoto 9<CR>", Opts)
--- Map("n", "<A-0>", "<Cmd>BufferLast<CR>", Opts)
+Map("n", "<A-1>", "<Cmd>BufferGoto 1<CR>", Opts)
+Map("n", "<A-2>", "<Cmd>BufferGoto 2<CR>", Opts)
+Map("n", "<A-3>", "<Cmd>BufferGoto 3<CR>", Opts)
+Map("n", "<A-4>", "<Cmd>BufferGoto 4<CR>", Opts)
+Map("n", "<A-5>", "<Cmd>BufferGoto 5<CR>", Opts)
+Map("n", "<A-6>", "<Cmd>BufferGoto 6<CR>", Opts)
+Map("n", "<A-7>", "<Cmd>BufferGoto 7<CR>", Opts)
+Map("n", "<A-8>", "<Cmd>BufferGoto 8<CR>", Opts)
+Map("n", "<A-9>", "<Cmd>BufferGoto 9<CR>", Opts)
+Map("n", "<A-0>", "<Cmd>BufferLast<CR>", Opts)
 -- Pin/unpin buffer
--- Map("n", "<A-p>", "<Cmd>BufferPin<CR>", Opts)
+Map("n", "<A-p>", "<Cmd>BufferPin<CR>", Opts)
 -- Close buffer
--- Map('n', '<A-c>', '<Cmd>BufferClose<CR>', Opts)
+Map("n", "<A-c>", "<Cmd>BufferClose<CR>", Opts)
 Map("n", "<A-c>", "<Cmd>Bdelete<CR>", Opts)
 
 -- Wipeout buffer
@@ -41,8 +41,8 @@ Map("n", "<Leader>bb", "<Cmd>BufferOrderByBufferNumber<CR>", Opts)
 Map("n", "<Leader>bd", "<Cmd>BufferOrderByDirectory<CR>", Opts)
 Map("n", "<Leader>bl", "<Cmd>BufferOrderByLanguage<CR>", Opts)
 Map("n", "<Leader>bn", "<Cmd>BufferOrderByWindowNumber<CR>", Opts)
+Map("n", "<Leader>bc", "<Cmd>BufferClose<CR>", Opts)
 Map("n", "<Leader>bw", "<Cmd>BufferWipeout<CR>", Opts)
--- Map("n", "<Leader>bw", "<Cmd>BufferWipeout<CR>", Opts)
 
 -- Other:
 -- :BarbarEnable - enables barbar (enabled by default)
@@ -78,7 +78,7 @@ require(plugin_name).setup({
 	focus_on_close = "left",
 
 	-- Hide inactive buffers and file extensions. Other options are `alternate`, `current`, and `visible`.
-	hide = { extensions = true, inactive = true },
+	hide = { extensions = false, inactive = false },
 
 	-- Disable highlighting alternate buffers
 	highlight_alternate = false,
@@ -91,8 +91,8 @@ require(plugin_name).setup({
 
 	icons = {
 		-- Configure the base icons on the bufferline.
-		buffer_index = false,
-		buffer_number = false,
+		buffer_index = true,
+		buffer_number = true,
 		button = "",
 		-- Enables / disables diagnostic symbols
 		diagnostics = {
