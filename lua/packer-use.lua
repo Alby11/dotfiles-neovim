@@ -193,6 +193,7 @@ return Packer.startup(function(use)
 		end,
 	})
 	use("nvim-treesitter/nvim-treesitter-context")
+	use({ "fladson/vim-kitty" }) -- kitty syntax highlighting
 
 	-- auto closing
 	use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
@@ -230,7 +231,6 @@ return Packer.startup(function(use)
 		end,
 	})
 
-	use({ "fladson/vim-kitty" }) -- kitty syntax highlighting
 	-- better split pane management
 	-- to use Kitty multiplexer support, run the post install hook
 	use({
@@ -243,7 +243,8 @@ return Packer.startup(function(use)
 	use("winston0410/range-highlight.nvim")
 	-- Highlight colors
 	use("norcalli/nvim-colorizer.lua")
-
+	-- AnsiEsc, to avoid ansi color codes
+	-- use("powerman/vim-plugin-AnsiEsc")
 	-- status line
 	use("nvim-lualine/lualine.nvim")
 
