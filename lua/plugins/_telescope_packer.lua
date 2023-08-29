@@ -11,4 +11,4 @@ Telescope.setup({
 	},
 })
 
-Map("n", "<leader>tk", "<cmd>lua require('telescope').extensions.packer.packer(opts)<cr>", Opts)
+Map("n", "<leader>t.k", "<cmd>lua require('telescope').extensions.packer.packer(opts)<cr>", Opts)

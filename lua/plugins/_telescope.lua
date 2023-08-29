@@ -45,25 +45,27 @@ if not CheckPlugin(plugin_name) then
 	return
 end
 
-Map("n", "<leader>tf", "<cmd>lua require('telescope.builtin').find_files()<cr>", Opts)
-Map("n", "<leader>to", ":Telescope oldfiles<cr>", Opts)
-Map("n", "<leader>tb", "<cmd>lua require('telescope.builtin').buffers()<cr>", Opts)
+Map("n", "<leader>t/", "<cmd>lua require('telescope.builtin').search_history()<cr>", Opts)
 Map("n", "<leader>tB", "<cmd>lua require('telescope.builtin').builtin()<cr>", Opts)
-Map("n", "<leader>tt", "<cmd>lua require('telescope.builtin').tags()<cr>", Opts)
+Map("n", "<leader>tC", "<cmd>lua require('telescope.builtin').commands()<cr>", Opts)
 Map("n", "<leader>tT", "<cmd>lua require('telescope.builtin').treesitter()<cr>", Opts)
+Map("n", "<leader>tb", "<cmd>lua require('telescope.builtin').buffers()<cr>", Opts)
+Map("n", "<leader>tc", "<cmd>lua require('telescope.builtin').command_history()<cr>", Opts)
+Map("n", "<leader>tf", "<cmd>lua require('telescope.builtin').find_files()<cr>", Opts)
+Map("n", "<leader>tk", "<cmd>lua require('telescope.builtin').keymaps()<cr>", Opts)
+Map("n", "<leader>tl", "<cmd>lua require('telescope.builtin').live_grep()<cr>", Opts)
+Map("n", "<leader>tm", "<cmd>lua require('telescope.builtin').marks()<cr>", Opts)
+Map("n", "<leader>to", ":Telescope oldfiles<cr>", Opts)
+Map("n", "<leader>tq", "<cmd>lua require('telescope.builtin').quickfix()<cr>", Opts)
+Map("n", "<leader>tr", "<cmd>lua require('telescope.builtin').registers()<cr>", Opts)
+Map("n", "<leader>tt", "<cmd>lua require('telescope.builtin').tags()<cr>", Opts)
+-- Git
 Map("n", "<leader>tgC", "<cmd>lua require('telescope.builtin').git_commits()<cr>", Opts)
 Map("n", "<leader>tgc", "<cmd>lua require('telescope.builtin').git_bcommits()<cr>", Opts)
 Map("n", "<leader>tgs", "<cmd>lua require('telescope.builtin').git_status()<cr>", Opts)
 Map("n", "<leader>tgt", "<cmd>lua require('telescope.builtin').git_stash()<cr>", Opts)
 Map("n", "<leader>tgb", "<cmd>lua require('telescope.builtin').git_branches()<cr>", Opts)
-Map("n", "<leader>tC", "<cmd>lua require('telescope.builtin').commands()<cr>", Opts)
-Map("n", "<leader>tc", "<cmd>lua require('telescope.builtin').command_history()<cr>", Opts)
-Map("n", "<leader>t/", "<cmd>lua require('telescope.builtin').search_history()<cr>", Opts)
-Map("n", "<leader>tq", "<cmd>lua require('telescope.builtin').quickfix()<cr>", Opts)
-Map("n", "<leader>tr", "<cmd>lua require('telescope.builtin').registers()<cr>", Opts)
-Map("n", "<leader>tm", "<cmd>lua require('telescope.builtin').marks()<cr>", Opts)
-Map("n", "<leader>tl", "<cmd>lua require('telescope.builtin').live_grep()<cr>", Opts)
-
+-- file browser
 telescope.load_extension("file_browser")
 Map("n", "<leader>tF", ":Telescope file_browser<cr>", Opts)
 

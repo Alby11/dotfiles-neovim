@@ -37,7 +37,14 @@ return Packer.startup(function(use)
 
 	-- Buffer management
 	use("romgrk/barbar.nvim")
-
+	use({
+		"kwkarlwang/bufresize.nvim",
+		config = GetSetup("bufresize"),
+	})
+	use({
+		"m00qek/baleia.nvim",
+		config = GetSetup("baleia"),
+	}) -- , tag = "v1.3.0" })
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
 
 	-- Movement
@@ -82,7 +89,13 @@ return Packer.startup(function(use)
 			},
 		},
 	})
-
+	-- dressing
+	use({ "stevearc/dressing.nvim" })
+	-- Legendary
+	use({
+		"mrjones2014/legendary.nvim",
+		config = GetSetup("legendary"),
+	})
 	-- Path navigation
 	use({
 		"nvim-neo-tree/neo-tree.nvim",
@@ -207,12 +220,23 @@ return Packer.startup(function(use)
 	-- Quickfix
 	use("folke/trouble.nvim")
 
+	-------
 	-- misc
+	-------
 	use({
 		"lambdalisue/suda.vim",
 		cond = function()
 			return not Is_win
 		end,
+	})
+
+	use({ "fladson/vim-kitty" }) -- kitty syntax highlighting
+	-- better split pane management
+	-- to use Kitty multiplexer support, run the post install hook
+	use({
+		"mrjones2014/smart-splits.nvim",
+		run = "./kitty/install-kittens.bash",
+		config = GetSetup("smart-splits"),
 	})
 	use("winston0410/cmd-parser.nvim")
 	-- highlight range written in cmeline
