@@ -90,7 +90,10 @@ return Packer.startup(function(use)
 		},
 	})
 	-- dressing
-	use({ "stevearc/dressing.nvim" })
+	use({
+		"stevearc/dressing.nvim",
+		config = GetSetup("dressing"),
+	})
 	-- Legendary
 	use({
 		"mrjones2014/legendary.nvim",
