@@ -7,7 +7,10 @@ end
 
 legendary.setup({
 	-- Initial keymaps to bind, can also be a function that returns the list
-	keymaps = {},
+	keymaps = {
+		{ "<leader>tLl", ":Legendary<cr>", description = "Legendary" },
+		{ "<leader>tLf", ":Legendary functions<cr>", description = "Legendary search functions" },
+	},
 	-- Initial commands to bind, can also be a function that returns the list
 	commands = {},
 	-- Initial augroups/autocmds to bind, can also be a function that returns the list
