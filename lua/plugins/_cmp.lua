@@ -42,6 +42,7 @@ cmp.setup({
 		{ name = "luasnip" }, -- snippets
 		{ name = "buffer" }, -- text within current buffer
 		{ name = "path" }, -- file system paths
+		{ name = "zsh" }, -- file system paths
 	}),
 	-- configure lspkind for vs-code like icons
 	formatting = {
@@ -49,6 +50,10 @@ cmp.setup({
 			maxwidth = 50,
 			ellipsis_char = "...",
 		}),
+	},
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
 	},
 })
 
@@ -58,11 +63,11 @@ if not cmp_zsh_status then
 	return
 end
 
-require("cmp").setup({
-	sources = {
-		{ name = "zsh" },
-	},
-})
+-- require("cmp").setup({
+-- 	sources = {
+-- 		{ name = "zsh" },
+-- 	},
+-- })
 
 require("cmp_zsh").setup({
 	zshrc = true, -- Source the zshrc (adding all custom completions). default: false

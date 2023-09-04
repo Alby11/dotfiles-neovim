@@ -40,11 +40,11 @@ lsp.setup_servers({
 	"cssls",
 	"dockerls",
 	"eslint",
-	-- "gopls",
+	"gopls",
 	"html",
 	"jsonls",
 	"lua_ls",
-	-- "marksman",
+	"marksman",
 	"pyright",
 	"sqlls",
 	"tsserver",
@@ -55,8 +55,8 @@ lsp.setup_servers({
 
 -- Next you call that function when the LSP server is attached to a buffer.
 lsp.on_attach(function(client, bufnr)
-	-- Vim.call("LspAttached")
 	print("LspAttached")
+	lsp.default_keymaps({ buffer = bufnr })
 end)
 
 lsp.nvim_workspace()
@@ -71,3 +71,5 @@ Vim.diagnostic.config({
 	severity_sort = false,
 	float = true,
 })
+
+lsp.extend_cmp()
