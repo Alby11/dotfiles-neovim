@@ -38,7 +38,7 @@ return Packer.startup(function(use)
 		config = function()
 			require("fidget").setup()
 		end,
-		tag = "legacy",
+		-- tag = "legacy",
 	})
 	use("elijahmanor/export-to-vscode.nvim")
 
