@@ -10,7 +10,7 @@ G.loaded_ruby_provider = 0
 -- Disable some built-in plugins we don't want
 local disabled_built_ins = {
 	"gzip",
-	"man",
+	-- "man",
 	"matchit",
 	"matchparen",
 	"netrwPlugin",
@@ -21,7 +21,7 @@ local disabled_built_ins = {
 	"zipPlugin",
 }
 
-for i = 1, 10 do
+for i in ipairs(disabled_built_ins) do
 	G["loaded_" .. disabled_built_ins[i]] = 1
 end
 
