@@ -25,6 +25,13 @@ return Packer.startup(function(use)
 		-- config = GetSetup("dracula"),
 	})
 
+	-- man
+	-- use({ "paretje/nvim-man" })
+	use({
+		"m00qek/baleia.nvim",
+		config = GetSetup("baleia"),
+	}) -- , tag = "v1.3.0" })
+
 	-- UI plugins
 	use({
 		"j-hui/fidget.nvim",
@@ -41,10 +48,6 @@ return Packer.startup(function(use)
 		"kwkarlwang/bufresize.nvim",
 		config = GetSetup("bufresize"),
 	})
-	use({
-		"m00qek/baleia.nvim",
-		config = GetSetup("baleia"),
-	}) -- , tag = "v1.3.0" })
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
 
 	-- Movement
@@ -164,15 +167,15 @@ return Packer.startup(function(use)
 	use("pearofducks/ansible-vim")
 
 	-- golang dev
-	use({
-		"fatih/vim-go",
-		run = ":GoInstallBinaries",
-	})
+	-- use({
+	-- 	"fatih/vim-go",
+	-- 	run = ":GoInstallBinaries",
+	-- })
 
 	-- LSPZERO
 	use({
 		"VonHeikemen/lsp-zero.nvim",
-		after = "vim-go",
+		-- after = "vim-go",
 		config = function()
 			local lsp = require("lsp-zero")
 			lsp.preset("recommended")
