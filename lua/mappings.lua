@@ -14,6 +14,9 @@ Mapv("n", "<Leader>SS", function()
 	print(string.format("spell: %s", tostring(O.spell)))
 end, Opts)
 
+-- Open buffers.
+Map("n", "<leader>bo", "<cmd>enew<cr>", Opts) -- quit
+
 -- Quit, close buffers, etc.
 Map("n", "<leader>q", "<cmd>q<cr>", Opts) -- quit
 Map("n", "<leader>a", "<cmd>qa<cr>", Opts) -- quit all

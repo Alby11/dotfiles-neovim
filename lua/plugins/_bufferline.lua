@@ -42,7 +42,9 @@ Map("n", "<Leader>bd", "<Cmd>BufferOrderByDirectory<CR>", Opts)
 Map("n", "<Leader>bl", "<Cmd>BufferOrderByLanguage<CR>", Opts)
 Map("n", "<Leader>bn", "<Cmd>BufferOrderByWindowNumber<CR>", Opts)
 Map("n", "<Leader>bc", "<Cmd>BufferClose<CR>", Opts)
+Map("n", "<Leader>bC", "<Cmd>BufferClose!<CR>", Opts)
 Map("n", "<Leader>bw", "<Cmd>BufferWipeout<CR>", Opts)
+Map("n", "<Leader>bW", "<Cmd>BufferWipeout!<CR>", Opts)
 
 -- Other:
 -- :BarbarEnable - enables barbar (enabled by default)
