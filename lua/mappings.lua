@@ -36,6 +36,7 @@ Map("n", "<leader>sr", "<cmd>SudaRead<cr>", Opts)
 
 -- cd to buffer
 Map("n", "<leader>cd", "<cmd>cd %:h|pwd<cr>", Opts)
+
 -- Esc
 Map("i", "kj", [[<Esc>]], Opts)
 Map("v", "kj", [[<Esc>]], Opts)
@@ -43,10 +44,10 @@ Map("c", "kj", [[<C-C>]], Opts)
 Map("t", "kj", [[<C-\><C-n>]], Opts)
 
 -- Window movement
-Map("n", "<c-h>", "<c-w>h", Opts)
-Map("n", "<c-j>", "<c-w>j", Opts)
-Map("n", "<c-k>", "<c-w>k", Opts)
-Map("n", "<c-l>", "<c-w>l", Opts)
+-- Map("n", "<c-h>", "<c-w>h", Opts)
+-- Map("n", "<c-j>", "<c-w>j", Opts)
+-- Map("n", "<c-k>", "<c-w>k", Opts)
+-- Map("n", "<c-l>", "<c-w>l", Opts)
 
 -- restart lsp server (not on youtube nvim video)
 Map("n", "<leader>lspr", ":LspRestart<CR>", Opts) -- mapping to restart lsp if necessary

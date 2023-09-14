@@ -10,16 +10,16 @@ Map("n", "<A-.>", "<Cmd>BufferNext<CR>", Opts)
 Map("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", Opts)
 Map("n", "<A->>", "<Cmd>BufferMoveNext<CR>", Opts)
 -- Goto buffer in position...
-Map("n", "<A-1>", "<Cmd>BufferGoto 1<CR>", Opts)
-Map("n", "<A-2>", "<Cmd>BufferGoto 2<CR>", Opts)
-Map("n", "<A-3>", "<Cmd>BufferGoto 3<CR>", Opts)
-Map("n", "<A-4>", "<Cmd>BufferGoto 4<CR>", Opts)
-Map("n", "<A-5>", "<Cmd>BufferGoto 5<CR>", Opts)
-Map("n", "<A-6>", "<Cmd>BufferGoto 6<CR>", Opts)
-Map("n", "<A-7>", "<Cmd>BufferGoto 7<CR>", Opts)
-Map("n", "<A-8>", "<Cmd>BufferGoto 8<CR>", Opts)
-Map("n", "<A-9>", "<Cmd>BufferGoto 9<CR>", Opts)
-Map("n", "<A-0>", "<Cmd>BufferLast<CR>", Opts)
+-- Map("n", "<A-1>", "<Cmd>BufferGoto 1<CR>", Opts)
+-- Map("n", "<A-2>", "<Cmd>BufferGoto 2<CR>", Opts)
+-- Map("n", "<A-3>", "<Cmd>BufferGoto 3<CR>", Opts)
+-- Map("n", "<A-4>", "<Cmd>BufferGoto 4<CR>", Opts)
+-- Map("n", "<A-5>", "<Cmd>BufferGoto 5<CR>", Opts)
+-- Map("n", "<A-6>", "<Cmd>BufferGoto 6<CR>", Opts)
+-- Map("n", "<A-7>", "<Cmd>BufferGoto 7<CR>", Opts)
+-- Map("n", "<A-8>", "<Cmd>BufferGoto 8<CR>", Opts)
+-- Map("n", "<A-9>", "<Cmd>BufferGoto 9<CR>", Opts)
+-- Map("n", "<A-0>", "<Cmd>BufferLast<CR>", Opts)
 -- Pin/unpin buffer
 Map("n", "<A-p>", "<Cmd>BufferPin<CR>", Opts)
 -- Close buffer
@@ -35,7 +35,7 @@ Map("n", "<A-c>", "<Cmd>Bdelete<CR>", Opts)
 --                 :BufferCloseBuffersLeft
 --                 :BufferCloseBuffersRight
 -- Magic buffer-picking mode
-Map("n", "<C-p>", "<Cmd>BufferPick<CR>", Opts)
+Map("n", "<Leader>bp", "<Cmd>BufferPick<CR>", Opts)
 -- Sort automatically by...
 Map("n", "<Leader>bb", "<Cmd>BufferOrderByBufferNumber<CR>", Opts)
 Map("n", "<Leader>bd", "<Cmd>BufferOrderByDirectory<CR>", Opts)
@@ -45,6 +45,13 @@ Map("n", "<Leader>bc", "<Cmd>BufferClose<CR>", Opts)
 Map("n", "<Leader>bC", "<Cmd>BufferClose!<CR>", Opts)
 Map("n", "<Leader>bw", "<Cmd>BufferWipeout<CR>", Opts)
 Map("n", "<Leader>bW", "<Cmd>BufferWipeout!<CR>", Opts)
+-- GoTo buffer
+function buffer_goto_prompt()
+	vim.cmd("buffers")
+	local buffer_num = vim.fn.input("Enter buffer number: ")
+	vim.cmd("BufferGoto " .. buffer_num)
+end
+Map("n", "<leader>bg", ":lua buffer_goto_prompt()<CR>", Opts)
 
 -- Other:
 -- :BarbarEnable - enables barbar (enabled by default)
