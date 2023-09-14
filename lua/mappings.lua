@@ -34,6 +34,8 @@ Map("n", "<leader>sw", "<cmd>SudaWrite<cr>", Opts)
 -- Read buffer
 Map("n", "<leader>sr", "<cmd>SudaRead<cr>", Opts)
 
+-- cd to buffer
+Map("n", "<leader>cd", "<cmd>cd %:h|pwd<cr>", Opts)
 -- Esc
 Map("i", "kj", [[<Esc>]], Opts)
 Map("v", "kj", [[<Esc>]], Opts)
