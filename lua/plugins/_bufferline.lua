@@ -7,8 +7,10 @@ end
 Map("n", "<A-,>", "<Cmd>BufferPrevious<CR>", Opts)
 Map("n", "<A-.>", "<Cmd>BufferNext<CR>", Opts)
 -- Re-order to previous/next
-Map("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", Opts)
-Map("n", "<A->>", "<Cmd>BufferMoveNext<CR>", Opts)
+-- Map("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", Opts)
+-- Map("n", "<A->>", "<Cmd>BufferMoveNext<CR>", Opts)
+Map("n", "<Leader>bmp", "<Cmd>BufferMovePrevious<CR>", Opts)
+Map("n", "<Leader>bmn", "<Cmd>BufferMoveNext<CR>", Opts)
 -- Goto buffer in position...
 -- Map("n", "<A-1>", "<Cmd>BufferGoto 1<CR>", Opts)
 -- Map("n", "<A-2>", "<Cmd>BufferGoto 2<CR>", Opts)
