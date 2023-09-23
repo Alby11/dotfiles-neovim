@@ -37,7 +37,9 @@ Map("n", "<leader>sr", "<cmd>SudaRead<cr>", Opts)
 -- cd to buffer
 Map("n", "<leader>cd", "<cmd>cd %:h|pwd<cr>", Opts)
 
--- Esc
+-- print current directory
+Map("n", "<leader>pwd", "<cmd>pwd<cr>", Opts)
+
 Map("i", "kj", [[<Esc>]], Opts)
 Map("v", "kj", [[<Esc>]], Opts)
 Map("c", "kj", [[<C-C>]], Opts)
