@@ -172,6 +172,9 @@ return Packer.startup(function(use)
 	-- 	run = ":GoInstallBinaries",
 	-- })
 
+	-- ZPL
+	use("chunPanYung/vim-zpl-syntax")
+
 	-- LSPZERO
 	use({
 		"VonHeikemen/lsp-zero.nvim",
