@@ -1,8 +1,10 @@
 require("globals")
 require("packer-config")
 if is_vscode then
-	require("basic-vscode")
-	require("packer-vscode")
+	require("basic-neovim")
+	require("packer-use")
+--	require("basic-vscode")
+--	require("packer-vscode")
 else
 	require("basic-neovim")
 	require("packer-use")

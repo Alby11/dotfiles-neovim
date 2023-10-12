@@ -1,6 +1,10 @@
 -- Functional wrapper for mapping custom keybindings
 if Is_vscode then
 	Map("n", "z=", "vim.fn.VSCodeNotify('keyboard-quickfix.openQuickFix')<cr>", Opts)
+	Map("x", "gc", "<Plug>VSCodeCommentary", {})
+	Map("n", "gc", "<Plug>VSCodeCommentary", {})
+	Map("o", "gc", "<Plug>VSCodeCommentary", {})
+	Map("n", "gcc", "<Plug>VSCodeCommentaryLine", {})
 end
 
 -- toggle search highlight
