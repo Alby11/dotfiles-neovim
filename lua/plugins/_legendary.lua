@@ -108,24 +108,6 @@ legendary.setup({
 		-- using the `keys = {}` property.
 		auto_register = false,
 	},
-	which_key = {
-		-- Automatically add which-key tables to legendary
-		-- see ./doc/WHICH_KEY.md for more details
-		auto_register = false,
-		-- you can put which-key.nvim tables here,
-		-- or alternatively have them auto-register,
-		-- see ./doc/WHICH_KEY.md
-		mappings = {},
-		opts = {},
-		-- controls whether legendary.nvim actually binds they keymaps,
-		-- or if you want to let which-key.nvim handle the bindings.
-		-- if not passed, true by default
-		do_binding = true,
-		-- controls whether to use legendary.nvim item groups
-		-- matching your which-key.nvim groups; if false, all keymaps
-		-- are added at toplevel instead of in a group.
-		use_groups = true,
-	},
 	-- Which extensions to load; no extensions are loaded by default.
 	-- Setting the plugin name to `false` disables loading the extension.
 	-- Setting it to any other value will attempt to load the extension,
@@ -134,21 +116,63 @@ legendary.setup({
 	-- which return a single function, which is responsible for loading and
 	-- initializing the extension.
 	extensions = {
-
-		nvim_tree = false,
+		nvim_tree = true,
+		-- smart_splits = false,
+		op_nvim = false,
+		diffview = true,
+		which_key = {
+			-- Automatically add which-key tables to legendary
+			-- see ./doc/WHICH_KEY.md for more details
+			auto_register = true,
+			-- you can put which-key.nvim tables here,
+			-- or alternatively have them auto-register,
+			-- see ./doc/WHICH_KEY.md
+			mappings = {
+				k = {
+					name = "packer", -- optional group name
+					o = { "<cmd>source %<cr>", "source current file" }, -- create a binding with label
+					s = { "<cmd>PackerSync<cr>", "PackerSync" }, -- additional options for creating the keymap
+					t = { "<cmd>PackerStatus<cr>", "PackerStatus" }, -- additional options for creating the keymap
+					i = { "<cmd>PackerInstall<cr>", "PackerInstall" }, -- additional options for creating the keymap
+					l = { "<cmd>PackerClean<cr>", "PackerClean" }, -- additional options for creating the keymap
+					c = { "<cmd>PackerCompile<cr>", "PackerCompile" }, -- additional options for creating the keymap
+					["1"] = "which_key_ignore", -- special label to hide it in the popup
+					-- b = {
+					-- 	function()
+					-- 		print("bar")
+					-- 	end,
+					-- 	"Foobar",
+					-- }, -- you can also pass functions!
+				},
+				{ prefix = "<leader>" },
+			},
+			opts = {
+				mode = "n", -- NORMAL mode
+				-- prefix: use "<leader>f" for example for mapping everything related to finding files
+				-- the prefix is prepended to every mapping part of `mappings`
+				prefix = "",
+				buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+				silent = true, -- use `silent` when creating keymaps
+				noremap = true, -- use `noremap` when creating keymaps
+				nowait = false, -- use `nowait` when creating keymaps
+				expr = false, -- use `expr` when creating keymaps
+			},
+			-- controls whether legendary.nvim actually binds they keymaps,
+			-- or if you want to let which-key.nvim handle the bindings.
+			-- if not passed, true by default
+			do_binding = true,
+			-- controls whether to use legendary.nvim item groups
+			-- matching your which-key.nvim groups; if false, all keymaps
+			-- are added at toplevel instead of in a group.
+			use_groups = true,
+		},
 		smart_splits = {
 			directions = { "h", "j", "k", "l" },
 			mods = {
-				-- for moving cursor between windows
 				move = "<C>",
-				-- for resizing windows
 				resize = "<M>",
-				-- for swapping window buffers
-				swap = false, -- false disables creating a binding
 			},
 		},
-		op_nvim = false,
-		diffview = false,
 	},
 	scratchpad = {
 		-- How to open the scratchpad buffer,
@@ -168,21 +192,3 @@ legendary.setup({
 	-- Log level, one of 'trace', 'debug', 'info', 'warn', 'error', 'fatal'
 	log_level = "info",
 })
--- recommended mappings
--- resizing splits
--- these keymaps will also accept a range,
--- for example `10<A-h>` will `resize_left` by `(10 * config.default_amount)`
--- vim.keymap.set('n', '<A-h>', require('smart-splits').resize_left)
--- vim.keymap.set('n', '<A-j>', require('smart-splits').resize_down)
--- vim.keymap.set('n', '<A-k>', require('smart-splits').resize_up)
--- vim.keymap.set('n', '<A-l>', require('smart-splits').resize_right)
--- moving between splits
--- vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left)
--- vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down)
--- vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up)
--- vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right)
--- swapping buffers between windows
--- vim.keymap.set('n', '<leader><leader>h', require('smart-splits').swap_buf_left)
--- vim.keymap.set('n', '<leader><leader>j', require('smart-splits').swap_buf_down)
--- vim.keymap.set('n', '<leader><leader>k', require('smart-splits').swap_buf_up)
--- vim.keymap.set('n', '<leader><leader>l', require('smart-splits').swap_buf_right)
