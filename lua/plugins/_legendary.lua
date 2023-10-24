@@ -10,6 +10,8 @@ legendary.setup({
 	keymaps = {
 		{ "<leader>tLl", ":Legendary<cr>", description = "Legendary" },
 		{ "<leader>tLf", ":Legendary functions<cr>", description = "Legendary search functions" },
+		{ "<leader>ks", ":PackerSync<cr>", description = "PackerSync" },
+		{ "<leader>ko", ":source %<cr>", description = "Source current buffer" },
 	},
 	-- Initial commands to bind, can also be a function that returns the list
 	commands = {},
