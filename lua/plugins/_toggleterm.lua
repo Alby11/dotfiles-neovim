@@ -78,7 +78,19 @@ end
 -- Cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 Cmd("autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()")
 
-Map("n", "<Leader>st", "<Cmd>ToggleTerm<CR>", Opts)
+function toggle_term_in_current_dir()
+	local term = Terminal:new({
+		-- cmd = "zsh",
+		cmd = "zsh -c 'cd " .. vim.fn.expand("%:p:h") .. "; zsh'",
+		hidden = true,
+		-- dir = vim.fn.getcwd(),
+	})
+
+	term:toggle()
+end
+
+-- You can then map this function to a key of your choice
+Map("n", "<leader>st", "<Cmd>lua toggle_term_in_current_dir()<CR>", Opts)
 Map("n", "<Leader>sL", "<Cmd>ToggleTermSendCurrentLine<CR>", Opts)
 Map("x", "<Leader>sv", "<Cmd>ToggleTermSendVisualLines<CR>", Opts)
 Map("x", "<Leader>sV", "<Cmd>ToggleTermSendVisualSelection<CR>", Opts)
