@@ -166,7 +166,44 @@ dap.setup({})
 dapui.setup({})
 
 -- Set up cmp
-cmp.setup({})
+cmp.setup({
+	sources = {
+		{ name = "buffer" },
+		{ name = "nvim_lsp_signature_help" },
+		{ name = "path" },
+		{ name = "nvim_lua" },
+		{ name = "git" },
+		{ name = "rg" },
+		{ name = "zsh" },
+		{
+			name = "dictionary",
+			keyword_length = 2,
+		},
+	},
+})
+
+-- `/` cmdline setup.
+cmp.setup.cmdline("/", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = "buffer" },
+	},
+})
+
+-- `:` cmdline setup.
+cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{
+			name = "cmdline",
+			option = {
+				ignore_cmds = { "Man", "!" },
+			},
+		},
+	}),
+})
 
 -- Set up luasnip
 luasnip.setup({})

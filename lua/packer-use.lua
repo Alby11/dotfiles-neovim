@@ -218,30 +218,32 @@ return Packer.startup(function(use)
 	-- redirect ex output to buffer
 	use("sbulav/nredir.nvim")
 
-	-- LSP and completion
-	use("neovim/nvim-lspconfig")
-	use("glepnir/lspsaga.nvim")
-	use("hrsh7th/nvim-cmp")
-	use("L3MON4D3/LuaSnip")
-	use("rafamadriz/friendly-snippets")
-	use("onsails/lspkind-nvim")
-	use("mhartington/formatter.nvim")
-	use("jose-elias-alvarez/null-ls.nvim")
-	-- use("tzachar/cmp-tabnine")
-	use("tamago324/cmp-zsh")
-	use("shougo/deol.nvim")
-
-	-- Debugging
-	use("mfussenegger/nvim-dap")
-	use("rcarriga/nvim-dap-ui")
-
 	-- Mason
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
-	use("WhoIsSethDaniel/mason-tool-installer.nvim")
 	use("jay-babu/mason-null-ls.nvim")
-	use("junnplus/lsp-setup.nvim")
 	use("jay-babu/mason-nvim-dap.nvim")
+	use("WhoIsSethDaniel/mason-tool-installer.nvim")
+
+	-- LSP and completion
+	use("neovim/nvim-lspconfig")
+	use("junnplus/lsp-setup.nvim")
+	use("onsails/lspkind-nvim")
+	use("L3MON4D3/LuaSnip")
+	use("hrsh7th/nvim-cmp")
+	use("saadparwaiz1/cmp_luasnip")
+	use({ "petertriho/cmp-git", requires = "nvim-lua/plenary.nvim" })
+	use("lukas-reineke/cmp-rg")
+	use("tamago324/cmp-zsh")
+	use("rafamadriz/friendly-snippets")
+	use("mhartington/formatter.nvim")
+	use("nvimtools/none-ls.nvim")
+	use("glepnir/lspsaga.nvim")
+	-- use("tzachar/cmp-tabnine")
+	use("shougo/deol.nvim")
+	-- Debugging
+	use("mfussenegger/nvim-dap")
+	use("rcarriga/nvim-dap-ui")
 
 	-- LSP Zero
 	use({ "VonHeikemen/lsp-zero.nvim", config = GetSetup("lsp_config") })
