@@ -9,24 +9,24 @@ local lsp = require(plugin_name)
 
 lsp.preset("recommended")
 
-lsp.ensure_installed({
-	"ansiblels",
-	"bashls",
-	"cssls",
-	"dockerls",
-	"eslint",
-	"gopls",
-	"html",
-	"jsonls",
-	"lua_ls",
-	"marksman",
-	"pyright",
-	"sqlls",
-	"tsserver",
-	"vimls",
-	"yamlls",
-	-- "java",
-})
+-- lsp.ensure_installed({
+-- 	"ansiblels",
+-- 	"bashls",
+-- 	"cssls",
+-- 	"dockerls",
+-- 	"eslint",
+-- 	"gopls",
+-- 	"html",
+-- 	"java",
+-- 	"jsonls",
+-- 	"lua_ls",
+-- 	"marksman",
+-- 	"pyright",
+-- 	"sqlls",
+-- 	"tsserver",
+-- 	"vimls",
+-- 	"yamlls",
+-- })
 -- share options between serveral servers
 local lsp_opts = {
 	flags = {

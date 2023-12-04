@@ -120,44 +120,8 @@ return Packer.startup(function(use)
 	-- Project browsing
 	use("ahmedkhalf/project.nvim")
 
-	-- autocompletion
-	use("hrsh7th/nvim-cmp") -- completion plugin
-	use("hrsh7th/cmp-buffer") -- source for text in buffer
-	use("hrsh7th/cmp-path") -- source for file system paths
-	use({
-		"tamago324/cmp-zsh",
-		requires = "Shougo/deol.nvim",
-		cond = function()
-			return not Is_win
-		end,
-	})
-	-- snippets
-	use("L3MON4D3/LuaSnip") -- snippet engine
-	use("saadparwaiz1/cmp_luasnip") -- for autocompletion
-	use("rafamadriz/friendly-snippets") -- useful snippets
-
-	-- managing & installing lsp servers, linters & formatters
-	use("williamboman/mason.nvim") -- in charge of managing lsp servers, linters & formatters
-	use("williamboman/mason-lspconfig.nvim") -- bridges gap b/w mason & lspconfig
-
-	-- configuring lsp servers
-	use("neovim/nvim-lspconfig") -- easily configure language servers
-	use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
-	use({
-		"tami5/lspsaga.nvim",
-		branch = "main",
-		config = function()
-			require("lspsaga").setup({})
-		end,
-	}) -- enhanced lsp uis
-	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
-
-	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
-
-	-- formatting & linting
-	use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
-	use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
-	use("MunifTanjim/prettier.nvim")
+	-- Packer can manage itself
+	use("wbthomason/packer.nvim")
 
 	-- REPL
 	-- use({ "hkupty/iron.nvim" })
@@ -174,24 +138,6 @@ return Packer.startup(function(use)
 
 	-- ZPL
 	use("chunPanYung/vim-zpl-syntax")
-
-	-- LSPZERO
-	use({
-		"VonHeikemen/lsp-zero.nvim",
-		-- after = "vim-go",
-		config = function()
-			local lsp = require("lsp-zero")
-			lsp.preset("recommended")
-			lsp.setup()
-		end,
-	})
-
-	-- DAP
-	use({
-		"mfussenegger/nvim-dap",
-		"jay-babu/mason-nvim-dap.nvim",
-	})
-	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
 
 	-- treesitter configuration
 	use({
@@ -271,6 +217,34 @@ return Packer.startup(function(use)
 
 	-- redirect ex output to buffer
 	use("sbulav/nredir.nvim")
+
+	-- LSP and completion
+	use("neovim/nvim-lspconfig")
+	use("glepnir/lspsaga.nvim")
+	use("hrsh7th/nvim-cmp")
+	use("L3MON4D3/LuaSnip")
+	use("rafamadriz/friendly-snippets")
+	use("onsails/lspkind-nvim")
+	use("mhartington/formatter.nvim")
+	use("jose-elias-alvarez/null-ls.nvim")
+	-- use("tzachar/cmp-tabnine")
+	use("tamago324/cmp-zsh")
+	use("shougo/deol.nvim")
+
+	-- Debugging
+	use("mfussenegger/nvim-dap")
+	use("rcarriga/nvim-dap-ui")
+
+	-- Mason
+	use("williamboman/mason.nvim")
+	use("williamboman/mason-lspconfig.nvim")
+	use("WhoIsSethDaniel/mason-tool-installer.nvim")
+	use("jay-babu/mason-null-ls.nvim")
+	use("junnplus/lsp-setup.nvim")
+	use("jay-babu/mason-nvim-dap.nvim")
+
+	-- LSP Zero
+	use({ "VonHeikemen/lsp-zero.nvim", config = GetSetup("lsp_config") })
 
 	if Packer_bootstrap then
 		require("packer").sync()

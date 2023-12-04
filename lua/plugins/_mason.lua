@@ -1,3 +1,9 @@
+-- import lsp_zero plugin safely
+local lsp_zero_status, lsp_zero = pcall(require, "lsp-zero")
+if not lsp_zero_status then
+	return
+end
+
 -- import mason plugin safely
 local mason_status, mason = pcall(require, "mason")
 if not mason_status then
@@ -35,6 +41,7 @@ mason_lspconfig.setup({
 		"emmet_ls",
 		"gopls",
 		"html",
+		"java",
 		"marksman",
 		"pyright",
 		"lua_ls",
@@ -43,6 +50,13 @@ mason_lspconfig.setup({
 		"tsserver",
 		"vimls",
 		"yamlls",
+		handlers = {
+			lsp_zero.default_setup,
+			lua_ls = function()
+				local lua_opts = lsp_zero.nvim_lua_ls()
+				require("lspconfig").lua_ls.setup(lua_opts)
+			end,
+		},
 	},
 	-- auto-install configured servers (with lspconfig)
 	automatic_installation = true, -- not the same as ensure_installed

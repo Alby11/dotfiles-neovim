@@ -52,7 +52,7 @@ mason.setup({})
 -- Set up mason_lspconfig
 mason_lspconfig.setup({
 	ensure_installed = {
-		"java",
+		"java-language-server",
 		"tsserver",
 		"gopls",
 		"bashls",
@@ -104,6 +104,7 @@ mason_tool_installer.setup({
 
 		"lua-language-server",
 		"vim-language-server",
+		"java-language-server",
 		"gopls",
 		"golanggci-lint",
 		"stylua",
