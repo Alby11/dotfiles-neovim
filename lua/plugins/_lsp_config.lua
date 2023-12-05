@@ -1,11 +1,10 @@
 -- Load the required modules safely
-local lsp_zero_status, lsp_zero = pcall(require, "lsp-zero")
 local mason_status, mason = pcall(require, "mason")
 local mason_lspconfig_status, mason_lspconfig = pcall(require, "mason-lspconfig")
+local lspconfig_status, lspconfig = pcall(require, "lspconfig")
 local mason_null_ls_status, mason_null_ls = pcall(require, "mason_null_ls")
 local mason_nvim_dap_status, mason_nvim_dap = pcall(require, "mason_nvim_dap")
 local mason_tool_installer_status, mason_tool_installer = pcall(require, "mason-tool-installer")
-local lspconfig_status, lspconfig = pcall(require, "lspconfig")
 local lspsaga_status, lspsaga = pcall(require, "lspsaga")
 local dap_status, dap = pcall(require, "dap")
 local dapui_status, dapui = pcall(require, "dapui")
@@ -16,15 +15,15 @@ local formatter_status, formatter = pcall(require, "formatter")
 local null_ls_status, null_ls = pcall(require, "null-ls")
 local cmp_zsh_status, cmp_zsh = pcall(require, "cmp-zsh")
 local deol_status, deol = pcall(require, "deol")
+local lsp_zero_status, lsp_zero = pcall(require, "lsp-zero")
 if
 	not (
-		lsp_zero_status
-		and mason_status
+		mason_status
 		and mason_lspconfig_status
+		and lspconfig_status
 		and mason_null_ls_status
 		and mason_nvim_dap_status
 		and mason_tool_installer_status
-		and lspconfig_status
 		and lspsaga_status
 		and dap_status
 		and dapui_status
@@ -35,39 +34,50 @@ if
 		and null_ls_status
 		and cmp_zsh_status
 		and deol_status
+		and lsp_zero_status
 	)
 then
 	return
 end
 
--- Set up lsp_zero
-lsp_zero.on_attach(function(client, bufnr)
-	lsp_zero.default_keymaps({ buffer = bufnr })
-end)
+local lang_servers =
+	{
+		"ansible",
+		"awk",
+		"bashls",
+		"clangd",
+		"cssls",
+		"dockerls",
+		"emmet_ls",
+		"eslint",
+		"gopls",
+		"html",
+		"java_language_server",
+		"jsonls",
+		"lua_ls",
+		"marksman",
+		"mutt_ls",
+		"pyright",
+		"sqlls",
+		"tailwindcss",
+		"tsserver",
+		"vimls",
+		"yamlls",
+	},
+	-- Set up lsp_zero
+	lsp_zero.on_attach(function(client, bufnr)
+		lsp_zero.default_keymaps({ buffer = bufnr })
+	end)
 Opt.signcolumn = "yes" -- Reserve space for diagnostic icons
 lsp_zero.preset("recommended")
--- share options between serveral servers
+-- share options between serveral lang_servers
 local lsp_opts = {
 	flags = {
 		debounce_text_changes = 150,
 	},
 }
-lsp_zero.setup_servers({
-	"ansiblels",
-	"bashls",
-	"cssls",
-	"dockerls",
-	"eslint",
-	"gopls",
-	"html",
-	"jsonls",
-	"lua_ls",
-	"marksman",
-	"pyright",
-	"sqlls",
-	"tsserver",
-	"vimls",
-	"yamlls",
+lsp_zero.setup_lang_servers({
+	lang_servers,
 	opts = lsp_opts,
 })
 -- Next you call that function when the LSP server is attached to a buffer.
@@ -92,29 +102,7 @@ mason.setup({})
 
 -- Set up mason_lspconfig
 mason_lspconfig.setup({
-	ensure_installed = {
-		"java-language-server",
-		"tsserver",
-		"gopls",
-		"bashls",
-		"jsonls",
-		"yamlls",
-		"tomlls",
-		"dockerls",
-		"kubernetes",
-		"sqlls",
-		"git",
-		"pyright",
-		"ansiblels",
-		"lua",
-		"markdown",
-		"xml",
-		"powershell",
-		"node",
-		"bitbucket",
-		"github",
-		"viml",
-	},
+	ensure_installed = lang_servers,
 	handlers = {
 		lsp_zero.default_setup,
 		lua_ls = function()
@@ -123,6 +111,9 @@ mason_lspconfig.setup({
 		end,
 	},
 })
+
+-- Set up lspconfig
+lspconfig.setup({})
 
 -- Set up mason_null_ls
 mason_null_ls.setup({})
@@ -136,38 +127,6 @@ mason_nvim_dap.setup({})
 mason_tool_installer.setup({
 	-- a list of all tools you want to ensure are installed upon
 	-- start
-	ensure_installed = {
-
-		-- you can pin a tool to a particular version
-		-- { "golangci-lint", version = "v1.47.0" },
-
-		-- you can turn off/on auto_update per tool
-		{ "bash-language-server", auto_update = true },
-		{ "zsh-language-server", auto_update = true },
-
-		"lua-language-server",
-		"vim-language-server",
-		"java-language-server",
-		"gopls",
-		"golanggci-lint",
-		"stylua",
-		"shellcheck",
-		"editorconfig-checker",
-		"gofumpt",
-		"golines",
-		"gomodifytags",
-		"gotests",
-		"impl",
-		"json-to-struct",
-		"luacheck",
-		"misspell",
-		"revive",
-		"shellcheck",
-		"powershell",
-		"shfmt",
-		"staticcheck",
-		"vint",
-	},
 
 	-- if set to true this will check each tool for updates. If updates
 	-- are available the tool will be updated. This setting does not
@@ -196,9 +155,6 @@ mason_tool_installer.setup({
 	debounce_hours = 5, -- at least 5 hours between attempts to install/update
 })
 
--- Set up lspconfig
-lspconfig.setup({})
-
 -- Set up lspsaga
 lspsaga.setup({})
 
@@ -210,6 +166,22 @@ dapui.setup({})
 
 -- Set up cmp
 cmp.setup({
+	snippet = {
+		-- REQUIRED - you must specify a snippet engine
+		expand = function(args)
+			-- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+			require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+			-- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+			-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+		end,
+	},
+	mapping = cmp.mapping.preset.insert({
+		["<C-b>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-e>"] = cmp.mapping.abort(),
+		["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+	}),
 	sources = {
 		{ name = "buffer" }, -- text within current buffer
 		{ name = "git" },
@@ -266,8 +238,12 @@ cmp_zsh.setup({
 	zshrc = true, -- Source the zshrc (adding all custom completions). default: false
 })
 
--- used to enable autocompletion (assign to every lsp server config)
-local capabilities = cmp_nvim_lsp.default_capabilities()
+-- Set up lspconfig.
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+require("lspconfig")["lua_ls"].setup({
+	capabilities = capabilities,
+})
 
 -- Change the Diagnostic symbols in the sign column (gutter)
 -- (not in youtube nvim video)
