@@ -18,7 +18,8 @@ local deol_status, deol = pcall(require, "deol")
 local lsp_zero_status, lsp_zero = pcall(require, "lsp-zero")
 if
 	not (
-		mason_status
+		lsp_zero_status
+		and mason_status
 		and mason_lspconfig_status
 		and lspconfig_status
 		and mason_null_ls_status
@@ -34,7 +35,6 @@ if
 		and null_ls_status
 		and cmp_zsh_status
 		and deol_status
-		and lsp_zero_status
 	)
 then
 	return
@@ -64,6 +64,7 @@ local lang_servers =
 		"vimls",
 		"yamlls",
 	},
+
 	-- Set up lsp_zero
 	lsp_zero.on_attach(function(client, bufnr)
 		lsp_zero.default_keymaps({ buffer = bufnr })
@@ -76,7 +77,7 @@ local lsp_opts = {
 		debounce_text_changes = 150,
 	},
 }
-lsp_zero.setup_lang_servers({
+lsp_zero.setup_servers({
 	lang_servers,
 	opts = lsp_opts,
 })

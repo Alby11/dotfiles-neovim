@@ -249,7 +249,7 @@ return Packer.startup(function(use)
 	use("rcarriga/nvim-dap-ui")
 
 	-- LSP Zero
-	use({ "VonHeikemen/lsp-zero.nvim", config = GetSetup("lsp_config") })
+	use("VonHeikemen/lsp-zero.nvim")
 
 	if Packer_bootstrap then
 		require("packer").sync()
