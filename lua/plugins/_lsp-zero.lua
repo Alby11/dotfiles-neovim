@@ -3,7 +3,7 @@ if not CheckPlugin(plugin_name) then
 	return
 end
 
-Vim.opt.signcolumn = "yes" -- Reserve space for diagnostic icons
+Opt.signcolumn = "yes" -- Reserve space for diagnostic icons
 
 local lsp = require(plugin_name)
 

@@ -16,7 +16,6 @@ local formatter_status, formatter = pcall(require, "formatter")
 local null_ls_status, null_ls = pcall(require, "null-ls")
 local cmp_zsh_status, cmp_zsh = pcall(require, "cmp-zsh")
 local deol_status, deol = pcall(require, "deol")
-
 if
 	not (
 		lsp_zero_status
@@ -45,6 +44,48 @@ end
 lsp_zero.on_attach(function(client, bufnr)
 	lsp_zero.default_keymaps({ buffer = bufnr })
 end)
+Opt.signcolumn = "yes" -- Reserve space for diagnostic icons
+lsp_zero.preset("recommended")
+-- share options between serveral servers
+local lsp_opts = {
+	flags = {
+		debounce_text_changes = 150,
+	},
+}
+lsp_zero.setup_servers({
+	"ansiblels",
+	"bashls",
+	"cssls",
+	"dockerls",
+	"eslint",
+	"gopls",
+	"html",
+	"jsonls",
+	"lua_ls",
+	"marksman",
+	"pyright",
+	"sqlls",
+	"tsserver",
+	"vimls",
+	"yamlls",
+	opts = lsp_opts,
+})
+-- Next you call that function when the LSP server is attached to a buffer.
+lsp_zero.on_attach(function(client, bufnr)
+	print("LspAttached")
+	lsp_zero.default_keymaps({ buffer = bufnr })
+end)
+lsp_zero.nvim_workspace()
+lsp_zero.setup()
+Vim.diagnostic.config({
+	virtual_text = true,
+	signs = true,
+	update_in_insert = false,
+	underline = true,
+	severity_sort = false,
+	float = true,
+})
+lsp_zero.extend_cmp()
 
 -- Set up mason
 mason.setup({})
@@ -85,6 +126,8 @@ mason_lspconfig.setup({
 
 -- Set up mason_null_ls
 mason_null_ls.setup({})
+-- to setup format on save
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 -- Set up mason_nvim_dap
 mason_nvim_dap.setup({})
@@ -168,17 +211,30 @@ dapui.setup({})
 -- Set up cmp
 cmp.setup({
 	sources = {
-		{ name = "buffer" },
-		{ name = "nvim_lsp_signature_help" },
-		{ name = "path" },
-		{ name = "nvim_lua" },
+		{ name = "buffer" }, -- text within current buffer
 		{ name = "git" },
+		{ name = "luasnip" }, -- snippets
+		{ name = "nvim_lsp" }, -- lsp
+		{ name = "nvim_lsp_signature_help" },
+		{ name = "nvim_lua" },
+		{ name = "path" }, -- file system paths
 		{ name = "rg" },
-		{ name = "zsh" },
+		{ name = "zsh" }, -- file system paths
 		{
 			name = "dictionary",
 			keyword_length = 2,
 		},
+	},
+	-- configure lspkind for vs-code like icons
+	formatting = {
+		format = lspkind.cmp_format({
+			maxwidth = 50,
+			ellipsis_char = "...",
+		}),
+	},
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
 	},
 })
 
@@ -205,6 +261,21 @@ cmp.setup.cmdline(":", {
 	}),
 })
 
+-- Set up cmp-zsh
+cmp_zsh.setup({
+	zshrc = true, -- Source the zshrc (adding all custom completions). default: false
+})
+
+-- used to enable autocompletion (assign to every lsp server config)
+local capabilities = cmp_nvim_lsp.default_capabilities()
+
+-- Change the Diagnostic symbols in the sign column (gutter)
+-- (not in youtube nvim video)
+local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
 -- Set up luasnip
 luasnip.setup({})
 
@@ -215,10 +286,62 @@ lspkind.init({})
 formatter.setup({})
 
 -- Set up null-ls
-null_ls.setup({})
-
--- Set up cmp-zsh
-cmp_zsh.setup({})
+-- for conciseness
+local formatting = null_ls.builtins.formatting -- to setup formatters
+local diagnostics = null_ls.builtins.diagnostics -- to setup linters
+-- to setup format on save
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+null_ls.setup({
+	-- setup formatters & linters
+	sources = {
+		--  to disable file types use
+		--  "formatting.prettier.with({disabled_filetypes: {}})" (see null-ls docs)
+		formatting.prettier, -- js/ts formatter
+		formatting.stylua, -- lua formatter
+		diagnostics.eslint_d.with({ -- js/ts linter
+			-- only enable eslint if root has .eslintrc.js (not in youtube nvim video)
+			condition = function(utils)
+				return utils.root_has_file(".eslintrc.js") -- change file extension if you use something else
+			end,
+		}),
+	},
+	-- configure format on save
+	on_attach = function(current_client, bufnr)
+		if current_client.supports_method("textDocument/formatting") then
+			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				group = augroup,
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.format({
+						filter = function(client)
+							--  only use null-ls for formatting instead of lsp server
+							return client.name == "null-ls"
+						end,
+						bufnr = bufnr,
+					})
+				end,
+			})
+		end
+	end,
+})
 
 -- Set up deol
 deol.setup({})
+
+Command("Format", function()
+	vim.lsp.buf.format({ bufnr = bufnr })
+end, {})
+-- enable keybinds only for when lsp server available
+local on_attach = function(client, bufnr)
+	-- format on save
+	local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
+	vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
+	Autocmd("BufWritePre", {
+		group = augroup_format,
+		buffer = bufnr,
+		callback = function()
+			vim.lsp.buf.format({ bufnr = bufnr })
+		end,
+	})
+end
