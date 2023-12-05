@@ -1,26 +1,27 @@
 local lang_servers =
 	{
-		"ansible",
-		"awk",
-		"bashls",
+		"ansible-language-server",
+		"awk-language-server",
+		"bash-language-server",
 		"clangd",
-		"cssls",
-		"dockerls",
-		"emmet_ls",
-		"eslint",
+		"css-lsp",
+		-- "docker-langserver",
+		-- "compose-language-service",
+		"emmet-ls",
+		"eslint-lsp",
 		"gopls",
-		"html",
-		"java_language_server",
-		"jsonls",
-		"lua_ls",
+		"html-lsp",
+		"json-lsp",
+		"lua-language-server",
+		"java-language-server",
 		"marksman",
-		"mutt_ls",
+		"mutt-language-server",
 		"pyright",
 		"sqlls",
-		"tailwindcss",
-		"tsserver",
-		"vimls",
-		"yamlls",
+		"tailwindcss-language-server",
+		"typescript-language-server",
+		"vim-language-server",
+		"yaml-language-server",
 	}
 
 local lsp = require('lsp-zero').preset({})
@@ -31,7 +32,7 @@ lsp.set_preferences({
     sign_icons = {error = '☢️', warn = '⚠️', hint = 'H', info = 'I'}
 })
 
-lsp.ensure_installed(lang_servers)
+-- lsp.ensure_installed(lang_servers)
 -- lsp.ensure_installed({
 --     'lua_ls', 'tsserver', -- 'eslint',
 --     -- 'stylelint',
