@@ -30,7 +30,7 @@ else
 	require("plugins._iron")
 	require("colorscheme")
 	require("plugins._transparent")
-	require("plugins._lsp_config")
+	require("plugins._lsp")
 	-- require("plugins._cmp")
 	-- require("plugins._mason")
 	-- require("plugins._lspsaga")
