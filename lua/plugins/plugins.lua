@@ -1,6 +1,6 @@
 -- since this is just an example spec, don't actually load anything here and return an empty spec
 -- stylua: ignore
-if true then return {} end
+-- if true then return {} end
 
 -- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
 --
@@ -8,10 +8,56 @@ if true then return {} end
 -- * add extra plugins
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
+
+-- declare global variables and functions
+require("lua.config.globals")
+
 return {
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
-  { "catppuccin/catppuccin.nvim" },
+  { "catppuccin/nvim" },
+
+  -- add/override which-key labels
+  {
+    "folke/which-key.nvim",
+    opts = {
+      defaults = {
+        mode = { "n", "v" },
+        ["<leader>S"] = { name = "+Suda" },
+      },
+    },
+  },
+
+  -- text edit operators
+  {
+    "echasnovski/mini.operators",
+    version = false,
+    config = function()
+      require("mini.operators").setup()
+    end,
+  },
+  -- avoid "gr" key conflict between mimi.operators and nvim-lspconfig
+  {
+    "neovim/nvim-lspconfig",
+    init = function()
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      keys[#keys + 1] = { "gr", false }
+    end,
+    keys = {
+      { "<leader>gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
+    },
+  },
+
+  -- Suda to sudo
+  {
+    "lambdalisue/suda.vim",
+    keys = {
+      -- Save buffer
+      { "<leader>Sw", "<cmd>SudaWrite<cr>", { desc = "Sudo write file", MapOpts } },
+      -- Read buffer
+      { "<leader>Sr", "<cmd>SudaRead<cr>", { desc = "Sudo read file", MapOpts } },
+    },
+  },
 
   -- Configure LazyVim to load gruvbox
   {
@@ -91,6 +137,11 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
+        awk = {},
+        bashls = {},
+        diff = {},
+        dockerfile = {},
+        java_language_server = {},
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {},
       },
@@ -103,7 +154,7 @@ return {
     dependencies = {
       "jose-elias-alvarez/typescript.nvim",
       init = function()
-        require("lazyvim.util").on_attach(function(_, buffer)
+        require("lazyvim.util").lsp.on_attach(function(_, buffer)
           -- stylua: ignore
           vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
           vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
@@ -141,8 +192,10 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
+        "awk",
         "bash",
-        "docker",
+        "diff",
+        "dockerfile",
         "html",
         "java",
         "javascript",
