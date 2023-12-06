@@ -9,9 +9,6 @@
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
 
--- declare global variables and functions
-require("lua.config.globals")
-
 return {
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
