@@ -134,11 +134,6 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
-        awk = {},
-        bashls = {},
-        diff = {},
-        dockerfile = {},
-        java_language_server = {},
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {},
       },
