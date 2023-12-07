@@ -14,15 +14,61 @@ return {
   { "ellisonleao/gruvbox.nvim" },
   { "catppuccin/nvim" },
 
-  -- add/override which-key labels
   {
-    "folke/which-key.nvim",
-    opts = {
-      defaults = {
-        mode = { "n", "v" },
-        ["<leader>S"] = { name = "+Suda" },
+    "kiyoon/jupynium.nvim",
+    build = "pip3 install --user .",
+    -- build = "conda run --no-capture-output -n jupynium pip install .",
+    -- enabled = vim.fn.isdirectory(vim.fn.expand "~/miniconda3/envs/jupynium"),
+    dependencies = {
+      "rcarriga/nvim-notify",   -- optional
+      "stevearc/dressing.nvim", -- optional, UI for :JupyniumKernelSelect
+      -- override nvim-cmp and add cmp-yanky
+      {
+        "hrsh7th/nvim-cmp",
+        ---@param opts cmp.ConfigSchema
+        opts = function(_, opts)
+          local cmp = require("cmp")
+          local compare = cmp.config.compare
+          table.insert(opts.sources, {
+            name = "jupynium",
+            priority = 1000,
+          })
+          table.insert(opts.sorting, {
+            priority_weight = 1.0,
+            comparators = {
+              compare.score,            -- Jupyter kernel completion shows prior to LSP
+              compare.recently_used,
+              compare.locality,
+            }
+          })
+        end,
       },
-    },
+    }
+
+  },
+
+  -- yanky and sqlite are managed as LazyVim extras
+  -- but you need to initialize yanky on your own
+  {
+    "gbprod/yanky.nvim",
+    config = function()
+      require("yanky").setup({})
+    end,
+    dependencies = {
+        "hrsh7th/nvim-cmp",
+        ---@param opts cmp.ConfigSchema
+        opts = function(_, opts)
+          table.insert(opts.sources, {
+            name = "cmp_yanky",
+            option = {
+              -- only suggest items which match the current filetype
+              onlyCurrentFiletype = false,
+              -- only suggest items with a minimum length
+              minLength = 3,
+            },
+          })
+        end,
+      },
   },
 
   -- text edit operators
@@ -50,9 +96,18 @@ return {
     "lambdalisue/suda.vim",
     keys = {
       -- Save buffer
-      { "<leader>Sw", "<cmd>SudaWrite<cr>", { desc = "Sudo write file", MapOpts } },
+      { "<leader>Sw", "<cmd>SudaWrite<cr>", { desc = "Suda write", MapOpts } },
       -- Read buffer
-      { "<leader>Sr", "<cmd>SudaRead<cr>", { desc = "Sudo read file", MapOpts } },
+      { "<leader>Sr", "<cmd>SudaRead<cr>", { desc = "Suda read", MapOpts } },
+    },
+    dependencies = {
+      "folke/which-key.nvim",
+      opts = {
+        defaults = {
+          mode = { "n", "v" },
+          ["<leader>S"] = { name = "+Suda" },
+        },
+      },
     },
   },
 
@@ -242,7 +297,7 @@ return {
   },
 
   -- use mini.starter instead of alpha
-  { import = "lazyvim.plugins.extras.ui.mini-starter" },
+  -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
 
   -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
   { import = "lazyvim.plugins.extras.lang.json" },
