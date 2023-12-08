@@ -14,44 +14,30 @@ return {
   { "ellisonleao/gruvbox.nvim" },
   { "catppuccin/nvim" },
 
+  {
+    "sindrets/diffview.nvim",
+    opts = {
+      hooks = {
+        diff_buf_read = function(bufnr)
+          -- Change local options in diff buffers
+          vim.opt_local.wrap = false
+          vim.opt_local.list = false
+          vim.opt_local.colorcolumn = { 80 }
+        end,
+        view_opened = function(view)
+          print(
+            ("A new %s was opened on tab page %d!")
+            :format(view.class:name(), view.tabpage)
+          )
+        end,
+      },
+    },
+  },
 
   {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
     opts = function()
-      -- -- Function to execute a shell command and capture its output
-      -- -- to get the current user@hostname
-      -- local function execute_command(command)
-      --     local handle = io.popen(command)
-      --     local result = handle:read("*a")
-      --     handle:close()
-      --     return result
-      -- end
-      -- -- Get the username
-      -- local username = execute_command("whoami"):gsub("\n", "")
-      -- -- Get the hostname
-      -- local hostname = execute_command("hostname"):gsub("\n", "")
-      -- -- Get current working directory
-      -- local current_directory = vim.fn.getcwd()
-      --
-      -- local logo = [[
-      --     ╔══════════════════════════════════════════════════════════════════════════════════════════╗
-      --     ║    __  __            _____  __ __         __  _                                          ║
-      --     ║  / / / /__ ___ ____/ ___ \/ // /__  ___ / /_(_)                                          ║
-      --     ║  / /_/ (_-</ -_) __/ / _ `/ _  / _ \(_-</ __/  ]] .. username .. '@' .. hostname .. [[   ║
-      --     ║  \____/___/\__/_/  \ \_,_/_//_/\___/___/\__(_)                                           ║
-      --     ║                    \___/                                                                 ║
-      --     ║                _____          ___                                                        ║
-      --     ║              / ___/    _____/ (_)                                                        ║
-      --     ║              / /__| |/|/ / _  /  ]] .. current_directory .. [[                           ║
-      --     ║              \___/|__,__/\_,_(_)                                                         ║
-      --     ║                                                                                          ║
-      --     ║                                                                                          ║
-      --     ╚══════════════════════════════════════════════════════════════════════════════════════════╝
-      -- ]]
-      --
-      -- logo = string.rep("\n", 8) .. logo .. "\n\n"
-
       -- Function to execute a shell command and capture its output
       local function execute_command(command)
           local handle = io.popen(command)
@@ -67,32 +53,6 @@ return {
       -- Get current working directory
       local current_directory = vim.fn.getcwd()
       local opts = {
-        -- theme = "doom",
-        -- hide = {
-        --   -- this is taken care of by lualine
-        --   -- enabling this messes up the actual laststatus setting after loading a file
-        --   statusline = false,
-        -- },
-        -- config = {
-        --   header = vim.split(logo, "\n"),
-        --   -- stylua: ignore
-        --   center = {
-        --     { action = "Telescope find_files",                                     desc = " Find file",       icon = " ", key = "f" },
-        --     { action = "ene | startinsert",                                        desc = " New file",        icon = " ", key = "n" },
-        --     { action = "Telescope oldfiles",                                       desc = " Recent files",    icon = " ", key = "r" },
-        --     { action = "Telescope live_grep",                                      desc = " Find text",       icon = " ", key = "g" },
-        --     { action = [[lua require("lazyvim.util").telescope.config_files()()]], desc = " Config",          icon = " ", key = "c" },
-        --     { action = 'lua require("persistence").load()',                        desc = " Restore Session", icon = " ", key = "s" },
-        --     { action = "LazyExtras",                                               desc = " Lazy Extras",     icon = " ", key = "x" },
-        --     { action = "Lazy",                                                     desc = " Lazy",            icon = "󰒲 ", key = "l" },
-        --     { action = "qa",                                                       desc = " Quit",            icon = " ", key = "q" },
-        --   },
-        --   footer = function()
-        --     local stats = require("lazy").stats()
-        --     local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-        --     return { "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
-        --   end,
-        -- },
         theme = 'hyper',
         config = {
           week_header = {
@@ -156,11 +116,6 @@ return {
           },
         },
       }
-
-      -- for _, button in ipairs(opts.config.center) do
-      --   button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
-      --   button.key_format = "  %s"
-      -- end
 
       -- close Lazy and re-open when the dashboard is ready
       if vim.o.filetype == "lazy" then
