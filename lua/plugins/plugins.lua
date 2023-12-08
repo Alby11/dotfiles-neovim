@@ -19,60 +19,148 @@ return {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
     opts = function()
+      -- -- Function to execute a shell command and capture its output
+      -- -- to get the current user@hostname
+      -- local function execute_command(command)
+      --     local handle = io.popen(command)
+      --     local result = handle:read("*a")
+      --     handle:close()
+      --     return result
+      -- end
+      -- -- Get the username
+      -- local username = execute_command("whoami"):gsub("\n", "")
+      -- -- Get the hostname
+      -- local hostname = execute_command("hostname"):gsub("\n", "")
+      -- -- Get current working directory
+      -- local current_directory = vim.fn.getcwd()
+      --
+      -- local logo = [[
+      --     ╔══════════════════════════════════════════════════════════════════════════════════════════╗
+      --     ║    __  __            _____  __ __         __  _                                          ║
+      --     ║  / / / /__ ___ ____/ ___ \/ // /__  ___ / /_(_)                                          ║
+      --     ║  / /_/ (_-</ -_) __/ / _ `/ _  / _ \(_-</ __/  ]] .. username .. '@' .. hostname .. [[   ║
+      --     ║  \____/___/\__/_/  \ \_,_/_//_/\___/___/\__(_)                                           ║
+      --     ║                    \___/                                                                 ║
+      --     ║                _____          ___                                                        ║
+      --     ║              / ___/    _____/ (_)                                                        ║
+      --     ║              / /__| |/|/ / _  /  ]] .. current_directory .. [[                           ║
+      --     ║              \___/|__,__/\_,_(_)                                                         ║
+      --     ║                                                                                          ║
+      --     ║                                                                                          ║
+      --     ╚══════════════════════════════════════════════════════════════════════════════════════════╝
+      -- ]]
+      --
+      -- logo = string.rep("\n", 8) .. logo .. "\n\n"
+
       -- Function to execute a shell command and capture its output
-      -- to get the current user@hostname
       local function execute_command(command)
           local handle = io.popen(command)
           local result = handle:read("*a")
           handle:close()
           return result
       end
+
       -- Get the username
       local username = execute_command("whoami"):gsub("\n", "")
       -- Get the hostname
       local hostname = execute_command("hostname"):gsub("\n", "")
-      local boxWidth = 80
-      local padding = (boxWidth - string.len(username) - string.len(hostname) - 11) / 2
-      local logo = string.format([[
-          ╔══════════════════════════════════════════════════════════════════════════════════════════╗
-                           User@Host: ]] .. username .. '@' .. hostname .. [[                         
-          ╚══════════════════════════════════════════════════════════════════════════════════════════╝
-      ]], string.rep(" ", padding), username, hostname, string.rep(" ", padding))
-      logo = string.rep("\n", 8) .. logo .. "\n\n"
-
+      -- Get current working directory
+      local current_directory = vim.fn.getcwd()
       local opts = {
-        theme = "doom",
-        hide = {
-          -- this is taken care of by lualine
-          -- enabling this messes up the actual laststatus setting after loading a file
-          statusline = false,
-        },
+        -- theme = "doom",
+        -- hide = {
+        --   -- this is taken care of by lualine
+        --   -- enabling this messes up the actual laststatus setting after loading a file
+        --   statusline = false,
+        -- },
+        -- config = {
+        --   header = vim.split(logo, "\n"),
+        --   -- stylua: ignore
+        --   center = {
+        --     { action = "Telescope find_files",                                     desc = " Find file",       icon = " ", key = "f" },
+        --     { action = "ene | startinsert",                                        desc = " New file",        icon = " ", key = "n" },
+        --     { action = "Telescope oldfiles",                                       desc = " Recent files",    icon = " ", key = "r" },
+        --     { action = "Telescope live_grep",                                      desc = " Find text",       icon = " ", key = "g" },
+        --     { action = [[lua require("lazyvim.util").telescope.config_files()()]], desc = " Config",          icon = " ", key = "c" },
+        --     { action = 'lua require("persistence").load()',                        desc = " Restore Session", icon = " ", key = "s" },
+        --     { action = "LazyExtras",                                               desc = " Lazy Extras",     icon = " ", key = "x" },
+        --     { action = "Lazy",                                                     desc = " Lazy",            icon = "󰒲 ", key = "l" },
+        --     { action = "qa",                                                       desc = " Quit",            icon = " ", key = "q" },
+        --   },
+        --   footer = function()
+        --     local stats = require("lazy").stats()
+        --     local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+        --     return { "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
+        --   end,
+        -- },
+        theme = 'hyper',
         config = {
-          header = vim.split(logo, "\n"),
-          -- stylua: ignore
-          center = {
-            { action = "Telescope find_files",                                     desc = " Find file",       icon = " ", key = "f" },
-            { action = "ene | startinsert",                                        desc = " New file",        icon = " ", key = "n" },
-            { action = "Telescope oldfiles",                                       desc = " Recent files",    icon = " ", key = "r" },
-            { action = "Telescope live_grep",                                      desc = " Find text",       icon = " ", key = "g" },
-            { action = [[lua require("lazyvim.util").telescope.config_files()()]], desc = " Config",          icon = " ", key = "c" },
-            { action = 'lua require("persistence").load()',                        desc = " Restore Session", icon = " ", key = "s" },
-            { action = "LazyExtras",                                               desc = " Lazy Extras",     icon = " ", key = "x" },
-            { action = "Lazy",                                                     desc = " Lazy",            icon = "󰒲 ", key = "l" },
-            { action = "qa",                                                       desc = " Quit",            icon = " ", key = "q" },
+          week_header = {
+            enable = true,
+            append = {
+                string.format("%s@%s > %s", username, hostname, current_directory),
+            },
           },
-          footer = function()
-            local stats = require("lazy").stats()
-            local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-            return { "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
-          end,
+          shortcut = {
+            { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
+            {
+              icon = ' ',
+              icon_hl = '@variable',
+              desc = 'Files',
+              group = 'Label',
+              action = 'Telescope find_files',
+              key = 'f',
+            },
+            {
+              desc = ' New file',
+              group = 'DiagnosticHint',
+              action = 'ene | startinsert',
+              key = 'n',
+            },
+            {
+              desc = ' Restore session',
+              group = 'Constant',
+              action = 'lua require("persistence").load()',
+              key = 's',
+            },
+            {
+              desc = ' Projects',
+              group = 'Property',
+              action = 'Telescope projects',
+              key = 'p',
+            },
+            {
+              desc = ' Find',
+              group = 'Field',
+              action = 'Telescope fd',
+              key = 'd',
+            },
+            {
+              desc = ' Live grep',
+              group = 'Number',
+              action = 'Telescope live_grep',
+              key = 'g',
+            },
+            {
+              desc = ' Config',
+              group = 'Parameter',
+              action = '[[lua require("lazyvim.util").telescope.config_files()()]]',
+              key = 'c',
+            },
+            {
+              desc = '  Quit',
+              group = 'Exception',
+              action = 'qa',
+              key = 'q',
+            },
+          },
         },
       }
 
-      for _, button in ipairs(opts.config.center) do
-        button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
-        button.key_format = "  %s"
-      end
+      -- for _, button in ipairs(opts.config.center) do
+      --   button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
+      --   button.key_format = "  %s"
+      -- end
 
       -- close Lazy and re-open when the dashboard is ready
       if vim.o.filetype == "lazy" then
