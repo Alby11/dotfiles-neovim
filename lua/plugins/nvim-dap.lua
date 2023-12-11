@@ -1,7 +1,8 @@
-return {}
--- return {
--- 	"mfussenegger/nvim-dap",
--- 	config = function()
---
---   end,
--- }
+config = {
+  function()
+end,
+}
+return {
+	"mfussenegger/nvim-dap",
+  config = config,
+}
