@@ -72,3 +72,6 @@ function Exists(name)
   end
   return os.execute("test -e " .. name)
 end
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "

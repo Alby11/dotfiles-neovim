@@ -1,76 +1,45 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
-Vim = vim
-G = Vim.g
-Cmd = Vim.cmd
-Api = Vim.api
-Autocmd = Api.nvim_create_autocmd
-Augroup = Api.nvim_create_augroup
-Command = Api.nvim_create_user_command
-Execute = Api.nvim_command
-Map = Api.nvim_set_keymap
-Mapv = vim.keymap.set
-MapOpts = { silent = true, noremap = true }
-Fn = Vim.fn
-Executable = Vim.executable
-Exists = Fn.exists
-Has = function(x)
-  return Fn.has(x) == 1
-end
-Notify = Vim.notify
-O = Vim.o
-Shell = O.shell
-Opt = Vim.opt
-Stdpath = Fn.stdpath
-Systemlist = Fn.systemlist
-Executable = function(x)
-  return Executable(x) == 1
-end
-Is_wsl = (function()
-  Output = Systemlist("uname -r")
-  return not not string.find(Output[1] or "", "WSL")
-end)()
-Is_mac = Has("macunix")
-Is_win = Has("win32")
-Is_linux = not Is_wsl and not Is_mac and not Is_win
-Is_vscode = Exists("g:vscode") == 1
-Is_neovide = Exists("g:neovide") == 1
-Is_fvim = Exists("g:fvim_loaded") == 1
-Max_jobs = nil
-if Is_mac then
-  Max_jobs = 32
-end
-Termguicolors = Has("termguicolors")
-Colorscheme = "catppuccin"
--- set config directory
-Config_dir = Stdpath("config")
-Plugins_dir = string.format("%s/lua/plugins", Config_dir)
--- avoid warnings
-_G = _G
-pcall = pcall
-print = print
-require = require
-string = string
-tostring = tostring
+local opt = vim.opt
 
-function IsDir(name)
-  if type(name) ~= "string" then
-    return false
-  end
-  return os.execute("test -d " .. name)
-end
+-- Tab / Indentation
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = 2
+opt.expandtab = true
+opt.smartindent = true
+opt.wrap = false
 
-function IsFile(name)
-  if type(name) ~= "string" then
-    return false
-  end
-  return os.execute("test -f " .. name)
-end
+-- Search
+opt.incsearch = true
+opt.ignorecase = true
+opt.smartcase = true
+opt.hlsearch = false
 
-function Exists(name)
-  if type(name) ~= "string" then
-    return false
-  end
-  return os.execute("test -e " .. name)
-end
+-- Appearance
+opt.number = true
+opt.relativenumber = true
+opt.termguicolors = true
+opt.colorcolumn = "100"
+opt.signcolumn = "yes"
+opt.cmdheight = 1
+opt.scrolloff = 10
+opt.completeopt = "menuone,noinsert,noselect"
+
+-- Behaviour
+opt.hidden = true
+opt.errorbells = false
+opt.swapfile = false
+opt.backup = false
+opt.undodir = vim.fn.expand("~/.vim/undodir")
+opt.undofile = true
+opt.backspace = "indent,eol,start"
+opt.splitright = true
+opt.splitbelow = true
+opt.autochdir = false
+opt.iskeyword:append("-")
+opt.mouse:append("a")
+opt.clipboard:append("unnamedplus")
+opt.modifiable = true
+-- opt.guicursor =
+--	"n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
+opt.encoding = "UTF-8"
+opt.showmode = false

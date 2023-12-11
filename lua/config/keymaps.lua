@@ -1,16 +1,59 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+local mapkey = require("util.keymapper").mapkey
 
--- cd to buffer
-MapOpts.desc = "Cd to current buffer dir"
-Map("n", "<leader>cd", "<cmd>cd %:h|pwd<cr>", MapOpts)
+-- Buffer Navigation
+mapkey("<leader>bn", "bnext", "n") -- Next buffer
+mapkey("<leader>bp", "bprevious", "n") -- Prev buffer
+mapkey("<leader>bb", "e #", "n") -- Switch to Other Buffer
+mapkey("<leader>`", "e #", "n") -- Switch to Other Buffer
 
--- print current directory
-MapOpts.desc = "Print working dir"
-Map("n", "<leader>pwd", "<cmd>pwd<cr>", MapOpts)
+-- Directory Navigatio}n
+mapkey("<leader>m", "NvimTreeFocus", "n")
+mapkey("<leader>e", "NvimTreeToggle", "n")
 
--- ESC to normal mode
+-- Pane and Window Navigation
+mapkey("<C-h>", "<C-w>h", "n") -- Navigate Left
+mapkey("<C-j>", "<C-w>j", "n") -- Navigate Down
+mapkey("<C-k>", "<C-w>k", "n") -- Navigate Up
+mapkey("<C-l>", "<C-w>l", "n") -- Navigate Right
+mapkey("<C-h>", "wincmd h", "t") -- Navigate Left
+mapkey("<C-j>", "wincmd j", "t") -- Navigate Down
+mapkey("<C-k>", "wincmd k", "t") -- Navigate Up
+mapkey("<C-l>", "wincmd l", "t") -- Navigate Right
+mapkey("<C-h>", "TmuxNavigateLeft", "n") -- Navigate Left
+mapkey("<C-j>", "TmuxNavigateDown", "n") -- Navigate Down
+mapkey("<C-k>", "TmuxNavigateUp", "n") -- Navigate Up
+mapkey("<C-l>", "TmuxNavigateRight", "n") -- Navigate Right
+
+-- Window Management
+mapkey("<leader>sv", "vsplit", "n") -- Split Vertically
+mapkey("<leader>sh", "split", "n") -- Split Horizontally
+mapkey("<C-Up>", "resize +2", "n")
+mapkey("<C-Down>", "resize -2", "n")
+mapkey("<C-Left>", "vertical resize +2", "n")
+mapkey("<C-Right>", "vertical resize -2", "n")
+
+-- Show Full File-Path
+mapkey("<leader>pa", "echo expand('%:p')", "n") -- Show Full File Path
+
+-- Notes
+mapkey("<leader>ng", "Neorg workspace general", "n")
+mapkey("<leader>nw", "Neorg workspace work", "n")
+mapkey("<leader>ny", "Neorg workspace youtube", "n")
+
+-- Indenting
+vim.keymap.set("v", "<", "<gv", { silent = true, noremap = true })
+vim.keymap.set("v", ">", ">gv", { silent = true, noremap = true })
+
+local api = vim.api
+
+-- Zen Mode
+api.nvim_set_keymap("n", "<leader>zn", ":TZNarrow<CR>", {})
+api.nvim_set_keymap("v", "<leader>zn", ":'<,'>TZNarrow<CR>", {})
+api.nvim_set_keymap("n", "<leader>sm", ":TZFocus<CR>", {})
+api.nvim_set_keymap("n", "<leader>zm", ":TZMinimalist<CR>", {})
+api.nvim_set_keymap("n", "<leader>za", ":TZAtaraxis<CR>", {})
+
+  -- ESC to normal mode
 MapOpts.desc = "Esc to normal mode"
 Map("i", "kj", [[<Esc>]], MapOpts)
 Map("v", "kj", [[<Esc>]], MapOpts)
@@ -21,6 +64,18 @@ MapOpts.desc = "Write file"
 Map("n", "<leader>qw", "<cmd>w<cr>", MapOpts)
 MapOpts.desc = "Force write file"
 Map("n", "<leader>qW", "<cmd>w!<cr>", MapOpts)
+MapOpts.desc = "Quit"
+Map("n", "<leader>qq", "<cmd>q<cr>", MapOpts)
+MapOpts.desc = "Force quit"
+Map("n", "<leader>qQ", "<cmd>q!<cr>", MapOpts)
+MapOpts.desc = "Quit all"
+Map("n", "<leader>qa", "<cmd>qa<cr>", MapOpts)
+MapOpts.desc = "Force quit all"
+Map("n", "<leader>qA", "<cmd>qa!<cr>", MapOpts)
+
+
+MapOpts.desc = "Source current buffer"
+Map("n", "<leader>so", "<cmd>so %<cr>", MapOpts)
 
 -- clean MapOpts desc
 MapOpts.desc = nil
