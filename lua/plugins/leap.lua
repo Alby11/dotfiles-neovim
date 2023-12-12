@@ -1,3 +1,11 @@
+local dependencies = {
+  "tpope/vim-repeat"
+}
+
+local config = function()
+  require("leap").add_default_mappings()
+end
+
 local opts = {
 	opts = {
 		highlight_ahead_of_time = true,
@@ -17,11 +25,11 @@ local opts = {
 }
 
 return {
-	"ggandor/leap.nvim",
-	opts = opts,
-	config = function()
-		require("leap").add_default_mappings()
-	end,
-	event = "BufReadPre",
-	dependencies = { "tpope/vim-repeat" },
+  {
+    "ggandor/leap.nvim",
+    dependencies = dependencies,
+    event = "BufReadPre",
+    config = config,
+    opts = opts,
+  }
 }

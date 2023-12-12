@@ -9,7 +9,7 @@ Command = Api.nvim_create_user_command
 Execute = Api.nvim_command
 Map = Api.nvim_set_keymap
 Mapv = vim.keymap.set
-MapOpts = { silent = true, noremap = true, desc = nil }
+MapOpts = { silent = true, noremap = true }
 Fn = Vim.fn
 Executable = Vim.executable
 Exists = Fn.exists

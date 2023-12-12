@@ -1,61 +1,92 @@
+local config = function()
+  require("yanky").setup({})
+  require("telescope").load_extension("yank_history")
+end
+
+local dependencies = {
+  {
+    "kkharji/sqlite.lua",
+    lazy = false,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    opts = {
+      sources = {
+        name = "cmp_yanky",
+        option = {
+          -- only suggest items which match the current filetype
+          onlyCurrentFiletype = false,
+          -- only suggest items with a minimum length
+          minLength = 3,
+        }
+      },
+    }
+  }
+}
+
+local opts = {
+  ring = {
+    history_length = 100,
+    storage = "sqlite",
+    storage_path = vim.fn.stdpath("data") .. "/databases/yanky.db", -- Only for sqlite storage
+    sync_with_numbered_registers = true,
+    cancel_event = "update",
+    ignore_registers = { "_" },
+    update_register_on_cycle = false,
+  },
+  picker = {
+    select = {
+      action = nil, -- nil to use default put action
+    },
+    telescope = {
+      use_default_mappings = true, -- if default mappings should be used
+      mappings = nil, -- nil to use default mappings or no mappings (see `use_default_mappings`)
+    },
+  },
+  system_clipboard = {
+    sync_with_ring = true,
+  },
+  highlight = {
+    on_put = true,
+    on_yank = true,
+    timer = 500,
+  },
+  preserve_cursor_position = {
+    enabled = true,
+  },
+  textobj = {
+   enabled = true,
+  },
+}
+
+local keys = {
+  {"p", "<Plug>(YankyPutAfter)", {"n", "x"}, noremap = true, silent = true, desc = "Put after with Yank"},
+  {"P", "<Plug>(YankyPutBefore)", {"n", "x"}, noremap = true, silent = true, desc = "Put before with Yank"},
+  {"gp", "<Plug>(YankyGPutAfter)", {"n", "x"}, noremap = true, silent = true, desc = "GPut after with Yank"},
+  {"gP", "<Plug>(YankyGPutBefore)", {"n", "x"}, noremap = true, silent = true, desc = "GPut before with Yank"},
+  {"<c-p>", "<Plug>(YankyPreviousEntry)", "n", noremap = true, silent = true, desc = "Yanky previous entry"},
+  {"<c-n>", "<Plug>(YankyNextEntry)", "n", noremap = true, silent = true, desc = "Yanky next entry"},
+  {"]p", "<Plug>(YankyPutIndentAfterLinewise)", "n", noremap = true, silent = true, desc = "Yanky put indent after linewise"},
+  {"[p", "<Plug>(YankyPutIndentBeforeLinewise)", "n", noremap = true, silent = true, desc = "Yanky put indent before linewise"},
+  {"]P", "<Plug>(YankyPutIndentAfterLinewise)", "n", noremap = true, silent = true, desc = "Yanky put indent after linewise with capital P"},
+  {"[P", "<Plug>(YankyPutIndentBeforeLinewise)", "n", noremap = true, silent = true, desc = "Yanky put indent before linewise with capital P"},
+  {">p", "<Plug>(YankyPutIndentAfterShiftRight)", "n", noremap = true, silent = true, desc = "Yanky put indent after shift right"},
+  {"<p", "<Plug>(YankyPutIndentAfterShiftLeft)", "n", noremap = true, silent = true, desc = "Yanky put indent after shift left"},
+  {">P", "<Plug>(YankyPutIndentBeforeShiftRight)", "n", noremap = true, silent = true, desc = "Yanky put indent before shift right"},
+  {"<P", "<Plug>(YankyPutIndentBeforeShiftLeft)", "n", noremap = true, silent = true, desc = "Yanky put indent before shift left"},
+  {"=p", "<Plug>(YankyPutAfterFilter)", "n", noremap = true, silent = true, desc = "Yanky put after filter"},
+  {"=P", "<Plug>(YankyPutBeforeFilter)", "n", noremap = true, silent = true, desc = "Yanky put before filter"},
+}
+
 return {
   -- yanky and sqlite are managed as LazyVim extras
   -- but you need to initialize yanky on your own
   {
-    "kkharji/sqlite.lua",
-    lazy = false,
-    dependencies =
-  {
     "gbprod/yanky.nvim",
-    config = function()
-      require("yanky").setup({})
-      require("telescope").load_extension("yank_history")
-    end,
-    opts = {
-      storage = "sqlite",
-    },
-    dependencies = {
-      "hrsh7th/nvim-cmp",
-      opts = {
-        sources = {
-          name = "cmp_yanky",
-          option = {
-            -- only suggest items which match the current filetype
-            -- onlyCurrentFiletype = false,
-            -- only suggest items with a minimum length
-            minLength = 3,
-          },
-        },
-      },
-      ----@param opts cmp.ConfigSchema
-      -- opts = function(_, opts)
-        -- table.insert(opts.sources, {
-          -- name = "cmp_yanky",
-          -- option = {
-            -- only suggest items which match the current filetype
-            -- onlyCurrentFiletype = false,
-            -- only suggest items with a minimum length
-            -- minLength = 3,
-          -- },
-        -- })
-      -- end,
-    },
+    dependencies = dependencies,
+    config = config,
+    opts = opts,
+    keys = keys,
   },
-  },
-vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)"),
-vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)"),
-vim.keymap.set({"n","x"}, "gp", "<Plug>(YankyGPutAfter)"),
-vim.keymap.set({"n","x"}, "gP", "<Plug>(YankyGPutBefore)"),
-vim.keymap.set("n", "<c-p>", "<Plug>(YankyPreviousEntry)"),
-vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)"),
-vim.keymap.set("n", "]p", "<Plug>(YankyPutIndentAfterLinewise)"),
-vim.keymap.set("n", "[p", "<Plug>(YankyPutIndentBeforeLinewise)"),
-vim.keymap.set("n", "]P", "<Plug>(YankyPutIndentAfterLinewise)"),
-vim.keymap.set("n", "[P", "<Plug>(YankyPutIndentBeforeLinewise)"),
-vim.keymap.set("n", ">p", "<Plug>(YankyPutIndentAfterShiftRight)"),
-vim.keymap.set("n", "<p", "<Plug>(YankyPutIndentAfterShiftLeft)"),
-vim.keymap.set("n", ">P", "<Plug>(YankyPutIndentBeforeShiftRight)"),
-vim.keymap.set("n", "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)"),
-vim.keymap.set("n", "=p", "<Plug>(YankyPutAfterFilter)"),
-vim.keymap.set("n", "=P", "<Plug>(YankyPutBeforeFilter)"),
+
 }
