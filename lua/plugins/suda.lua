@@ -1,6 +1,6 @@
 local keys = {
-  { 'n', '<leader>Zn', '<cmd>SudaRead<CR>', { desc = "Sudo read file" } },
-  { 'n', '<leader>Zw', '<cmd>SudaWrite<CR>', { desc = "Sudo write file" } },
+  { '<leader>Zn', '<cmd>SudaRead<CR>', { silent = true, noremap = true, desc = "Sudo read file" } },
+  { '<leader>Zw', '<cmd>SudaWrite<CR>', { silent = true, noremap = true, desc = "Sudo write file" } },
 }
 return {
   -- Suda to sudo

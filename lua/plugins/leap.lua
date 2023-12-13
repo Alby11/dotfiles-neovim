@@ -27,6 +27,7 @@ local opts = {
 return {
   {
     "ggandor/leap.nvim",
+    enabled = false,
     dependencies = dependencies,
     event = "BufReadPre",
     config = config,

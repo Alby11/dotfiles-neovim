@@ -7,12 +7,17 @@ local keys = {
   { "n", "]b", "<cmd>BufferlineCyclePrev<cr>", { desc = "Prev Buffer", noremap = true, silent = true } },
 }
 
-local config = {
-  function ()
-    vim.opt.termguicolors = true
-    require("bufferline").setup()
-  end,
-}
+local config = function ()
+  vim.opt.termguicolors = true
+  require("bufferline").setup()
+  vim.g.transparent_groups = vim.list_extend(
+    vim.g.transparent_groups or {},
+    vim.tbl_map(function(v)
+      return v.hl_group
+    end, vim.tbl_values(require('bufferline.config').highlights))
+  )
+end
+
 
 local opts = {
   diagnostics_indicator = function(count, level, diagnostics_dict, context)
