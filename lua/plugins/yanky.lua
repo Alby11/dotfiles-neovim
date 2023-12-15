@@ -10,17 +10,6 @@ local dependencies = {
   },
   {
     "hrsh7th/nvim-cmp",
-    opts = {
-      sources = {
-        name = "cmp_yanky",
-        option = {
-          -- only suggest items which match the current filetype
-          onlyCurrentFiletype = false,
-          -- only suggest items with a minimum length
-          minLength = 3,
-        }
-      },
-    }
   }
 }
 

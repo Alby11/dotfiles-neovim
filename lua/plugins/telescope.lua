@@ -56,7 +56,7 @@ return {
   -- Telescope main plugin
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.3",
+    tag = "0.1.5",
     lazy = false,
     requires = {"nvim-lua/plenary.nvim"},
     config = config,
@@ -67,6 +67,7 @@ return {
   {"cljoly/telescope-repo.nvim"},
   {"jvgrootveld/telescope-zoxide"},
   {"nvim-telescope/telescope-file-browser.nvim"},
-  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+  {'nvim-telescope/telescope-fzf-native.nvim', build = 'make'}
+  -- { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
   -- Add other plugins as needed
 }
