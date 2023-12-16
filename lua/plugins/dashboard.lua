@@ -1,3 +1,9 @@
+local mapkey = require("util.keymapper").mapkey
+
+local keys = {
+  mapkey("<leader>H", "Dashboard", "n", { silent = true, noremap = true, desc = "Dashboard" }) -- Call Dashboard
+}
+
 return {
   {
     "nvimdev/dashboard-nvim",
@@ -5,10 +11,10 @@ return {
     opts = function()
       -- Function to execute a shell command and capture its output
       local function execute_command(command)
-          local handle = io.popen(command)
-          local result = handle:read("*a")
-          handle:close()
-          return result
+        local handle = io.popen(command)
+        local result = handle:read("*a")
+        handle:close()
+        return result
       end
 
       -- Get the username
@@ -23,7 +29,7 @@ return {
           week_header = {
             enable = true,
             append = {
-                string.format("%s@%s > %s", username, hostname, current_directory),
+              string.format("%s@%s > %s", username, hostname, current_directory),
             },
           },
           shortcut = {
@@ -95,5 +101,6 @@ return {
 
       return opts
     end,
+    keys = keys,
   },
 }

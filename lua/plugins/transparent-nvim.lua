@@ -1,8 +1,8 @@
 local config = {
-  function ()
+  function()
     local transparent = require("transparent")
-		transparent.clear_prefix("lualine")
-		transparent.clear_prefix("Bufferline")
+    transparent.clear_prefix("lualine")
+    transparent.clear_prefix("Bufferline")
     if config.transparent then
       vim.cmd("TransparentEnable")
     end
@@ -21,11 +21,10 @@ local opts = {
 }
 
 return {
-	{
+  {
     "xiyaowong/nvim-transparent",
     enabled = true,
     lazy = false,
-    after = 'rcarriga/nvim-notify',
     config = config,
     opts = opts,
   },
