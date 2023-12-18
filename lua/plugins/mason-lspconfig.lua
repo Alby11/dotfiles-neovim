@@ -1,3 +1,4 @@
+local mapkey = require("util.keymapper").mapvimkey
 local opts = {
 	ensure_installed = {
 		"efm",

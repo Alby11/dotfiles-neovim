@@ -1,3 +1,4 @@
+local mapkey = require("util.keymapper").mapvimkey
 return {
 	"RRethy/vim-illuminate",
 	lazy = false,

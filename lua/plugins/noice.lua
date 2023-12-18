@@ -1,3 +1,4 @@
+local mapkey = require("util.keymapper").mapvimkey
 return {
 	"folke/noice.nvim",
 	event = "VeryLazy",

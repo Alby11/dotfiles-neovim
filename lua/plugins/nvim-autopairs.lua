@@ -1,3 +1,4 @@
+local mapkey = require("util.keymapper").mapvimkey
 return {
 	"windwp/nvim-autopairs",
 	event = "InsertEnter",

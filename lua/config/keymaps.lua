@@ -41,18 +41,26 @@ mapkey("<leader>nw", "Neorg workspace work", "n")
 mapkey("<leader>ny", "Neorg workspace youtube", "n")
 
 -- Indenting
-vim.keymap.set("v", "<", "<gv", { silent = true, noremap = true })
-vim.keymap.set("v", ">", ">gv", { silent = true, noremap = true })
-
-local api = vim.api
+Mapv("v", "<", "<gv", { silent = true, noremap = true })
+Mapv("v", ">", ">gv", { silent = true, noremap = true })
 
 -- Zen Mode
-api.nvim_set_keymap("n", "<leader>zn", ":TZNarrow<CR>", {})
-api.nvim_set_keymap("v", "<leader>zn", ":'<,'>TZNarrow<CR>", {})
-api.nvim_set_keymap("n", "<leader>sm", ":TZFocus<CR>", {})
-api.nvim_set_keymap("n", "<leader>zm", ":TZMinimalist<CR>", {})
-api.nvim_set_keymap("n", "<leader>za", ":TZAtaraxis<CR>", {})
+Map("n", "<leader>zn", ":TZNarrow<CR>", {})
+Map("v", "<leader>zn", ":'<,'>TZNarrow<CR>", {})
+Map("n", "<leader>sm", ":TZFocus<CR>", {})
+Map("n", "<leader>zm", ":TZMinimalist<CR>", {})
+Map("n", "<leader>za", ":TZAtaraxis<CR>", {})
 
--- Comments
-api.nvim_set_keymap("n", "<C-_>", "gtc", { noremap = false })
-api.nvim_set_keymap("v", "<C-_>", "goc", { noremap = false })
+-- ESC to normal mode
+Map("v", "kj", [[<Esc>]], MapOpts)
+Map("i", "kj", [[<Esc>]], MapOpts)
+Map("t", "kj", [[<C-\><C-n>]], MapOpts)
+
+mapkey("<leader>qw", "w")
+mapkey("<leader>qW", "w!")
+mapkey("<leader>qq", "q")
+mapkey("<leader>qQ", "q!")
+mapkey("<leader>qa", "qa")
+mapkey("<leader>qA", "qa!")
+
+mapkey("<leader>so", "so %", "n", { desc = "Source current buffer" })

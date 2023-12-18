@@ -1,3 +1,4 @@
+local mapkey = require("util.keymapper").mapvimkey
 return {
 	"nvim-tree/nvim-tree.lua",
 	lazy = false,

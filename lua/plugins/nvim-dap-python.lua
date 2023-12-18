@@ -1,3 +1,4 @@
+local mapkey = require("util.keymapper").mapvimkey
 return {
 	"mfussenegger/nvim-dap-python",
 	ft = "python", -- filetype

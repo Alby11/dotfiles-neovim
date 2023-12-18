@@ -1,3 +1,4 @@
+local mapkey = require("util.keymapper").mapvimkey
 return {
 	"hrsh7th/nvim-cmp",
 	config = function()

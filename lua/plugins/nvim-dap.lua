@@ -1,3 +1,4 @@
+local mapkey = require("util.keymapper").mapvimkey
 local debugging_signs = require("util.icons").debugging_signs
 
 return {

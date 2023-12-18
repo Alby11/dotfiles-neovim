@@ -1,3 +1,4 @@
+local mapkey = require("util.keymapper").mapvimkey
 local config = function ()
   -- Require and setup baleia
   local baleia = require('baleia').setup({})

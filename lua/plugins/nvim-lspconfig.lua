@@ -1,3 +1,4 @@
+local mapkey = require("util.keymapper").mapvimkey
 local on_attach = require("util.lsp").on_attach
 local diagnostic_signs = require("util.icons").diagnostic_signs
 
