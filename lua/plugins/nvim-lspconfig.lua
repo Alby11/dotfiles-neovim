@@ -1,17 +1,16 @@
 local on_attach = require("util.lsp").on_attach
-local diagnostic_signs = require("util.lsp").diagnostic_signs
+local diagnostic_signs = require("util.icons").diagnostic_signs
 
 local config = function()
 	require("neoconf").setup({})
 	local cmp_nvim_lsp = require("cmp_nvim_lsp")
 	local lspconfig = require("lspconfig")
+	local capabilities = cmp_nvim_lsp.default_capabilities()
 
 	for type, icon in pairs(diagnostic_signs) do
 		local hl = "DiagnosticSign" .. type
 		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 	end
-
-	local capabilities = cmp_nvim_lsp.default_capabilities()
 
 	-- lua
 	lspconfig.lua_ls.setup({
@@ -116,41 +115,41 @@ local config = function()
 		},
 	})
 
-	local black = require("efmls-configs.formatters.black")
-	local clangformat = require("efmls-configs.formatters.clang_format")
-	local cpplint = require("efmls-configs.linters.cpplint")
-	local eslint = require("efmls-configs.linters.eslint")
-	local fixjson = require("efmls-configs.formatters.fixjson")
-	local flake8 = require("efmls-configs.linters.flake8")
-	local hadolint = require("efmls-configs.linters.hadolint")
 	local luacheck = require("efmls-configs.linters.luacheck")
+	local stylua = require("efmls-configs.formatters.stylua")
+	local flake8 = require("efmls-configs.linters.flake8")
+	local black = require("efmls-configs.formatters.black")
+	local eslint = require("efmls-configs.linters.eslint")
 	local prettier_d = require("efmls-configs.formatters.prettier_d")
+	local fixjson = require("efmls-configs.formatters.fixjson")
 	local shellcheck = require("efmls-configs.linters.shellcheck")
 	local shfmt = require("efmls-configs.formatters.shfmt")
+	local hadolint = require("efmls-configs.linters.hadolint")
 	local solhint = require("efmls-configs.linters.solhint")
-	local stylua = require("efmls-configs.formatters.stylua")
+	local cpplint = require("efmls-configs.linters.cpplint")
+	local clangformat = require("efmls-configs.formatters.clang_format")
 
 	-- configure efm server
 	lspconfig.efm.setup({
 		filetypes = {
-			"c",
-			"cpp",
-			"css",
-			"docker",
-			"html",
-			"javascript",
-			"javascriptreact",
+			"lua",
+			"python",
 			"json",
 			"jsonc",
-			"lua_ls",
-			"markdown",
-			"python",
 			"sh",
-			"solidity",
-			"svelte",
+			"javascript",
+			"javascriptreact",
 			"typescript",
 			"typescriptreact",
+			"svelte",
 			"vue",
+			"markdown",
+			"docker",
+			"solidity",
+			"html",
+			"css",
+			"c",
+			"cpp",
 		},
 		init_options = {
 			documentFormatting = true,

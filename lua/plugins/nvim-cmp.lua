@@ -2,7 +2,6 @@ return {
 	"hrsh7th/nvim-cmp",
 	config = function()
 		local cmp = require("cmp")
-    local compare = cmp.config.compare
 		local luasnip = require("luasnip")
 		local lspkind = require("lspkind")
 
@@ -27,12 +26,10 @@ return {
 			}),
 			-- sources for autocompletion
 			sources = cmp.config.sources({
-        { name = "nvim_lsp", priority = 100 },
+				{ name = "nvim_lsp" }, -- lsp
 				{ name = "luasnip" }, -- snippets
 				{ name = "buffer" }, -- text within current buffer
-				{ name = "omni" }, -- file system paths
 				{ name = "path" }, -- file system paths
-        { name = "jupynium", priority = 1000 },  -- consider higher priority than LSP
 			}),
 			-- configure lspkind for vs-code like icons
 			formatting = {
@@ -41,19 +38,12 @@ return {
 					ellipsis_char = "...",
 				}),
 			},
-      sorting = {
-        priority_weight = 1.0,
-        comparators = {
-          compare.score,            -- Jupyter kernel completion shows prior to LSP
-          compare.recently_used,
-          compare.locality,
-        },
-      },
 		})
 	end,
 	dependencies = {
 		"onsails/lspkind.nvim",
 		{
+
 			"L3MON4D3/LuaSnip",
 			-- follow latest release.
 			version = "2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)

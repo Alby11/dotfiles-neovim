@@ -11,16 +11,9 @@ local config = function()
 			lualine_b = { "buffers" },
 			lualine_x = { "encoding", "fileformat", "filetype" },
 			lualine_y = { "progress" },
-      lualine_w = {
-        {
-          require("lazy.status").updates,
-          cond = require("lazy.status").has_updates,
-          color = { fg = "#ff9e64" },
-        },
-      },
 			lualine_z = { "location" },
+		},
 		tabline = {},
-    }
 	})
 end
 

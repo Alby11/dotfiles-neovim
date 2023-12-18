@@ -1,4 +1,4 @@
-local mapkey = require("util.keymapper").mapkey
+local mapkey = require("util.keymapper").mapvimkey
 
 -- Buffer Navigation
 mapkey("<leader>bn", "bnext", "n") -- Next buffer
@@ -53,29 +53,6 @@ api.nvim_set_keymap("n", "<leader>sm", ":TZFocus<CR>", {})
 api.nvim_set_keymap("n", "<leader>zm", ":TZMinimalist<CR>", {})
 api.nvim_set_keymap("n", "<leader>za", ":TZAtaraxis<CR>", {})
 
-  -- ESC to normal mode
-MapOpts.desc = "Esc to normal mode"
-Map("i", "kj", [[<Esc>]], MapOpts)
-Map("v", "kj", [[<Esc>]], MapOpts)
-Map("t", "kj", [[<C-\><C-n>]], MapOpts)
-
--- save buffer
-MapOpts.desc = "Write file"
-Map("n", "<leader>qw", "<cmd>w<cr>", MapOpts)
-MapOpts.desc = "Force write file"
-Map("n", "<leader>qW", "<cmd>w!<cr>", MapOpts)
-MapOpts.desc = "Quit"
-Map("n", "<leader>qq", "<cmd>q<cr>", MapOpts)
-MapOpts.desc = "Force quit"
-Map("n", "<leader>qQ", "<cmd>q!<cr>", MapOpts)
-MapOpts.desc = "Quit all"
-Map("n", "<leader>qa", "<cmd>qa<cr>", MapOpts)
-MapOpts.desc = "Force quit all"
-Map("n", "<leader>qA", "<cmd>qa!<cr>", MapOpts)
-
-
-MapOpts.desc = "Source current buffer"
-Map("n", "<leader>so", "<cmd>so %<cr>", MapOpts)
-
--- clean MapOpts desc
-MapOpts.desc = nil
+-- Comments
+api.nvim_set_keymap("n", "<C-_>", "gtc", { noremap = false })
+api.nvim_set_keymap("v", "<C-_>", "goc", { noremap = false })
