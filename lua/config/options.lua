@@ -38,7 +38,40 @@ opt.autochdir = false
 opt.iskeyword:append("-")
 opt.selection = "exclusive"
 opt.mouse = "a"
+
+-- clipboard block
 opt.clipboard:append("unnamedplus")
+local function is_wayland_session()
+	local session_type = os.getenv("XDG_SESSION_TYPE")
+	return session_type == "wayland"
+end
+local function can_use_wl_clipboard()
+	local wl_copy_available = os.execute("command -v wl-copy >/dev/null 2>&1")
+	local wl_paste_available = os.execute("command -v wl-paste >/dev/null 2>&1")
+	return wl_copy_available and wl_paste_available
+end
+if is_wayland_session() and can_use_wl_clipboard() then
+	-- Wayland clipboard configuration
+	vim.opt.clipboard = "unnamedplus"
+
+	vim.g.clipboard = {
+		name = "wl-clipboard",
+		copy = {
+			["+"] = "wl-copy",
+			["*"] = "wl-copy",
+		},
+		paste = {
+			["+"] = "wl-paste",
+			["*"] = "wl-paste",
+		},
+		cache_enabled = 1,
+	}
+else
+	-- Default clipboard configuration for non-Wayland or when wl-clipboard is not usable
+	vim.opt.clipboard = "unnamedplus"
+end
+
+-- set modifiable as default
 opt.modifiable = true
 
 Opt.guicursor = {
