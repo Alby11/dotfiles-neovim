@@ -1,6 +1,7 @@
 local mapkey = require("util.keymapper").mapvimkey
 return {
 	"zbirenbaum/copilot.lua",
+	enabled = false,
 	cmd = "Copilot",
 	event = "InsertEnter",
 	dependencies = "zbirenbaum/copilot-cmp",
