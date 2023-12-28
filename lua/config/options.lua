@@ -40,7 +40,8 @@ opt.selection = "exclusive"
 opt.mouse = "a"
 
 -- clipboard block
-opt.clipboard:append("unnamedplus")
+-- opt.clipboard:append("unnamedplus")
+opt.clipboard = "unnamedplus"
 local function is_wayland_session()
 	local session_type = os.getenv("XDG_SESSION_TYPE")
 	return session_type == "wayland"
@@ -52,7 +53,7 @@ local function can_use_wl_clipboard()
 end
 if is_wayland_session() and can_use_wl_clipboard() then
 	-- Wayland clipboard configuration
-	vim.opt.clipboard = "unnamedplus"
+	opt.clipboard = "unnamedplus"
 
 	vim.g.clipboard = {
 		name = "wl-clipboard",
@@ -86,9 +87,9 @@ Opt.guicursor = {
 
 -- Optionally, you can define custom colors for Cursor, CursorI, CursorR in your colorscheme or separately
 -- For example:
-Cmd([[highlight Cursor guifg=#ffccff guibg=#1e1e2e]]) -- Mauve for Normal Mode
-Cmd([[highlight CursorI guifg=#f5c2e7 guibg=#1e1e2e]]) -- Pink for Insert Mode
-Cmd([[highlight CursorR guifg=#a6e3a1 guibg=#1e1e2e]]) -- Green for Replace Mode
+Cmd([[highlight Cursor guifg=#ffccff guibg=#cba6f7]]) -- Mauve for Normal Mode
+Cmd([[highlight CursorI guifg=#f5c2e7 guibg=#f5c2e7]]) -- Pink for Insert Mode
+Cmd([[highlight CursorR guifg=#a6e3a1 guibg=#a6e3a1]]) -- Green for Replace Mode
 
 opt.encoding = "UTF-8"
 opt.showmode = false
