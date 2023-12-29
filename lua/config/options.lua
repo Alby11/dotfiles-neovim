@@ -74,21 +74,22 @@ end
 -- set modifiable as default
 opt.modifiable = true
 
-Opt.guicursor = {
+opt.guicursor = {
 	"n-v:block-Cursor", -- Normal and Visual mode - Block cursor with custom color
 	"i:ver25-CursorI", -- Insert mode - Vertical bar 25% width with a different color
-	"c:hor20", -- Command-line mode - Horizontal bar 20% width
+	"c:hor20-CursorX", -- Command-line mode - Horizontal bar 20% width
 	"r-cr:hor20-CursorR", -- Replace mode - Horizontal bar 20% width with unique color
-	"o:hor50", -- Operator-pending mode - Horizontal bar 50% width
+	"o:hor50-CursorOP", -- Operator-pending mode - Horizontal bar 50% width
 	"a:blinkwait700-blinkoff400-blinkon250", -- Blink settings for all modes
-	"sm:block-blinkwait175-blinkoff150-blinkon175", -- Select mode - Block with different blink rate
+	"sm:block-blinkwait175-blinkoff150-blinkon175-CursorSM", -- Select mode - Block with different blink rate
 }
 
 -- Optionally, you can define custom colors for Cursor, CursorI, CursorR in your colorscheme or separately
 -- For example:
-Cmd([[highlight Cursor guifg=#ffccff guibg=#cba6f7]]) -- Mauve for Normal Mode
-Cmd([[highlight CursorI guifg=#f5c2e7 guibg=#f5c2e7]]) -- Pink for Insert Mode
-Cmd([[highlight CursorR guifg=#a6e3a1 guibg=#a6e3a1]]) -- Green for Replace Mode
+Cmd([[highlight Cursor guifg=#89b4fa guibg=#89b4fa ]]) -- Blue for Normal Mode
+Cmd([[highlight CursorI guifg=#f5c2e7 guibg=#f5c2e7 ]]) -- Pink for Insert Mode
+Cmd([[highlight CursorX guifg=#f38ba8 guibg=#f38ba8 ]]) -- Red for Command-line Mode
+Cmd([[highlight CursorR guifg=#a6e3a1 guibg=#a6e3a1 ]]) -- Green for Replace Mode
 
 opt.encoding = "UTF-8"
 opt.showmode = false
