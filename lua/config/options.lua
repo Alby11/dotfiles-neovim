@@ -40,8 +40,7 @@ opt.selection = "exclusive"
 opt.mouse = "a"
 
 -- clipboard block
--- opt.clipboard:append("unnamedplus")
-opt.clipboard = "unnamedplus"
+opt.clipboard:append("unnamedplus")
 local function is_wayland_session()
 	local session_type = os.getenv("XDG_SESSION_TYPE")
 	return session_type == "wayland"
