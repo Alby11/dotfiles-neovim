@@ -1,6 +1,7 @@
 local mapkey = require("util.keymapper").mapvimkey
-local config = {
-	function()
+local opts = {
+	-- Move the function from `config` here
+	setup = function()
 		local transparent = require("transparent")
 		transparent.clear_prefix("lualine")
 		transparent.clear_prefix("Bufferline")
@@ -8,8 +9,7 @@ local config = {
 			vim.cmd("TransparentEnable")
 		end
 	end,
-}
-local opts = {
+	-- The rest of your original `opts` configuration
 	-- lualine_style = "default",
 	lualine_style = "stealth",
 	extra_groups = {
@@ -26,7 +26,6 @@ return {
 		"xiyaowong/nvim-transparent",
 		enabled = true,
 		lazy = false,
-		config = config,
-		opts = opts,
+		opts = opts, -- Use only `opts` here
 	},
 }
