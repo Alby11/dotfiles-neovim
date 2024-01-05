@@ -79,6 +79,12 @@ return {
 							key = "c",
 						},
 						{
+							desc = "> Cheat.sh",
+							group = "Exception",
+							action = "Cheat",
+							key = "C",
+						},
+						{
 							desc = "  Quit",
 							group = "Exception",
 							action = "qa",
