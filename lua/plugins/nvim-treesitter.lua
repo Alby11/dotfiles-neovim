@@ -22,9 +22,9 @@ local config = function()
 			"html",
 			"css",
 			"markdown",
+			"markdown_inline",
 			"jsonc",
 			"regex",
-
 			"bash",
 			"lua",
 			"dockerfile",
