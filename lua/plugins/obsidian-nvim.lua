@@ -18,6 +18,21 @@ local opts = {
 	},
 }
 
+local config = function()
+	require("obsidian").setup({
+		workspaces = {
+			{
+				name = "personal",
+				path = "~/vaults/personal",
+			},
+			{
+				name = "work",
+				path = "~/vaults/work",
+			},
+		},
+	})
+end
+
 return {
 	"epwalsh/obsidian.nvim",
 	version = "*", -- recommended, use latest release instead of latest commit
@@ -31,6 +46,7 @@ return {
 	--   "BufNewFile path/to/my-vault/**.md",
 	-- },
 	dependencies = dependencies,
+	config = config,
 	opts = opts,
 	-- see below for full list of options 👇
 }
