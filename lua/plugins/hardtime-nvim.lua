@@ -6,9 +6,7 @@ local dependencies = {
 return {
 	"m4xshen/hardtime.nvim",
 	enabled = true,
-	lazy = true,
-	command = "Hardtime",
-	event = "BufEnter",
+	-- command = "Hardtime",
 	dependencies = dependencies,
 	opts = {},
 }
