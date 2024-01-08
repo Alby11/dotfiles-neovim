@@ -37,7 +37,7 @@ return {
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
 		enabled = true,
-		event = "BufEnter",
+		event = "VeryLazy",
 		dependencies = dependencies,
 		config = config,
 	},
