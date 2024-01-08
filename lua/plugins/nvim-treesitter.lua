@@ -55,5 +55,6 @@ end
 return {
 	"nvim-treesitter/nvim-treesitter",
 	enabled = true,
+	event = "BufEnter",
 	config = config,
 }

@@ -7,6 +7,7 @@ end
 return {
 	"ggandor/leap.nvim",
 	enabled = true,
+	event = "BufEnter",
 	dependencies = dependencies,
 	config = config,
 }

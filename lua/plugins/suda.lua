@@ -7,6 +7,8 @@ return {
 	-- Suda to sudo
 	{
 		"lambdalisue/suda.vim",
+		enabled = true,
+		event = "BufEnter",
 		keys = keys,
 	},
 }

@@ -34,8 +34,8 @@ local opts = {
 return {
 	{
 		"akinsho/bufferline.nvim",
-		lazy = false,
-		version = "*",
+		enabled = true,
+		event = "BufEnter",
 		dependencies = dependencies,
 		keys = keys,
 		config = config,

@@ -1,6 +1,8 @@
 local mapkey = require("util.keymapper").mapvimkey
 return {
 	"hrsh7th/nvim-cmp",
+	enabled = true,
+	event = "InsertEnter",
 	config = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")

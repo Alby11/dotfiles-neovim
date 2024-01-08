@@ -16,7 +16,7 @@ local keys = {
 return {
 	"RishabhRD/nvim-cheat.sh",
 	enabled = true,
-	lazy = false,
+	event = "VimEnter",
 	dependencies = dependencies,
 	config = config,
 	keys = keys,

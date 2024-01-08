@@ -188,7 +188,7 @@ end
 return {
 	"neovim/nvim-lspconfig",
 	config = config,
-	lazy = false,
+	event = "BufEnter",
 	dependencies = {
 		"windwp/nvim-autopairs",
 		"williamboman/mason.nvim",

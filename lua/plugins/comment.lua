@@ -13,6 +13,6 @@ local opts = {
 
 return {
 	"numToStr/Comment.nvim",
-	lazy = false,
+	event = "BufEnter",
 	opts = opts,
 }

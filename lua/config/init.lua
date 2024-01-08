@@ -21,8 +21,7 @@ local plugins = "plugins"
 local opts = {
 	defaults = {
 		lazy = true,
-		event = "BufEnter",
-		version = "*",
+		-- version = "*",
 		cond = not Is_vscode,
 	},
 	install = {

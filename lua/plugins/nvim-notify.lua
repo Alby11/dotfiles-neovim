@@ -8,6 +8,6 @@ end
 
 return {
 	"rcarriga/nvim-notify",
-	lazy = false,
+	event = "VimEnter",
 	config = config,
 }
