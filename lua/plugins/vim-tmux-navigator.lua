@@ -9,11 +9,11 @@ local cmd = {
 }
 
 local keys = {
-	mapkey("<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>", "n"),
-	mapkey("<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>", "n"),
-	mapkey("<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>", "n"),
-	mapkey("<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>", "n"),
-	mapkey("<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>", "n"),
+	mapkey("<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr><cmd>", "n"),
+	mapkey("<c-j>", "<cmd><C-U>TmuxNavigateDown<cr><cmd>", "n"),
+	mapkey("<c-k>", "<cmd><C-U>TmuxNavigateUp<cr><cmd>", "n"),
+	mapkey("<c-l>", "<cmd><C-U>TmuxNavigateRight<cr><cmd>", "n"),
+	mapkey("<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr><cmd>", "n"),
 }
 
 return {
