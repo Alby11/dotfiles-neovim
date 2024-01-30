@@ -27,11 +27,16 @@ local config = function()
 	})
 end
 
+local keys = {
+	mapkey("<leader>bc", "BaleiaColorize", "n"),
+}
+
 return {
 	{
 		"m00qek/baleia.nvim",
 		tag = "v1.3.0",
 		event = "BufEnter",
 		config = config,
+		keys = keys,
 	},
 }
