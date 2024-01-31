@@ -31,7 +31,7 @@ local opts = {
 			action = nil, -- nil to use default put action
 		},
 		telescope = {
-			use_default_mappings = true, -- if default mappings should be used
+			use_default_mappings = false, -- if default mappings should be used
 			mappings = nil, -- nil to use default mappings or no mappings (see `use_default_mappings`)
 		},
 	},
@@ -124,6 +124,14 @@ local keys = {
 	},
 	{ "=p", "<Plug>(YankyPutAfterFilter)", "n", noremap = true, silent = true, desc = "Yanky put after filter" },
 	{ "=P", "<Plug>(YankyPutBeforeFilter)", "n", noremap = true, silent = true, desc = "Yanky put before filter" },
+	{
+		"<leader>fy",
+		":Telescope yank_history<CR>",
+		"n",
+		noremap = true,
+		silent = true,
+		desc = "Telescope yank history",
+	},
 }
 
 return {
