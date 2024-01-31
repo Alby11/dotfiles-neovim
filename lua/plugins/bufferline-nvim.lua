@@ -5,8 +5,8 @@ local dependencies = {
 }
 
 local keys = {
-	mapkey("[b", "<cmd>BufferLineCycleNext<CR>", "n"),
-	mapkey("]b", "<cmd>BufferLineCyclePrev<CR>", "n"),
+	mapkey("[b", "BufferLineCycleNext", "n"),
+	mapkey("]b", "BufferLineCyclePrev", "n"),
 }
 
 local config = function()
