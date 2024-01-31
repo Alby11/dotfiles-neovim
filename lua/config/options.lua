@@ -39,7 +39,8 @@ if not Is_vscode then
 	Opt.mouse = "a"
 
 	-- clipboard block
-	Opt.clipboard:append("unnamedplus")
+	-- Opt.clipboard:append("unnamedplus")
+	Opt.clipboard = "unnamedplus"
 
 	-- set modifiable as default
 	Opt.modifiable = true
