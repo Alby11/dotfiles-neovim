@@ -7,6 +7,7 @@ end
 local dependencies = {
 	{
 		"kkharji/sqlite.lua",
+		enabled = false,
 		lazy = false,
 	},
 	{
@@ -16,9 +17,10 @@ local dependencies = {
 
 local opts = {
 	ring = {
-		history_length = 100,
-		storage = "sqlite",
-		storage_path = vim.fn.stdpath("data") .. "/databases/yanky.db", -- Only for sqlite storage
+		history_length = 1000,
+		-- storage = "sqlite",
+		storage = "shada",
+		-- storage_path = vim.fn.stdpath("data") .. "/databases/yanky.db", -- Only for sqlite storage
 		sync_with_numbered_registers = true,
 		cancel_event = "update",
 		ignore_registers = { "_" },
@@ -129,7 +131,7 @@ return {
 	-- but you need to initialize yanky on your own
 	{
 		"gbprod/yanky.nvim",
-		enabled = false,
+		enabled = true,
 		event = "VeryLazy",
 		dependencies = dependencies,
 		config = config,
