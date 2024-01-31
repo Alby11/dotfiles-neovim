@@ -21,11 +21,16 @@ local opts = {
 	},
 }
 
+local keys = {
+	mapkey("<leader>tt", "TransparentToggle", "n"),
+}
+
 return {
 	{
 		"xiyaowong/nvim-transparent",
 		enabled = true,
 		lazy = false,
 		opts = opts, -- Use only `opts` here
+		keys = keys,
 	},
 }
