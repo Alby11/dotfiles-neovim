@@ -129,7 +129,7 @@ return {
 	-- but you need to initialize yanky on your own
 	{
 		"gbprod/yanky.nvim",
-		enabled = true,
+		enabled = false,
 		event = "VeryLazy",
 		dependencies = dependencies,
 		config = config,
