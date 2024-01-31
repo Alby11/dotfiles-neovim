@@ -18,7 +18,8 @@ return {
 					luasnip.lsp_expand(args.body)
 				end,
 			},
-			mapping = cmp.mapping.preset.insert({
+			mapping = {
+				-- mapping = cmp.mapping.preset.insert({
 				["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
 				["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -26,14 +27,17 @@ return {
 				["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
 				["<C-e>"] = cmp.mapping.abort(), -- close completion window
 				["<CR>"] = cmp.mapping.confirm({ select = false }),
-			}),
+				-- }),
+			},
 			-- sources for autocompletion
-			sources = cmp.config.sources({
-				{ name = "nvim_lsp" }, -- lsp
-				{ name = "luasnip" }, -- snippets
+			-- sources = cmp.config.sources({
+			sources = {
 				{ name = "buffer" }, -- text within current buffer
+				{ name = "cpm_yanky" }, -- yanky.nvim
+				{ name = "luasnip" }, -- snippets
+				{ name = "nvim_lsp" }, -- lsp
 				{ name = "path" }, -- file system paths
-			}),
+			},
 			-- configure lspkind for vs-code like icons
 			formatting = {
 				format = lspkind.cmp_format({
