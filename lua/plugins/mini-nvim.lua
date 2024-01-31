@@ -12,6 +12,10 @@ local config = function()
 	require("mini.trailspace").setup()
 end
 
+local keys = {
+	mapkey("<leader>GS", "<CMD>lua MiniOperators.sort('visual')<CR>", "n"),
+}
+
 return {
 	{
 		"echasnovski/mini.nvim",
@@ -19,5 +23,6 @@ return {
 		enabled = true,
 		event = "BufEnter",
 		config = config,
+		keys = keys,
 	},
 }
