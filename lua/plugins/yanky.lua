@@ -2,6 +2,7 @@ local mapkey = require("util.keymapper").mapvimkey
 local config = function()
 	require("yanky").setup({})
 	require("telescope").load_extension("yank_history")
+	Opt.clipboard:append("unnamedplus")
 end
 
 local dependencies = {
@@ -140,7 +141,7 @@ return {
 	{
 		"gbprod/yanky.nvim",
 		enabled = true,
-		event = "VeryLazy",
+		event = "UIEnter",
 		dependencies = dependencies,
 		config = config,
 		opts = opts,

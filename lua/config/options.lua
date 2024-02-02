@@ -40,7 +40,6 @@ if not Is_vscode then
 
 	-- clipboard block
 	-- Opt.clipboard:append("unnamedplus")
-	Opt.clipboard = "unnamedplus"
 
 	-- set modifiable as default
 	Opt.modifiable = true
