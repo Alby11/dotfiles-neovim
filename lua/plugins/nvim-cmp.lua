@@ -33,6 +33,7 @@ return {
 			-- sources = cmp.config.sources({
 			sources = {
 				{ name = "buffer" }, -- text within current buffer
+				{ name = "calc" }, -- text within current buffer
 				{ name = "cpm_yanky" }, -- yanky.nvim
 				{ name = "luasnip" }, -- snippets
 				{ name = "nvim_lsp" }, -- lsp
@@ -45,6 +46,29 @@ return {
 					ellipsis_char = "...",
 				}),
 			},
+		})
+
+		-- `/` cmdline setup.
+		cmp.setup.cmdline("/", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = {
+				{ name = "buffer" },
+			},
+		})
+
+		-- `:` cmdline setup.
+		cmp.setup.cmdline(":", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = cmp.config.sources({
+				{ name = "path" },
+			}, {
+				{
+					name = "cmdline",
+					option = {
+						ignore_cmds = { "Man", "!" },
+					},
+				},
+			}),
 		})
 	end,
 	dependencies = {
