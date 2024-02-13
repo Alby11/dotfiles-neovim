@@ -20,7 +20,7 @@ return {
 	{
 		"echasnovski/mini.nvim",
 		version = false,
-		enabled = true,
+		enabled = false,
 		event = "BufEnter",
 		config = config,
 		keys = keys,
