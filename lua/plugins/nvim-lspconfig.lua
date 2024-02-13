@@ -1,200 +1,163 @@
 local mapkey = require("util.keymapper").mapvimkey
-local on_attach = require("util.lsp").on_attach
-local diagnostic_signs = require("util.icons").diagnostic_signs
-
-local config = function()
-	require("neoconf").setup({})
-	local cmp_nvim_lsp = require("cmp_nvim_lsp")
-	local lspconfig = require("lspconfig")
-	local capabilities = cmp_nvim_lsp.default_capabilities()
-
-	for type, icon in pairs(diagnostic_signs) do
-		local hl = "DiagnosticSign" .. type
-		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-	end
-
-	-- lua
-	lspconfig.lua_ls.setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-		settings = { -- custom settings for lua
-			Lua = {
-				-- make the language server recognize "vim" global
-				diagnostics = {
-					globals = { "vim" },
-				},
-				workspace = {
-					-- make language server aware of runtime files
-					library = {
-						[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-						[vim.fn.stdpath("config") .. "/lua"] = true,
-					},
-				},
-			},
-		},
-	})
-
-	-- json
-	lspconfig.jsonls.setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-		filetypes = { "json", "jsonc" },
-	})
-
-	-- python
-	lspconfig.pyright.setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-		settings = {
-			pyright = {
-				disableOrganizeImports = false,
-				analysis = {
-					useLibraryCodeForTypes = true,
-					autoSearchPaths = true,
-					diagnosticMode = "workspace",
-					autoImportCompletions = true,
-				},
-			},
-		},
-	})
-
-	-- typescript
-	lspconfig.tsserver.setup({
-		on_attach = on_attach,
-		capabilities = capabilities,
-		filetypes = {
-			"typescript",
-		},
-		root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git"),
-	})
-
-	-- bash
-	lspconfig.bashls.setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-		filetypes = { "sh", "aliasrc" },
-	})
-
-	-- solidity
-	lspconfig.solidity.setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-		filetypes = { "solidity" },
-	})
-
-	-- typescriptreact, javascriptreact, css, sass, scss, less, svelte, vue
-	lspconfig.emmet_ls.setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-		filetypes = {
-			"typescriptreact",
-			"javascriptreact",
-			"javascript",
-			"css",
-			"sass",
-			"scss",
-			"less",
-			"svelte",
-			"vue",
-			"html",
-		},
-	})
-
-	-- docker
-	lspconfig.dockerls.setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-	})
-
-	-- C/C++
-	lspconfig.clangd.setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-		cmd = {
-			"clangd",
-			"--offset-encoding=utf-16",
-		},
-	})
-
-	local luacheck = require("efmls-configs.linters.luacheck")
-	local stylua = require("efmls-configs.formatters.stylua")
-	local flake8 = require("efmls-configs.linters.flake8")
-	local black = require("efmls-configs.formatters.black")
-	local eslint = require("efmls-configs.linters.eslint")
-	local prettier_d = require("efmls-configs.formatters.prettier_d")
-	local fixjson = require("efmls-configs.formatters.fixjson")
-	local shellcheck = require("efmls-configs.linters.shellcheck")
-	local shfmt = require("efmls-configs.formatters.shfmt")
-	local hadolint = require("efmls-configs.linters.hadolint")
-	local solhint = require("efmls-configs.linters.solhint")
-	local cpplint = require("efmls-configs.linters.cpplint")
-	local clangformat = require("efmls-configs.formatters.clang_format")
-
-	-- configure efm server
-	lspconfig.efm.setup({
-		filetypes = {
-			"lua",
-			"python",
-			"json",
-			"jsonc",
-			"sh",
-			"javascript",
-			"javascriptreact",
-			"typescript",
-			"typescriptreact",
-			"svelte",
-			"vue",
-			"markdown",
-			"docker",
-			"solidity",
-			"html",
-			"css",
-			"c",
-			"cpp",
-		},
-		init_options = {
-			documentFormatting = true,
-			documentRangeFormatting = true,
-			hover = true,
-			documentSymbol = true,
-			codeAction = true,
-			completion = true,
-		},
-		settings = {
-			languages = {
-				lua = { luacheck, stylua },
-				python = { flake8, black },
-				typescript = { eslint, prettier_d },
-				json = { eslint, fixjson },
-				jsonc = { eslint, fixjson },
-				sh = { shellcheck, shfmt },
-				javascript = { eslint, prettier_d },
-				javascriptreact = { eslint, prettier_d },
-				typescriptreact = { eslint, prettier_d },
-				svelte = { eslint, prettier_d },
-				vue = { eslint, prettier_d },
-				markdown = { prettier_d },
-				docker = { hadolint, prettier_d },
-				solidity = { solhint },
-				html = { prettier_d },
-				css = { prettier_d },
-				c = { clangformat, cpplint },
-				cpp = { clangformat, cpplint },
-			},
-		},
-	})
-end
-
-return {
+local M = {
 	"neovim/nvim-lspconfig",
-	config = config,
-	event = "BufEnter",
+	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		"windwp/nvim-autopairs",
-		"williamboman/mason.nvim",
-		"creativenull/efmls-configs-nvim",
-		"hrsh7th/nvim-cmp",
-		"hrsh7th/cmp-buffer",
-		"hrsh7th/cmp-nvim-lsp",
+		{
+			"folke/neodev.nvim",
+		},
 	},
 }
+
+local function lsp_keymaps(bufnr)
+	local opts = { noremap = true, silent = true }
+	local keymap = vim.api.nvim_buf_set_keymap
+	keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+	keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+	-- keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+	vim.keymap.set("n", "K", function()
+		local winid = require("ufo").peekFoldedLinesUnderCursor()
+		if not winid then
+			vim.lsp.buf.hover()
+		end
+	end)
+	keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+	keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+	keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+end
+
+M.on_attach = function(client, bufnr)
+	lsp_keymaps(bufnr)
+
+	if client.supports_method("textDocument/inlayHint") then
+		vim.lsp.inlay_hint.enable(bufnr, true)
+	end
+end
+
+M.toggle_inlay_hints = function()
+	local bufnr = vim.api.nvim_get_current_buf()
+	vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled(bufnr))
+end
+
+function M.common_capabilities()
+	local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+	if status_ok then
+		return cmp_nvim_lsp.default_capabilities()
+	end
+
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
+	capabilities.textDocument.completion.completionItem.snippetSupport = true
+	capabilities.textDocument.completion.completionItem.resolveSupport = {
+		properties = {
+			"documentation",
+			"detail",
+			"additionalTextEdits",
+		},
+	}
+	capabilities.textDocument.foldingRange = {
+		dynamicRegistration = false,
+		lineFoldingOnly = true,
+	}
+
+	return capabilities
+end
+
+function M.config()
+	local wk = require("which-key")
+	wk.register({
+		["<leader>la"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+		["<leader>lf"] = {
+			"<cmd>lua vim.lsp.buf.format({async = true, filter = function(client) return client.name ~= 'typescript-tools' end})<cr>",
+			"Format",
+		},
+		["<leader>li"] = { "<cmd>LspInfo<cr>", "Info" },
+		["<leader>lj"] = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic" },
+		["<leader>lh"] = { "<cmd>lua require('user.lspconfig').toggle_inlay_hints()<cr>", "Hints" },
+		["<leader>lk"] = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
+		["<leader>ll"] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
+		["<leader>lq"] = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
+		["<leader>lr"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+	})
+
+	wk.register({
+		["<leader>la"] = {
+			name = "LSP",
+			a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action", mode = "v" },
+		},
+	})
+
+	local lspconfig = require("lspconfig")
+	local icons = require("user.icons")
+
+	local servers = {
+		"lua_ls",
+		"cssls",
+		"html",
+		-- "tsserver",
+		"astro",
+		"pyright",
+		"bashls",
+		"lemminx",
+		"jsonls",
+		"yamlls",
+		"marksman",
+		"tailwindcss",
+		"eslint",
+		-- "rust_analyzer",
+	}
+
+	local default_diagnostic_config = {
+		signs = {
+			active = true,
+			values = {
+				{ name = "DiagnosticSignError", text = icons.diagnostics.Error },
+				{ name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
+				{ name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
+				{ name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
+			},
+		},
+		virtual_text = false,
+		update_in_insert = false,
+		underline = true,
+		severity_sort = true,
+		float = {
+			focusable = true,
+			style = "minimal",
+			border = "rounded",
+			source = "always",
+			header = "",
+			prefix = "",
+		},
+	}
+
+	vim.diagnostic.config(default_diagnostic_config)
+
+	for _, sign in ipairs(vim.tbl_get(vim.diagnostic.config(), "signs", "values") or {}) do
+		vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
+	end
+
+	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+	vim.lsp.handlers["textDocument/signatureHelp"] =
+		vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+	require("lspconfig.ui.windows").default_options.border = "rounded"
+
+	for _, server in pairs(servers) do
+		local opts = {
+			on_attach = M.on_attach,
+			capabilities = M.common_capabilities(),
+		}
+
+		local require_ok, settings = pcall(require, "user.lspsettings." .. server)
+		if require_ok then
+			opts = vim.tbl_deep_extend("force", settings, opts)
+		end
+
+		if server == "lua_ls" then
+			require("neodev").setup({})
+		end
+
+		lspconfig[server].setup(opts)
+	end
+end
+
+return M
