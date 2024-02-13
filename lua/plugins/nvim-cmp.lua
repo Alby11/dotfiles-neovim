@@ -34,7 +34,8 @@ return {
 			sources = {
 				{ name = "buffer" }, -- text within current buffer
 				{ name = "calc" }, -- text within current buffer
-				{ name = "cpm_yanky" }, -- yanky.nvim
+				{ name = "cmdline" }, -- text within current buffer
+				-- { name = "cpm_yanky" }, -- yanky.nvim
 				{ name = "luasnip" }, -- snippets
 				{ name = "nvim_lsp" }, -- lsp
 				{ name = "path" }, -- file system paths
@@ -61,7 +62,7 @@ return {
 			mapping = cmp.mapping.preset.cmdline(),
 			sources = cmp.config.sources({
 				{ name = "path" },
-			}, {
+				-- }, {
 				{
 					name = "cmdline",
 					option = {
