@@ -87,23 +87,24 @@ function M.config()
 	})
 
 	local lspconfig = require("lspconfig")
-	local icons = require("user.icons")
+	local icons = require("config.icons")
 
 	local servers = {
-		"lua_ls",
-		"cssls",
-		"html",
-		-- "tsserver",
 		"astro",
-		"pyright",
 		"bashls",
-		"lemminx",
-		"jsonls",
-		"yamlls",
-		"marksman",
-		"tailwindcss",
+		"cssls",
 		"eslint",
+		"html",
+		"jsonls",
+		"lemminx",
+		"lua_ls",
+		"marksman",
+    "powershell_es",
+		"pyright",
+		"tailwindcss",
+		"yamlls",
 		-- "rust_analyzer",
+		-- "tsserver",
 	}
 
 	local default_diagnostic_config = {
