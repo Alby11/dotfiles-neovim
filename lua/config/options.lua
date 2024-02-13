@@ -14,9 +14,10 @@ if not Is_vscode then
 	Opt.hlsearch = false
 
 	-- Appearance
+	Opt.termguicolors = true
 	Opt.number = true
 	Opt.relativenumber = true
-	Opt.termguicolors = true
+  Opt.cursorline = true
 	Opt.colorcolumn = "100"
 	Opt.signcolumn = "yes"
 	Opt.cmdheight = 1
