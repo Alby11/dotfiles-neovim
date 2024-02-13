@@ -9,14 +9,14 @@ function M.config()
   local icons = require "user.icons"
   local diff = {
     "diff",
-    colored = false,
+    colored = true,
     symbols = { added = icons.git.LineAdded, modified = icons.git.LineModified, removed = icons.git.LineRemoved }, -- Changes the symbols used by the diff.
   }
 
   local diagnostics = {
     "diagnostics",
     sections = { "error", "warn" },
-    colored = false, -- Displays diagnostics status in color if set to true.
+    colored = true, -- Displays diagnostics status in color if set to true.
     always_visible = true, -- Show diagnostics even if there are none.
   }
 
@@ -44,33 +44,20 @@ function M.config()
 
   require("lualine").setup {
     options = {
-      -- component_separators = { left = "", right = "" },
-      -- section_separators = { left = "", right = "" },
-      -- component_separators = { left = "", right = "" },
-      -- section_separators = { left = "", right = "" },
       component_separators = { left = "", right = "" },
-      section_separators = { left = "", right = "" },
-
+      section_separators = { left = "", right = "" },
+      theme = "catppuccin-mocha",
       ignore_focus = { "NvimTree" },
     },
     sections = {
-      -- lualine_a = { {"branch", icon =""} },
-      -- lualine_b = { diff },
-      -- lualine_c = { "diagnostics" },
-      -- lualine_x = { copilot },
-      -- lualine_y = { "filetype" },
-      -- lualine_z = { "progress" },
-      -- lualine_a = { "mode" },
-      lualine_a = {},
-      lualine_b = { "branch" },
-      lualine_c = { diagnostics },
-      -- lualine_x = { diff, "copilot", filetype },
-      lualine_x = { "copilot", filetype },
-      lualine_y = { "progress" },
-      lualine_z = {},
+      lualine_a = {'mode'},
+      lualine_b = {'branch', 'diff', 'diagnostics'},
+      lualine_c = {'filename'},
+      lualine_x = {'encoding', 'fileformat', 'filetype'},
+      lualine_y = {'progress'},
+      lualine_z = {'location'}
     },
-    -- extensions = { "quickfix", "man", "fugitive", "oil" },
-    extensions = { "quickfix", "man", "fugitive" },
+    extensions = { "quickfix", "man", "fugitive", "oil" },
   }
 end
 
