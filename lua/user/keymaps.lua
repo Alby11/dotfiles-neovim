@@ -55,4 +55,4 @@ Map("t", "kj", [[<C-\><C-n>]], MapOpts)
 mapkey("<leader>pa", "echo expand('%:p')", "n") -- Show Full File Path
 
 -- Source current buffer
-mapkey("<leader>so", "so %", "n", { desc = "Source current buffer" })
+-- mapkey("<leader>so", "so %", "n", { desc = "Source current buffer" })

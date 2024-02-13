@@ -1,15 +1,32 @@
 local M = {
   "folke/which-key.nvim",
   event = "VeryLazy",
+  dependencies = "lambdalisue/suda.vim",
 }
+
+function M.init()
+    vim.o.timeout = true
+    vim.o.timeoutlen = 100
+end
 
 function M.config()
   local mappings = {
-    q = { "<cmd>confirm q<CR>", "Quit" },
+    q = {
+      name = "W/Q",
+      q = { "<cmd>confirm q<CR>", "Quit" },
+      gq = { "<cmd>confirm q!<CR>", "Quit (force)" },
+      w = { "<cmd>confirm w<CR>", "Write" },
+      W = { "<cmd>SudaWrite<CR>", "SudaWrite" },
+      R = { "<cmd>SudaRead<CR>", "SudaRead" },
+    },
     h = { "<cmd>nohlsearch<CR>", "NOHL" },
     [";"] = { "<cmd>tabnew | terminal<CR>", "Term" },
     v = { "<cmd>vsplit<CR>", "Split" },
-    b = { name = "Buffers" },
+    b = {
+      name = "Buffers",
+      o = { "<cmd>so %<cr>", "Source current buffer" },
+      w = { "<cmd>Bwipeout<cr>", "Wipe current buffer" },
+    },
     d = { name = "Debug" },
     f = { name = "Find" },
     g = { name = "Git" },
@@ -37,13 +54,13 @@ function M.config()
         suggestions = 20,
       },
       presets = {
-        operators = false,
-        motions = false,
-        text_objects = false,
-        windows = false,
-        nav = false,
-        z = false,
-        g = false,
+        operators = true,
+        motions = true,
+        text_objects = true,
+        windows = true,
+        nav = true,
+        z = true,
+        g = true,
       },
     },
     window = {
