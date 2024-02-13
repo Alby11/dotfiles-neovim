@@ -87,7 +87,7 @@ function M.config()
 	})
 
 	local lspconfig = require("lspconfig")
-	local icons = require("config.icons")
+	local icons = require("util.icons")
 
 	local servers = {
 		"astro",

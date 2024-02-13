@@ -63,7 +63,7 @@ function M.config()
 		return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 	end
 
-	local icons = require("config.icons")
+	local icons = require("util.icons")
 	local types = require("cmp.types")
 
 	cmp.setup({
