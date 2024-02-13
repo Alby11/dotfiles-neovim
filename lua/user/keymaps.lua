@@ -43,5 +43,16 @@ keymap({ "n", "x" }, "j", "gj", opts)
 keymap({ "n", "x" }, "k", "gk", opts)
 keymap("n", "<leader>w", ":lua vim.wo.wrap = not vim.wo.wrap<CR>", opts)
 
-
 vim.api.nvim_set_keymap('t', '<C-;>', '<C-\\><C-n>', opts)
+
+-- ESC to normal mode
+Map("v", "kj", [[<Esc>]], MapOpts)
+Map("i", "kj", [[<Esc>]], MapOpts)
+Map("t", "kj", [[<C-\><C-n>]], MapOpts)
+
+
+-- Show Full File-Path
+mapkey("<leader>pa", "echo expand('%:p')", "n") -- Show Full File Path
+
+-- Source current buffer
+mapkey("<leader>so", "so %", "n", { desc = "Source current buffer" })
