@@ -1,46 +1,31 @@
-# Compiled Lua sources
-luac.out
+dein
+tags*
+.netrwhist
+pythonpath.vim
+nodepath.vim
+autoload/plugged/*
+vimspector-config/gadgets/*
+paths.vim
+session
+wiki/
+pack/
+utils/java/*
+lv-config.lua
+lua-language-server/
+eclipse.jdt.ls/
+.language-servers/
+.debuggers/
+spell/
+nv-settings.lua
+lv-settings.lua
+lua/lv-user/
+lua/lv-user-config/
 
-# luarocks build files
-*.src.rock
-*.zip
-*.tar.gz
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
 
-# Object files
-*.o
-*.os
-*.ko
-*.obj
-*.elf
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-*.def
-*.exp
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-
-plugin/packer_compiled.lua
-java-debug/
-vscode-java-test/
-lazy-lock.json
+.luarc.json
+.luacheckcache
